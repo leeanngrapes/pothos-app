@@ -1,4 +1,3 @@
-# app files
 node_modules/**/*
 .expo/*
 npm-debug.*
