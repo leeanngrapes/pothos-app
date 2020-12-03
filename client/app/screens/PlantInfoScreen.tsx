@@ -9,10 +9,10 @@ import {
   Platform,
 } from "react-native";
 
-import colors from "../../config/colors";
-import SubHeading from "../shared/SubHeading";
-import AppText from "../shared/AppText";
-import AppButton from "../shared/AppButton";
+import colors from "../theme/colors";
+import SubHeading from "../theme/SubHeading";
+import AppText from "../theme/AppText";
+import AppButton from "../components/AppButton";
 
 function PlantInfoScreen() {
   return (
@@ -20,7 +20,7 @@ function PlantInfoScreen() {
       <View style={styles.title}>
         <Image
           style={styles.plantImg}
-          source={require("../../assets/fiddle-leaf-fig-plant.jpg")}
+          source={require("../assets/fiddle-leaf-fig-plant.jpg")}
         />
         <SubHeading>Fiddle Leaf Fig</SubHeading>
         <AppText>Ficus lyrata</AppText>

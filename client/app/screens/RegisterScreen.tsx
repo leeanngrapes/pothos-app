@@ -9,17 +9,17 @@ import {
   Alert,
 } from "react-native";
 
-import colors from "../../config/colors";
-import Heading from "../shared/Heading";
-import AppText from "../shared/AppText";
-import AppButton from "../shared/AppButton";
+import colors from "../theme/colors";
+import Heading from "../theme/Heading";
+import AppText from "../theme/AppText";
+import AppButton from "../components/AppButton";
 
-function LoginScreen() {
+function RegisterScreen() {
   return (
     <ImageBackground
       blurRadius={5}
       style={styles.background}
-      source={require("../../assets/pothos.jpg")}
+      source={require("../assets/pothos.jpg")}
     >
       <View style={styles.container}>
         <Text style={styles.title}>POTHOS</Text>
@@ -27,9 +27,10 @@ function LoginScreen() {
       </View>
 
       <View style={styles.container}>
-        <Heading>Log In</Heading>
+        <Heading>Register</Heading>
         <AppText>
-          A login form will go here with fields for email/username and password.
+          A register form will go here with fields for email, username and
+          password.
         </AppText>
       </View>
       <View style={styles.buttonContainer}>
@@ -46,7 +47,7 @@ function LoginScreen() {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: "center",
     alignItems: "center",
   },
   buttonContainer: {
@@ -74,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default RegisterScreen;

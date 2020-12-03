@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, View, Image, SafeAreaView } from "react-native";
 
-import colors from "../../config/colors";
-import Heading from "../shared/Heading";
-import SubHeading from "../shared/SubHeading";
-import AppText from "../shared/AppText";
+import colors from "../theme/colors";
+import Heading from "../theme/Heading";
+import SubHeading from "../theme/SubHeading";
+import AppText from "../theme/AppText";
 
 function CareScheduleScreen() {
   return (
@@ -18,7 +18,7 @@ function CareScheduleScreen() {
           <View style={styles.plantResult}>
             <Image
               style={styles.plantImg}
-              source={require("../../assets/fiddle-leaf-fig-plant.jpg")}
+              source={require("../assets/fiddle-leaf-fig-plant.jpg")}
             />
             <AppText>Fiddler - </AppText>
             <AppText>Water</AppText>
@@ -26,7 +26,7 @@ function CareScheduleScreen() {
           <View style={styles.plantResult}>
             <Image
               style={styles.plantImg}
-              source={require("../../assets/jade-plant.jpg")}
+              source={require("../assets/jade-plant.jpg")}
             />
             <AppText>Jadey - </AppText>
             <AppText>Rotate</AppText>
@@ -35,7 +35,7 @@ function CareScheduleScreen() {
           <View style={styles.plantResult}>
             <Image
               style={styles.plantImg}
-              source={require("../../assets/philodendron-plant.jpg")}
+              source={require("../assets/philodendron-plant.jpg")}
             />
             <AppText>Dendron - </AppText>
             <AppText>Fertilize</AppText>

@@ -2,17 +2,17 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View, ImageBackground, Alert } from "react-native";
 
-import colors from "../../config/colors";
-import Heading from "../shared/Heading";
-import SubHeading from "../shared/SubHeading";
-import AppText from "../shared/AppText";
-import AppButton from "../shared/AppButton";
+import colors from "../theme/colors";
+import Heading from "../theme/Heading";
+import SubHeading from "../theme/SubHeading";
+import AppText from "../theme/AppText";
+import AppButton from "../components/AppButton";
 
 function AccountScreen() {
   return (
     <ImageBackground
       style={styles.image}
-      source={require("../../assets/plant.jpg")}
+      source={require("../assets/plant.jpg")}
     >
       <View style={styles.title}>
         <Heading>Your Account</Heading>

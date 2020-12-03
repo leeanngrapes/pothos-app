@@ -9,31 +9,26 @@ import {
   Alert,
 } from "react-native";
 
-import colors from "../../config/colors";
-import Heading from "../shared/Heading";
-import AppText from "../shared/AppText";
-import AppButton from "../shared/AppButton";
+import colors from "../theme/colors";
+import AppButton from "../components/AppButton";
 
-function RegisterScreen() {
+function WelcomeScreen() {
   return (
     <ImageBackground
-      blurRadius={5}
+      blurRadius={10}
       style={styles.background}
-      source={require("../../assets/pothos.jpg")}
+      source={require("../assets/pothos.jpg")}
     >
       <View style={styles.container}>
         <Text style={styles.title}>POTHOS</Text>
-        <Text style={styles.tagline}>Take good care.</Text>
+        <Text style={styles.tagline}>Take good care</Text>
       </View>
-
-      <View style={styles.container}>
-        <Heading>Register</Heading>
-        <AppText>
-          A register form will go here with fields for email, username and
-          password.
-        </AppText>
-      </View>
-      <View style={styles.buttonContainer}>
+      <View style={styles.buttonsContainer}>
+        <AppButton
+          title="log in"
+          color="secondary"
+          onPress={() => Alert.alert("Login button pressed")}
+        />
         <AppButton
           title="Register"
           color="accent"
@@ -50,29 +45,30 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  buttonContainer: {
+  buttonsContainer: {
     padding: 20,
     width: "100%",
+    top: 250,
   },
   container: {
-    flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
-    top: 120,
+    bottom: 50,
   },
+
   tagline: {
     fontSize: 25,
-    fontWeight: "600",
-    color: colors.accent,
+    fontWeight: "800",
+    color: colors.warmWhite,
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-    paddingVertical: 20,
+    paddingVertical: 10,
   },
   title: {
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-    color: colors.white,
-    fontSize: 40,
+    color: colors.warmWhite,
+    fontSize: 60,
     fontWeight: "800",
   },
 });
 
-export default RegisterScreen;
+export default WelcomeScreen;

@@ -9,28 +9,33 @@ import {
   Alert,
 } from "react-native";
 
-import colors from "../../config/colors";
-import AppButton from "../shared/AppButton";
+import colors from "../theme/colors";
+import Heading from "../theme/Heading";
+import AppText from "../theme/AppText";
+import AppButton from "../components/AppButton";
 
-function WelcomeScreen() {
+function LoginScreen() {
   return (
     <ImageBackground
       blurRadius={5}
       style={styles.background}
-      source={require("../../assets/pothos.jpg")}
+      source={require("../assets/pothos.jpg")}
     >
       <View style={styles.container}>
         <Text style={styles.title}>POTHOS</Text>
-        <Text style={styles.tagline}>Take good care</Text>
+        <Text style={styles.tagline}>Take good care.</Text>
       </View>
-      <View style={styles.buttonsContainer}>
-        <AppButton
-          title="log in"
-          onPress={() => Alert.alert("Login button pressed")}
-        />
+
+      <View style={styles.container}>
+        <Heading>Log In</Heading>
+        <AppText>
+          A login form will go here with fields for email/username and password.
+        </AppText>
+      </View>
+      <View style={styles.buttonContainer}>
         <AppButton
           title="Register"
-          color="secondary"
+          color="accent"
           onPress={() => Alert.alert("Register button pressed")}
         />
       </View>
@@ -41,18 +46,19 @@ function WelcomeScreen() {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
   },
-  buttonsContainer: {
+  buttonContainer: {
     padding: 20,
     width: "100%",
   },
   container: {
-    justifyContent: "center",
+    flex: 1,
+    justifyContent: "flex-start",
     alignItems: "center",
+    top: 120,
   },
-
   tagline: {
     fontSize: 25,
     fontWeight: "600",
@@ -68,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WelcomeScreen;
+export default LoginScreen;

@@ -1,16 +1,7 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Alert,
-  ImageBackground,
-  Image,
-} from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 
-import colors from "../../config/colors";
-import AppText from "../shared/AppText";
+import colors from "../theme/colors";
 
 function PlantInfo() {
   return (
@@ -21,7 +12,7 @@ function PlantInfo() {
       <Image
         resizeMode="contain"
         style={styles.image}
-        source={require("../../assets/plant.jpg")}
+        source={require("../assets/plant.jpg")}
       ></Image>
     </View>
   );

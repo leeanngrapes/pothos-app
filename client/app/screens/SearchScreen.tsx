@@ -1,19 +1,9 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Alert,
-  ImageBackground,
-  Image,
-  SafeAreaView,
-} from "react-native";
+import { StyleSheet, View, Image, SafeAreaView } from "react-native";
 
-import colors from "../../config/colors";
-import Heading from "../shared/Heading";
-import SubHeading from "../shared/SubHeading";
-import AppText from "../shared/AppText";
+import colors from "../theme/colors";
+import Heading from "../theme/Heading";
+import AppText from "../theme/AppText";
 
 function SearchScreen() {
   return (
@@ -28,14 +18,14 @@ function SearchScreen() {
         <View style={styles.plantResult}>
           <Image
             style={styles.plantImg}
-            source={require("../../assets/fiddle-leaf-fig-plant.jpg")}
+            source={require("../assets/fiddle-leaf-fig-plant.jpg")}
           />
           <AppText>Fiddle Leaf Fig</AppText>
         </View>
         <View style={styles.plantResult}>
           <Image
             style={styles.plantImg}
-            source={require("../../assets/jade-plant.jpg")}
+            source={require("../assets/jade-plant.jpg")}
           />
           <AppText>Jade</AppText>
         </View>
@@ -43,14 +33,14 @@ function SearchScreen() {
         <View style={styles.plantResult}>
           <Image
             style={styles.plantImg}
-            source={require("../../assets/philodendron-plant.jpg")}
+            source={require("../assets/philodendron-plant.jpg")}
           />
           <AppText>Philodendron, Brazilian</AppText>
         </View>
         <View style={styles.plantResult}>
           <Image
             style={styles.plantImg}
-            source={require("../../assets/pothos-plant.jpg")}
+            source={require("../assets/pothos-plant.jpg")}
           />
           <AppText>Pothos, Marbled</AppText>
         </View>
@@ -58,14 +48,14 @@ function SearchScreen() {
         <View style={styles.plantResult}>
           <Image
             style={styles.plantImg}
-            source={require("../../assets/snake-plant.jpg")}
+            source={require("../assets/snake-plant.jpg")}
           />
           <AppText>Snake Plant</AppText>
         </View>
         <View style={styles.plantResult}>
           <Image
             style={styles.plantImg}
-            source={require("../../assets/spider-plant.jpg")}
+            source={require("../assets/spider-plant.jpg")}
           />
           <AppText>Spider Plant</AppText>
         </View>

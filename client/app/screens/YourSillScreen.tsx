@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, View, Alert, Image, SafeAreaView } from "react-native";
 
-import colors from "../../config/colors";
-import Heading from "../shared/Heading";
-import AppText from "../shared/AppText";
-import AppButton from "../shared/AppButton";
+import colors from "../theme/colors";
+import Heading from "../theme/Heading";
+import AppText from "../theme/AppText";
+import AppButton from "../components/AppButton";
 
 function YourSillScreen() {
   return (
@@ -31,42 +31,42 @@ function YourSillScreen() {
         <View style={styles.sillPlant}>
           <Image
             style={styles.plantImg}
-            source={require("../../assets/pothos-plant.jpg")}
+            source={require("../assets/pothos-plant.jpg")}
           />
           <AppText>Pothy</AppText>
         </View>
         <View style={styles.sillPlant}>
           <Image
             style={styles.plantImg}
-            source={require("../../assets/jade-plant.jpg")}
+            source={require("../assets/jade-plant.jpg")}
           />
           <AppText>Jadey</AppText>
         </View>
         <View style={styles.sillPlant}>
           <Image
             style={styles.plantImg}
-            source={require("../../assets/philodendron-plant.jpg")}
+            source={require("../assets/philodendron-plant.jpg")}
           />
           <AppText>Dendron</AppText>
         </View>
         <View style={styles.sillPlant}>
           <Image
             style={styles.plantImg}
-            source={require("../../assets/fiddle-leaf-fig-plant.jpg")}
+            source={require("../assets/fiddle-leaf-fig-plant.jpg")}
           />
           <AppText>Fiddler</AppText>
         </View>
         <View style={styles.sillPlant}>
           <Image
             style={styles.plantImg}
-            source={require("../../assets/snake-plant.jpg")}
+            source={require("../assets/snake-plant.jpg")}
           />
           <AppText>Snakey</AppText>
         </View>
         <View style={styles.sillPlant}>
           <Image
             style={styles.plantImg}
-            source={require("../../assets/spider-plant.jpg")}
+            source={require("../assets/spider-plant.jpg")}
           />
           <AppText>Spidey</AppText>
         </View>

@@ -1,18 +1,18 @@
 import React from "react";
-import { StyleSheet, View, Alert, Image } from "react-native";
+import { StyleSheet, View, Image, Alert } from "react-native";
 
-import colors from "../../config/colors";
-import SubHeading from "../shared/SubHeading";
-import AppText from "../shared/AppText";
-import AppButton from "../shared/AppButton";
+import colors from "../theme/colors";
+import SubHeading from "../theme/SubHeading";
+import AppText from "../theme/AppText";
+import AppButton from "../components/AppButton";
 
-function ViewPlantScreen() {
+function AddToSillScreen() {
   return (
     <View style={styles.background}>
       <View style={styles.title}>
         <Image
           style={styles.plantImg}
-          source={require("../../assets/fiddle-leaf-fig-plant.jpg")}
+          source={require("../assets/fiddle-leaf-fig-plant.jpg")}
         />
         <SubHeading>Fiddle Leaf Fig</SubHeading>
         <AppText>Ficus lyrata</AppText>
@@ -25,30 +25,30 @@ function ViewPlantScreen() {
       </View>
       <View style={styles.form}>
         <View style={styles.formField}>
-          <AppText>Fiddler</AppText>
+          <AppText>Name your plant...</AppText>
         </View>
         <View style={styles.formField}>
-          <AppText>Living Room</AppText>
+          <AppText>Add to a room...</AppText>
         </View>
         <View style={styles.formField}>
-          <AppText>11/11/2020</AppText>
+          <AppText>Date added...</AppText>
         </View>
         <View style={styles.formField}>
-          <AppText>Loving life!</AppText>
+          <AppText>Add a note...</AppText>
         </View>
       </View>
       <View style={styles.container}>
         <View style={styles.buttonContainer}>
           <AppButton
-            title="Edit"
-            onPress={() => Alert.alert("Edit button pressed")}
+            title="Cancel"
+            color="accent"
+            onPress={() => Alert.alert("Cancel/back button pressed")}
           />
         </View>
         <View style={styles.buttonContainer}>
           <AppButton
-            title="Remove"
-            color="accent"
-            onPress={() => Alert.alert("Remove button pressed")}
+            title="Add to Sill"
+            onPress={() => Alert.alert("Add plant button pressed")}
           />
         </View>
       </View>
@@ -114,4 +114,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ViewPlantScreen;
+export default AddToSillScreen;
