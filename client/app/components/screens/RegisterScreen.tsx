@@ -10,9 +10,11 @@ import {
 } from "react-native";
 
 import colors from "../../config/colors";
+import Heading from "../shared/Heading";
 import SubHeading from "../shared/SubHeading";
+import AppText from "../shared/AppText";
 
-function WelcomeScreen() {
+function RegisterScreen() {
   return (
     <ImageBackground
       style={styles.background}
@@ -23,8 +25,16 @@ function WelcomeScreen() {
         <SubHeading>Take good care.</SubHeading>
       </View>
 
-      <View style={styles.loginButton}></View>
-      <View style={styles.registerButton}></View>
+      <View style={styles.container}>
+        <Heading>Register</Heading>
+        <AppText>
+          A register form will go here with fields for email, username and
+          password.
+        </AppText>
+      </View>
+      <View style={styles.loginButton}>
+        <Text>Register</Text>
+      </View>
     </ImageBackground>
   );
 }
@@ -50,15 +60,9 @@ const styles = StyleSheet.create({
   loginButton: {
     width: "100%",
     height: 70,
-    backgroundColor: colors.white,
-    marginBottom: 20,
-  },
-  registerButton: {
-    width: "100%",
-    height: 70,
-    backgroundColor: colors.secondary,
-    marginBottom: 70,
+    backgroundColor: colors.accent,
+    marginBottom: 50,
   },
 });
 
-export default WelcomeScreen;
+export default RegisterScreen;

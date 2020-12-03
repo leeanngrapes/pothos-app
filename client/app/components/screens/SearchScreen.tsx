@@ -15,62 +15,59 @@ import Heading from "../shared/Heading";
 import SubHeading from "../shared/SubHeading";
 import AppText from "../shared/AppText";
 
-function YourSill() {
+function SearchScreen() {
   return (
     <SafeAreaView style={styles.background}>
       <View style={styles.title}>
-        <Heading>Your Sill</Heading>
-        <Button
-          title="Add a plant"
-          onPress={() => Alert.alert("Button with adjusted color pressed")}
-        />
-        <Button
-          title="Filter your sill"
-          onPress={() => Alert.alert("Button with adjusted color pressed")}
-        />
+        <Heading>Search</Heading>
+        <View style={styles.searchBar}>
+          <AppText>Find a plant...</AppText>
+        </View>
       </View>
-      <View style={styles.sill}>
-        <View style={styles.sillPlant}>
-          <Image
-            style={styles.plantImg}
-            source={require("../../assets/pothos-plant.jpg")}
-          />
-          <AppText>Pothy</AppText>
-        </View>
-        <View style={styles.sillPlant}>
-          <Image
-            style={styles.plantImg}
-            source={require("../../assets/jade-plant.jpg")}
-          />
-          <AppText>Jadey</AppText>
-        </View>
-        <View style={styles.sillPlant}>
-          <Image
-            style={styles.plantImg}
-            source={require("../../assets/philodendron-plant.jpg")}
-          />
-          <AppText>Dendron</AppText>
-        </View>
-        <View style={styles.sillPlant}>
+      <View style={styles.results}>
+        <View style={styles.plantResult}>
           <Image
             style={styles.plantImg}
             source={require("../../assets/fiddle-leaf-fig-plant.jpg")}
           />
-          <AppText>Fiddler</AppText>
+          <AppText>Fiddle Leaf Fig</AppText>
         </View>
-        <View style={styles.sillPlant}>
+        <View style={styles.plantResult}>
+          <Image
+            style={styles.plantImg}
+            source={require("../../assets/jade-plant.jpg")}
+          />
+          <AppText>Jade</AppText>
+        </View>
+
+        <View style={styles.plantResult}>
+          <Image
+            style={styles.plantImg}
+            source={require("../../assets/philodendron-plant.jpg")}
+          />
+          <AppText>Philodendron, Brazilian</AppText>
+        </View>
+        <View style={styles.plantResult}>
+          <Image
+            style={styles.plantImg}
+            source={require("../../assets/pothos-plant.jpg")}
+          />
+          <AppText>Pothos, Marbled</AppText>
+        </View>
+
+        <View style={styles.plantResult}>
           <Image
             style={styles.plantImg}
             source={require("../../assets/snake-plant.jpg")}
           />
-          <AppText>Snakey</AppText>
+          <AppText>Snake Plant</AppText>
         </View>
-        <View style={styles.sillPlant}>
+        <View style={styles.plantResult}>
           <Image
             style={styles.plantImg}
             source={require("../../assets/spider-plant.jpg")}
           />
-          <AppText>Spidey</AppText>
+          <AppText>Spider Plant</AppText>
         </View>
       </View>
     </SafeAreaView>
@@ -80,8 +77,6 @@ function YourSill() {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: colors.white,
   },
   plantImg: {
@@ -89,22 +84,29 @@ const styles = StyleSheet.create({
     width: 100,
     borderRadius: 50,
     margin: 10,
+    marginHorizontal: 20,
   },
-  sill: {
-    flex: 2,
-    justifyContent: "space-around",
+  results: {
+    flex: 3,
+  },
+  plantResult: {
     flexDirection: "row",
-    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "flex-start",
   },
-  sillPlant: {
+  searchBar: {
+    width: "100%",
+    height: 50,
+    backgroundColor: colors.warmWhite,
+    justifyContent: "center",
     alignItems: "center",
   },
   title: {
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    top: 100,
+    top: 50,
   },
 });
 
-export default YourSill;
+export default SearchScreen;
