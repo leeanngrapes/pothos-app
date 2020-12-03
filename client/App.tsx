@@ -5,9 +5,10 @@ import AccountScreen from "./app/components/screens/AccountScreen";
 import LoginScreen from "./app/components/screens/LoginScreen";
 import PlantInfo from "./app/components/screens/PlantInfo";
 import RegisterScreen from "./app/components/screens/RegisterScreen";
+import SearchScreen from "./app/components/screens/SearchScreen";
 import WelcomeScreen from "./app/components/screens/WelcomeScreen";
 import YourSill from "./app/components/screens/YourSill";
 
 export default function App() {
-  return <AccountScreen />;
+  return <SearchScreen />;
 }

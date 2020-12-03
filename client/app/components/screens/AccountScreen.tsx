@@ -17,7 +17,10 @@ import AppText from "../shared/AppText";
 
 function AccountScreen() {
   return (
-    <SafeAreaView style={styles.background}>
+    <ImageBackground
+      style={styles.image}
+      source={require("../../assets/plant.jpg")}
+    >
       <View style={styles.title}>
         <Heading>Your Account</Heading>
       </View>
@@ -31,7 +34,7 @@ function AccountScreen() {
       </View>
       <View style={styles.loginButton}></View>
       <View style={styles.registerButton}></View>
-    </SafeAreaView>
+    </ImageBackground>
   );
 }
 
@@ -43,9 +46,17 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   content: {
-    flex: 1,
     justifyContent: "flex-start",
     alignItems: "flex-start",
+    backgroundColor: colors.white,
+    paddingLeft: "30%",
+    height: "auto",
+    marginBottom: 50,
+    paddingTop: 5,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
   },
   title: {
     flex: 1,
