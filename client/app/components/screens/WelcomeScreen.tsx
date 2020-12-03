@@ -4,27 +4,36 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   Platform,
   ImageBackground,
+  Alert,
 } from "react-native";
 
 import colors from "../../config/colors";
-import SubHeading from "../shared/SubHeading";
+import AppButton from "../shared/AppButton";
 
 function WelcomeScreen() {
   return (
     <ImageBackground
+      blurRadius={5}
       style={styles.background}
       source={require("../../assets/pothos.jpg")}
     >
       <View style={styles.container}>
-        <Text style={styles.heading}>POTHOS</Text>
-        <SubHeading>Take good care.</SubHeading>
+        <Text style={styles.title}>POTHOS</Text>
+        <Text style={styles.tagline}>Take good care</Text>
       </View>
-
-      <View style={styles.loginButton}></View>
-      <View style={styles.registerButton}></View>
+      <View style={styles.buttonsContainer}>
+        <AppButton
+          title="log in"
+          onPress={() => Alert.alert("Login button pressed")}
+        />
+        <AppButton
+          title="Register"
+          color="secondary"
+          onPress={() => Alert.alert("Register button pressed")}
+        />
+      </View>
     </ImageBackground>
   );
 }
@@ -32,32 +41,30 @@ function WelcomeScreen() {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: "center",
     alignItems: "center",
+  },
+  buttonsContainer: {
+    padding: 20,
+    width: "100%",
   },
   container: {
-    flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
-    top: 120,
   },
-  heading: {
+
+  tagline: {
+    fontSize: 25,
+    fontWeight: "600",
+    color: colors.accent,
+    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
+    paddingVertical: 20,
+  },
+  title: {
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
     color: colors.white,
     fontSize: 40,
     fontWeight: "800",
-  },
-  loginButton: {
-    width: "100%",
-    height: 70,
-    backgroundColor: colors.white,
-    marginBottom: 20,
-  },
-  registerButton: {
-    width: "100%",
-    height: 70,
-    backgroundColor: colors.secondary,
-    marginBottom: 70,
   },
 });
 

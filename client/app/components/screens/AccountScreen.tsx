@@ -1,19 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Platform,
-  ImageBackground,
-  SafeAreaView,
-} from "react-native";
+import { StyleSheet, View, ImageBackground, Alert } from "react-native";
 
 import colors from "../../config/colors";
 import Heading from "../shared/Heading";
 import SubHeading from "../shared/SubHeading";
 import AppText from "../shared/AppText";
+import AppButton from "../shared/AppButton";
 
 function AccountScreen() {
   return (
@@ -32,8 +25,17 @@ function AccountScreen() {
         <SubHeading>Password</SubHeading>
         <AppText>**********</AppText>
       </View>
-      <View style={styles.loginButton}></View>
-      <View style={styles.registerButton}></View>
+      <View style={styles.buttonsContainer}>
+        <AppButton
+          title="Edit"
+          onPress={() => Alert.alert("Edit button pressed")}
+        />
+        <AppButton
+          title="Sign Out"
+          color="accent"
+          onPress={() => Alert.alert("Sign out button pressed")}
+        />
+      </View>
     </ImageBackground>
   );
 }
@@ -44,6 +46,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.white,
+  },
+  buttonsContainer: {
+    padding: 20,
+    width: "100%",
   },
   content: {
     justifyContent: "flex-start",
@@ -62,7 +68,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    top: 120,
   },
   loginButton: {
     width: "100%",

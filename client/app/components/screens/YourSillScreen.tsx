@@ -1,33 +1,31 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Alert,
-  ImageBackground,
-  Image,
-  SafeAreaView,
-} from "react-native";
+import { StyleSheet, View, Alert, Image, SafeAreaView } from "react-native";
 
 import colors from "../../config/colors";
 import Heading from "../shared/Heading";
-import SubHeading from "../shared/SubHeading";
 import AppText from "../shared/AppText";
+import AppButton from "../shared/AppButton";
 
-function YourSill() {
+function YourSillScreen() {
   return (
     <SafeAreaView style={styles.background}>
       <View style={styles.title}>
         <Heading>Your Sill</Heading>
-        <Button
-          title="Add a plant"
-          onPress={() => Alert.alert("Button with adjusted color pressed")}
-        />
-        <Button
-          title="Filter your sill"
-          onPress={() => Alert.alert("Button with adjusted color pressed")}
-        />
+      </View>
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <AppButton
+            title="Add Plant"
+            onPress={() => Alert.alert("Add plant button pressed")}
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <AppButton
+            title="Filter Still"
+            color="accent"
+            onPress={() => Alert.alert("Filter button pressed")}
+          />
+        </View>
       </View>
       <View style={styles.sill}>
         <View style={styles.sillPlant}>
@@ -84,6 +82,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.white,
   },
+  buttonContainer: {
+    //width: "100%",
+    flex: 1,
+    marginHorizontal: 20,
+  },
+  container: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   plantImg: {
     height: 100,
     width: 100,
@@ -98,13 +107,14 @@ const styles = StyleSheet.create({
   },
   sillPlant: {
     alignItems: "center",
+    marginBottom: 10,
   },
   title: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    top: 100,
+    //flex: 1,
+    //justifyContent: "flex-start",
+    //alignItems: "center",
+    marginBottom: 10,
   },
 });
 
-export default YourSill;
+export default YourSillScreen;

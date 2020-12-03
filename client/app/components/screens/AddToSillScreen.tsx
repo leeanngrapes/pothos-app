@@ -1,19 +1,10 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Alert,
-  ImageBackground,
-  Image,
-  SafeAreaView,
-} from "react-native";
+import { StyleSheet, View, Image, Alert } from "react-native";
 
 import colors from "../../config/colors";
-import Heading from "../shared/Heading";
 import SubHeading from "../shared/SubHeading";
 import AppText from "../shared/AppText";
+import AppButton from "../shared/AppButton";
 
 function AddToSillScreen() {
   return (
@@ -46,6 +37,21 @@ function AddToSillScreen() {
           <AppText>Add a note...</AppText>
         </View>
       </View>
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <AppButton
+            title="Cancel"
+            color="accent"
+            onPress={() => Alert.alert("Cancel/back button pressed")}
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <AppButton
+            title="Add to Sill"
+            onPress={() => Alert.alert("Add plant button pressed")}
+          />
+        </View>
+      </View>
     </View>
   );
 }
@@ -55,11 +61,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  buttonContainer: {
+    //width: "100%",
+    flex: 1,
+    marginHorizontal: 20,
+  },
+  container: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   form: {
     flex: 2,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: -300,
+    //marginTop: -300,
   },
   formField: {
     width: "80%",
@@ -70,11 +87,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   iconBar: {
-    flex: 1,
+    //flex: 1,
     paddingHorizontal: 40,
     flexDirection: "row",
     justifyContent: "space-evenly",
-    marginBottom: -100,
+    //marginBottom: -100,
+    marginTop: 80,
   },
   icon: {
     height: 50,
@@ -89,7 +107,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   title: {
-    flex: 1,
+    //flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
     top: 50,

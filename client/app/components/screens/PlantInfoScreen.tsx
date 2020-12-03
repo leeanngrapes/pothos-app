@@ -3,18 +3,16 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   Alert,
-  ImageBackground,
   Image,
   SafeAreaView,
   Platform,
 } from "react-native";
 
 import colors from "../../config/colors";
-import Heading from "../shared/Heading";
 import SubHeading from "../shared/SubHeading";
 import AppText from "../shared/AppText";
+import AppButton from "../shared/AppButton";
 
 function PlantInfoScreen() {
   return (
@@ -61,6 +59,12 @@ function PlantInfoScreen() {
           </AppText>
         </View>
       </View>
+      <View style={styles.buttonContainer}>
+        <AppButton
+          title="back"
+          onPress={() => Alert.alert("Back button pressed")}
+        />
+      </View>
     </SafeAreaView>
   );
 }
@@ -69,6 +73,10 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     backgroundColor: colors.white,
+  },
+  buttonContainer: {
+    padding: 20,
+    width: "100%",
   },
   container: {
     flex: 1.5,

@@ -4,25 +4,26 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   Platform,
   ImageBackground,
+  Alert,
 } from "react-native";
 
 import colors from "../../config/colors";
 import Heading from "../shared/Heading";
-import SubHeading from "../shared/SubHeading";
 import AppText from "../shared/AppText";
+import AppButton from "../shared/AppButton";
 
 function LoginScreen() {
   return (
     <ImageBackground
+      blurRadius={5}
       style={styles.background}
       source={require("../../assets/pothos.jpg")}
     >
       <View style={styles.container}>
-        <Text style={styles.heading}>POTHOS</Text>
-        <SubHeading>Take good care.</SubHeading>
+        <Text style={styles.title}>POTHOS</Text>
+        <Text style={styles.tagline}>Take good care.</Text>
       </View>
 
       <View style={styles.container}>
@@ -31,8 +32,12 @@ function LoginScreen() {
           A login form will go here with fields for email/username and password.
         </AppText>
       </View>
-      <View style={styles.loginButton}>
-        <Text>Login</Text>
+      <View style={styles.buttonContainer}>
+        <AppButton
+          title="Register"
+          color="accent"
+          onPress={() => Alert.alert("Register button pressed")}
+        />
       </View>
     </ImageBackground>
   );
@@ -44,23 +49,28 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
   },
+  buttonContainer: {
+    padding: 20,
+    width: "100%",
+  },
   container: {
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
     top: 120,
   },
-  heading: {
+  tagline: {
+    fontSize: 25,
+    fontWeight: "600",
+    color: colors.accent,
+    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
+    paddingVertical: 20,
+  },
+  title: {
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
     color: colors.white,
     fontSize: 40,
     fontWeight: "800",
-  },
-  loginButton: {
-    width: "100%",
-    height: 70,
-    backgroundColor: colors.accent,
-    marginBottom: 50,
   },
 });
 

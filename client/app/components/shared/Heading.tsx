@@ -11,8 +11,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 40,
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-    fontWeight: "500",
+    fontWeight: "600",
     color: colors.primary,
+    top: 100,
   },
 });
 

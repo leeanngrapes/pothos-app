@@ -1,19 +1,10 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Alert,
-  ImageBackground,
-  Image,
-  SafeAreaView,
-} from "react-native";
+import { StyleSheet, View, Alert, Image } from "react-native";
 
 import colors from "../../config/colors";
-import Heading from "../shared/Heading";
 import SubHeading from "../shared/SubHeading";
 import AppText from "../shared/AppText";
+import AppButton from "../shared/AppButton";
 
 function ViewPlantScreen() {
   return (
@@ -46,15 +37,20 @@ function ViewPlantScreen() {
           <AppText>Loving life!</AppText>
         </View>
       </View>
-      <View style={styles.buttons}>
-        <Button
-          title="Edit plant"
-          onPress={() => Alert.alert("Button with adjusted color pressed")}
-        />
-        <Button
-          title="Remove plant"
-          onPress={() => Alert.alert("Button with adjusted color pressed")}
-        />
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <AppButton
+            title="Edit"
+            onPress={() => Alert.alert("Edit button pressed")}
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <AppButton
+            title="Remove"
+            color="accent"
+            onPress={() => Alert.alert("Remove button pressed")}
+          />
+        </View>
       </View>
     </View>
   );
@@ -65,12 +61,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
-  buttons: {},
+  buttonContainer: {
+    //width: "100%",
+    flex: 1,
+    marginHorizontal: 20,
+  },
+  container: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   form: {
     flex: 2,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: -300,
+    //marginTop: -300,
   },
   formField: {
     width: "80%",
@@ -81,11 +87,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   iconBar: {
-    flex: 1,
+    //flex: 1,
     paddingHorizontal: 40,
     flexDirection: "row",
     justifyContent: "space-evenly",
-    marginBottom: -100,
+    //marginBottom: -100,
+    marginTop: 80,
   },
   icon: {
     height: 50,
@@ -100,7 +107,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   title: {
-    flex: 1,
+    //flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
     top: 50,
