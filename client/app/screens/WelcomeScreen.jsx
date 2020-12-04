@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   StyleSheet,
@@ -6,13 +5,12 @@ import {
   View,
   Platform,
   ImageBackground,
-  Alert,
 } from "react-native";
 
 import colors from "../theme/colors";
 import AppButton from "../components/AppButton";
 
-function WelcomeScreen() {
+function WelcomeScreen({ navigation }) {
   return (
     <ImageBackground
       blurRadius={10}
@@ -27,12 +25,12 @@ function WelcomeScreen() {
         <AppButton
           title="log in"
           color="secondary"
-          onPress={() => Alert.alert("Login button pressed")}
+          onPress={() => navigation.navigate("Login")}
         />
         <AppButton
           title="Register"
           color="accent"
-          onPress={() => Alert.alert("Register button pressed")}
+          onPress={() => navigation.navigate("Register")}
         />
       </View>
     </ImageBackground>

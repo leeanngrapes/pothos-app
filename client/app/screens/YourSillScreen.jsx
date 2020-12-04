@@ -1,12 +1,19 @@
 import React from "react";
-import { StyleSheet, View, Alert, Image, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Alert,
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 
 import colors from "../theme/colors";
 import Heading from "../theme/Heading";
 import AppText from "../theme/AppText";
 import AppButton from "../components/AppButton";
 
-function YourSillScreen() {
+function YourSillScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.background}>
       <View style={styles.title}>
@@ -16,7 +23,7 @@ function YourSillScreen() {
         <View style={styles.buttonContainer}>
           <AppButton
             title="Add Plant"
-            onPress={() => Alert.alert("Add plant button pressed")}
+            onPress={() => navigation.navigate("Search")}
           />
         </View>
         <View style={styles.buttonContainer}>
@@ -49,13 +56,16 @@ function YourSillScreen() {
           />
           <AppText>Dendron</AppText>
         </View>
-        <View style={styles.sillPlant}>
+        <TouchableOpacity
+          style={styles.sillPlant}
+          onPress={() => navigation.navigate("ViewPlant")}
+        >
           <Image
             style={styles.plantImg}
             source={require("../assets/fiddle-leaf-fig-plant.jpg")}
           />
           <AppText>Fiddler</AppText>
-        </View>
+        </TouchableOpacity>
         <View style={styles.sillPlant}>
           <Image
             style={styles.plantImg}
