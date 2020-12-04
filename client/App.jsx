@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+
 import AccountScreen from "./app/screens/AccountScreen";
 import AddToSillScreen from "./app/screens/AddToSillScreen";
 import CareScheduleScreen from "./app/screens/CareScheduleScreen";
@@ -13,5 +14,5 @@ import WelcomeScreen from "./app/screens/WelcomeScreen";
 import YourSillScreen from "./app/screens/YourSillScreen";
 
 export default function App() {
-  return <YourSillScreen />;
+  return <WelcomeScreen />;
 }
