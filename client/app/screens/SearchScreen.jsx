@@ -1,66 +1,82 @@
 import React from "react";
-import { StyleSheet, View, Image, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  SafeAreaView,
+  TouchableWithoutFeedback,
+  ScrollView,
+  TextInput,
+} from "react-native";
 
 import colors from "../theme/colors";
 import Heading from "../theme/Heading";
 import AppText from "../theme/AppText";
+import AddToSillScreen from "../screens/AddToSillScreen";
 
-function SearchScreen() {
+function SearchScreen({ navigation }) {
   return (
-    <SafeAreaView style={styles.background}>
+    <View style={styles.background}>
       <View style={styles.title}>
         <Heading>Search</Heading>
-        <View style={styles.searchBar}>
-          <AppText>Find a plant...</AppText>
-        </View>
       </View>
+      <View style={styles.searchBar}>
+        <TextInput placeholder="Find a plant..." />
+      </View>
+
       <View style={styles.results}>
-        <View style={styles.plantResult}>
-          <Image
-            style={styles.plantImg}
-            source={require("../assets/fiddle-leaf-fig-plant.jpg")}
-          />
-          <AppText>Fiddle Leaf Fig</AppText>
-        </View>
-        <View style={styles.plantResult}>
-          <Image
-            style={styles.plantImg}
-            source={require("../assets/jade-plant.jpg")}
-          />
-          <AppText>Jade</AppText>
-        </View>
+        <ScrollView>
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate("AddToSill")}
+          >
+            <View style={styles.plantResult}>
+              <Image
+                style={styles.plantImg}
+                source={require("../assets/fiddle-leaf-fig-plant.jpg")}
+              />
+              <AppText>Fiddle Leaf Fig</AppText>
+            </View>
+          </TouchableWithoutFeedback>
+          <View style={styles.plantResult}>
+            <Image
+              style={styles.plantImg}
+              source={require("../assets/jade-plant.jpg")}
+            />
+            <AppText>Jade</AppText>
+          </View>
 
-        <View style={styles.plantResult}>
-          <Image
-            style={styles.plantImg}
-            source={require("../assets/philodendron-plant.jpg")}
-          />
-          <AppText>Philodendron, Brazilian</AppText>
-        </View>
-        <View style={styles.plantResult}>
-          <Image
-            style={styles.plantImg}
-            source={require("../assets/pothos-plant.jpg")}
-          />
-          <AppText>Pothos, Marbled</AppText>
-        </View>
+          <View style={styles.plantResult}>
+            <Image
+              style={styles.plantImg}
+              source={require("../assets/philodendron-plant.jpg")}
+            />
+            <AppText>Philodendron, Brazilian</AppText>
+          </View>
+          <View style={styles.plantResult}>
+            <Image
+              style={styles.plantImg}
+              source={require("../assets/pothos-plant.jpg")}
+            />
+            <AppText>Pothos, Marbled</AppText>
+          </View>
 
-        <View style={styles.plantResult}>
-          <Image
-            style={styles.plantImg}
-            source={require("../assets/snake-plant.jpg")}
-          />
-          <AppText>Snake Plant</AppText>
-        </View>
-        <View style={styles.plantResult}>
-          <Image
-            style={styles.plantImg}
-            source={require("../assets/spider-plant.jpg")}
-          />
-          <AppText>Spider Plant</AppText>
-        </View>
+          <View style={styles.plantResult}>
+            <Image
+              style={styles.plantImg}
+              source={require("../assets/snake-plant.jpg")}
+            />
+            <AppText>Snake Plant</AppText>
+          </View>
+          <View style={styles.plantResult}>
+            <Image
+              style={styles.plantImg}
+              source={require("../assets/spider-plant.jpg")}
+            />
+            <AppText>Spider Plant</AppText>
+          </View>
+        </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -90,12 +106,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.warmWhite,
     justifyContent: "center",
     alignItems: "center",
+    top: -30,
   },
   title: {
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    top: 50,
+    //top: 50,
   },
 });
 

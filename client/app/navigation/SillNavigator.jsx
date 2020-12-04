@@ -9,12 +9,24 @@ import PlantInfoScreen from "../screens/PlantInfoScreen";
 const Stack = createStackNavigator();
 
 const SillNavigator = () => (
-  <Stack.Navigator>
+  <Stack.Navigator mode={"modal"}>
     <Stack.Screen name="YourSill" component={YourSillScreen} />
     <Stack.Screen name="Search" component={SearchScreen} />
-    <Stack.Screen name="ViewPlant" component={ViewPlantScreen} />
-    <Stack.Screen name="AddToSill" component={AddToSillScreen} />
-    <Stack.Screen name="PlantInfo" component={PlantInfoScreen} />
+    <Stack.Screen
+      name="ViewPlant"
+      component={ViewPlantScreen}
+      options={{ headerShown: true }}
+    />
+    <Stack.Screen
+      name="AddToSill"
+      component={AddToSillScreen}
+      options={{ headerShown: true }}
+    />
+    <Stack.Screen
+      name="PlantInfo"
+      component={PlantInfoScreen}
+      options={{ headerShown: false }}
+    />
   </Stack.Navigator>
 );
 

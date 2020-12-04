@@ -1,12 +1,21 @@
 import React from "react";
-import { StyleSheet, View, Image, Alert } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  Alert,
+  TouchableWithoutFeedback,
+  TextInput,
+} from "react-native";
 
 import colors from "../theme/colors";
 import SubHeading from "../theme/SubHeading";
 import AppText from "../theme/AppText";
 import AppButton from "../components/AppButton";
+import CareIcons from "../components/CareIcons";
+import PlantInfoScreen from "../screens/PlantInfoScreen";
 
-function AddToSillScreen() {
+function AddToSillScreen({ navigation }) {
   return (
     <View style={styles.background}>
       <View style={styles.title}>
@@ -17,24 +26,29 @@ function AddToSillScreen() {
         <SubHeading>Fiddle Leaf Fig</SubHeading>
         <AppText>Ficus lyrata</AppText>
       </View>
-      <View style={styles.iconBar}>
-        <View style={styles.icon} />
-        <View style={styles.icon} />
-        <View style={styles.icon} />
-        <View style={styles.icon} />
-      </View>
+      <TouchableWithoutFeedback
+        onPress={() => navigation.navigate("PlantInfo")}
+      >
+        <View>
+          <CareIcons />
+        </View>
+      </TouchableWithoutFeedback>
+
       <View style={styles.form}>
         <View style={styles.formField}>
-          <AppText>Name your plant...</AppText>
+          <TextInput
+            style={styles.text}
+            placeholder="Give your plant a name..."
+          />
         </View>
         <View style={styles.formField}>
-          <AppText>Add to a room...</AppText>
+          <TextInput style={styles.text} placeholder="Select room..." />
         </View>
         <View style={styles.formField}>
-          <AppText>Date added...</AppText>
+          <TextInput style={styles.text} placeholder="Date added..." />
         </View>
         <View style={styles.formField}>
-          <AppText>Add a note...</AppText>
+          <TextInput style={styles.text} placeholder="Add a note..." />
         </View>
       </View>
       <View style={styles.container}>
@@ -42,13 +56,13 @@ function AddToSillScreen() {
           <AppButton
             title="Cancel"
             color="accent"
-            onPress={() => Alert.alert("Cancel/back button pressed")}
+            onPress={() => navigation.navigate("Search")}
           />
         </View>
         <View style={styles.buttonContainer}>
           <AppButton
             title="Add to Sill"
-            onPress={() => Alert.alert("Add plant button pressed")}
+            onPress={() => navigation.navigate("YourSill")}
           />
         </View>
       </View>
@@ -86,31 +100,23 @@ const styles = StyleSheet.create({
     backgroundColor: colors.warmWhite,
     marginBottom: 10,
   },
-  iconBar: {
-    //flex: 1,
-    paddingHorizontal: 40,
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    //marginBottom: -100,
-    marginTop: 80,
-  },
-  icon: {
-    height: 50,
-    width: 50,
-    borderRadius: 25,
-    backgroundColor: colors.secondary,
-  },
   plantImg: {
     height: 150,
     width: 150,
     borderRadius: 75,
-    margin: 10,
+    //margin: 10,
+  },
+
+  text: {
+    fontSize: 18,
+    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
+    color: colors.black,
   },
   title: {
     //flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    top: 50,
+    top: 30,
   },
 });
 

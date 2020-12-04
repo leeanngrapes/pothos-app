@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   Platform,
 } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../theme/colors";
 import SubHeading from "../theme/SubHeading";
@@ -27,7 +28,13 @@ function PlantInfoScreen() {
       </View>
       <View style={styles.container}>
         <View style={styles.section}>
-          <View style={styles.icon} />
+          <View style={styles.icon}>
+            <MaterialCommunityIcons
+              name="water-outline"
+              size={30}
+              color={colors.white}
+            />
+          </View>
           <Text style={styles.sectionHeader}>Watering needs</Text>
           <AppText>
             This is care information about watering needs. Your fiddle leaf fig
@@ -35,7 +42,13 @@ function PlantInfoScreen() {
           </AppText>
         </View>
         <View style={styles.section}>
-          <View style={styles.icon} />
+          <View style={styles.icon}>
+            <MaterialCommunityIcons
+              name="weather-sunny"
+              size={30}
+              color={colors.white}
+            />
+          </View>
           <Text style={styles.sectionHeader}>Light needs</Text>
           <AppText>
             This is care information about light needs. It likes very nice shade
@@ -43,7 +56,13 @@ function PlantInfoScreen() {
           </AppText>
         </View>
         <View style={styles.section}>
-          <View style={styles.icon} />
+          <View style={styles.icon}>
+            <MaterialCommunityIcons
+              name="leaf"
+              size={25}
+              color={colors.white}
+            />
+          </View>
           <Text style={styles.sectionHeader}>Fertilizer needs</Text>
           <AppText>
             This is care information about fertilizing needs. Give it a boost
@@ -51,19 +70,19 @@ function PlantInfoScreen() {
           </AppText>
         </View>
         <View style={styles.section}>
-          <View style={styles.icon} />
+          <View style={styles.icon}>
+            <MaterialCommunityIcons
+              name="content-cut"
+              size={25}
+              color={colors.white}
+            />
+          </View>
           <Text style={styles.sectionHeader}>Pruning needs</Text>
           <AppText>
             This is care information about pruning needs. Does not require
             regular pruning.{" "}
           </AppText>
         </View>
-      </View>
-      <View style={styles.buttonContainer}>
-        <AppButton
-          title="back"
-          onPress={() => Alert.alert("Back button pressed")}
-        />
       </View>
     </SafeAreaView>
   );
@@ -74,10 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
-  buttonContainer: {
-    padding: 20,
-    width: "100%",
-  },
+
   container: {
     flex: 1.5,
     justifyContent: "space-evenly",
@@ -90,12 +106,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.secondary,
     marginRight: 10,
     marginVertical: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   plantImg: {
     height: 150,
     width: 150,
     borderRadius: 75,
-    margin: 10,
+    //margin: 10,
   },
   section: {
     flexDirection: "row",
@@ -112,7 +130,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    top: 50,
+    top: 30,
   },
 });
 
