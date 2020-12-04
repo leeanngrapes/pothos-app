@@ -14,17 +14,17 @@ import AppText from "../theme/AppText";
 import AppButton from "../components/AppButton";
 import CareIcons from "../components/CareIcons";
 import PlantInfoScreen from "../screens/PlantInfoScreen";
+import PlantCard from "../components/PlantCard";
 
 function AddToSillScreen({ navigation }) {
   return (
     <View style={styles.background}>
-      <View style={styles.title}>
-        <Image
-          style={styles.plantImg}
-          source={require("../assets/fiddle-leaf-fig-plant.jpg")}
+      <View style={styles.cardContainer}>
+        <PlantCard
+          title="Fiddle Leaf Fig"
+          subTitle="Ficus lyrata"
+          image={require("../assets/fiddle-leaf-fig-plant.jpg")}
         />
-        <SubHeading>Fiddle Leaf Fig</SubHeading>
-        <AppText>Ficus lyrata</AppText>
       </View>
       <TouchableWithoutFeedback
         onPress={() => navigation.navigate("PlantInfo")}
@@ -80,6 +80,10 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 20,
   },
+  cardContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     flexDirection: "row",
@@ -111,12 +115,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
     color: colors.black,
-  },
-  title: {
-    //flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    top: 30,
   },
 });
 

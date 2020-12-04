@@ -37,12 +37,10 @@ function CareIcons(props) {
 
 const styles = StyleSheet.create({
   iconBar: {
-    //flex: 1,
     paddingHorizontal: 40,
     flexDirection: "row",
     justifyContent: "space-evenly",
-    marginBottom: 20,
-    marginTop: 50,
+    marginVertical: 10,
   },
   icon: {
     height: 50,

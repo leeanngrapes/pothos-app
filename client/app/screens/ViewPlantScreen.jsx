@@ -12,18 +12,19 @@ import SubHeading from "../theme/SubHeading";
 import AppText from "../theme/AppText";
 import AppButton from "../components/AppButton";
 import CareIcons from "../components/CareIcons";
+import PlantCard from "../components/PlantCard";
 
 function ViewPlantScreen({ navigation }) {
   return (
     <View style={styles.background}>
-      <View style={styles.title}>
-        <Image
-          style={styles.plantImg}
-          source={require("../assets/fiddle-leaf-fig-plant.jpg")}
+      <View style={styles.cardContainer}>
+        <PlantCard
+          title="Fiddle Leaf Fig"
+          subTitle="Ficus lyrata"
+          image={require("../assets/fiddle-leaf-fig-plant.jpg")}
         />
-        <SubHeading>Fiddle Leaf Fig</SubHeading>
-        <AppText>Ficus lyrata</AppText>
       </View>
+
       <TouchableWithoutFeedback
         onPress={() => navigation.navigate("PlantInfo")}
       >
@@ -73,6 +74,10 @@ const styles = StyleSheet.create({
     //width: "100%",
     flex: 1,
     marginHorizontal: 20,
+  },
+  cardContainer: {
+    alignItems: "center",
+    justifyContent: "center",
   },
   container: {
     flex: 1,

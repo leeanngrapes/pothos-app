@@ -14,17 +14,17 @@ import colors from "../theme/colors";
 import SubHeading from "../theme/SubHeading";
 import AppText from "../theme/AppText";
 import AppButton from "../components/AppButton";
+import PlantCard from "../components/PlantCard";
 
 function PlantInfoScreen() {
   return (
     <SafeAreaView style={styles.background}>
-      <View style={styles.title}>
-        <Image
-          style={styles.plantImg}
-          source={require("../assets/fiddle-leaf-fig-plant.jpg")}
+      <View style={styles.cardContainer}>
+        <PlantCard
+          title="Fiddle Leaf Fig"
+          subTitle="Ficus lyrata"
+          image={require("../assets/fiddle-leaf-fig-plant.jpg")}
         />
-        <SubHeading>Fiddle Leaf Fig</SubHeading>
-        <AppText>Ficus lyrata</AppText>
       </View>
       <View style={styles.container}>
         <View style={styles.section}>
@@ -93,7 +93,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
-
+  cardContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   container: {
     flex: 1.5,
     justifyContent: "space-evenly",
@@ -109,12 +112,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  plantImg: {
-    height: 150,
-    width: 150,
-    borderRadius: 75,
-    //margin: 10,
-  },
   section: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -125,12 +122,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignSelf: "center",
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-  },
-  title: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    top: 30,
   },
 });
 

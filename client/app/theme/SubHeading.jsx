@@ -3,8 +3,8 @@ import { Text, StyleSheet, Platform } from "react-native";
 
 import colors from "./colors";
 
-function SubHeading({ children }) {
-  return <Text style={styles.text}>{children}</Text>;
+function SubHeading({ children, style }) {
+  return <Text style={[styles.text, style]}>{children}</Text>;
 }
 
 const styles = StyleSheet.create({
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
     color: colors.accent,
-    marginVertical: 10,
+    //marginVertical: 10,
   },
 });
 
