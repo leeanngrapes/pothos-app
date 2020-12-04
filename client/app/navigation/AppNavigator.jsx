@@ -20,6 +20,8 @@ const AppNavigator = () => (
       activeTintColor: colors.accent,
       inactiveBackgroundColor: colors.primary,
       inactiveTintColor: colors.white,
+      style: { height: 90, alignContent: "center" },
+      labelStyle: { fontSize: 14, marginBottom: 10 },
     }}
   >
     <Tab.Screen

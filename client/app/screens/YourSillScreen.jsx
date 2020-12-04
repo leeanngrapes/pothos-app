@@ -22,13 +22,13 @@ function YourSillScreen({ navigation }) {
       <View style={styles.container}>
         <View style={styles.buttonContainer}>
           <AppButton
-            title="Add Plant"
+            title="Add A Plant"
             onPress={() => navigation.navigate("Search")}
           />
         </View>
         <View style={styles.buttonContainer}>
           <AppButton
-            title="Filter Still"
+            title="Filter"
             color="accent"
             onPress={() => Alert.alert("Filter button pressed")}
           />

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Image, SafeAreaView } from "react-native";
+import { StyleSheet, View, Image, SafeAreaView, Text } from "react-native";
 
 import colors from "../theme/colors";
 import Heading from "../theme/Heading";
@@ -13,32 +13,47 @@ function CareScheduleScreen() {
         <Heading>Care Schedule</Heading>
       </View>
       <View style={styles.section}>
-        <SubHeading>Next Care Due</SubHeading>
+        <SubHeading>Overdue!</SubHeading>
         <View style={styles.results}>
           <View style={styles.plantResult}>
             <Image
               style={styles.plantImg}
               source={require("../assets/fiddle-leaf-fig-plant.jpg")}
             />
-            <AppText>Fiddler - </AppText>
-            <AppText>Water</AppText>
+            <View style={styles.content}>
+              <AppText>Fiddler </AppText>
+              <Text style={styles.text}>Fertilize</Text>
+            </View>
           </View>
+        </View>
+      </View>
+      <View style={styles.section}>
+        <SubHeading>Due Today</SubHeading>
+        <View style={styles.results}>
           <View style={styles.plantResult}>
             <Image
               style={styles.plantImg}
               source={require("../assets/jade-plant.jpg")}
             />
-            <AppText>Jadey - </AppText>
-            <AppText>Rotate</AppText>
+            <View style={styles.content}>
+              <AppText>Jady </AppText>
+              <Text style={styles.text}>Water</Text>
+            </View>
           </View>
-
+        </View>
+      </View>
+      <View style={styles.section}>
+        <SubHeading>Due Tomorrow</SubHeading>
+        <View style={styles.results}>
           <View style={styles.plantResult}>
             <Image
               style={styles.plantImg}
               source={require("../assets/philodendron-plant.jpg")}
             />
-            <AppText>Dendron - </AppText>
-            <AppText>Fertilize</AppText>
+            <View style={styles.content}>
+              <AppText>Dendron </AppText>
+              <Text style={styles.text}>Rotate</Text>
+            </View>
           </View>
         </View>
       </View>
@@ -53,8 +68,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.white,
   },
+  content: {
+    flexDirection: "column",
+  },
   section: {
-    flex: 3,
+    flex: 2,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -71,11 +89,17 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   results: {
-    flex: 3,
+    //flex: 3,
+    marginLeft: -150,
+    paddingBottom: -20,
+  },
+  text: {
+    fontSize: 18,
+    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
+    color: colors.primary,
   },
   title: {
     flex: 1,
-    marginBottom: 10,
   },
 });
 
