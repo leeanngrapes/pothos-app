@@ -1,101 +1,95 @@
 import React from "react";
-import { StyleSheet, View, Image, SafeAreaView, Text } from "react-native";
+import { StyleSheet, SafeAreaView, SectionList } from "react-native";
 
-import colors from "../theme/colors";
 import Heading from "../theme/Heading";
 import SubHeading from "../theme/SubHeading";
-import AppText from "../theme/AppText";
 import ListItem from "../components/ListItem";
+import Screen from "../components/Screen";
 
-function CareScheduleScreen() {
+const DATA = [
+  {
+    title: "Overdue!",
+    data: [
+      {
+        id: 1,
+        title: "T1 Pothos",
+        subTitle: "Water",
+        image: require("../assets/pothos-plant.jpg"),
+      },
+      {
+        id: 2,
+        title: "T2 Jade",
+        subTitle: "Fertilize",
+        image: require("../assets/jade-plant.jpg"),
+      },
+    ],
+  },
+  {
+    title: "Due today",
+    data: [
+      {
+        id: 3,
+        title: "T3 Pothos",
+        subTitle: "Rotate",
+        image: require("../assets/pothos-plant.jpg"),
+      },
+    ],
+  },
+  {
+    title: "Due tomorrow",
+    data: [
+      {
+        id: 4,
+        title: "T4 Jade",
+        subTitle: "Prune",
+        image: require("../assets/jade-plant.jpg"),
+      },
+      {
+        id: 5,
+        title: "T5 Jade",
+        subTitle: "Prune",
+        image: require("../assets/jade-plant.jpg"),
+      },
+    ],
+  },
+];
+
+function CareScheduleScreen({ navigation }) {
   return (
-    <SafeAreaView style={styles.background}>
-      <View style={styles.title}>
-        <Heading>Care Schedule</Heading>
-      </View>
-      <View style={styles.section}>
-        <SubHeading>Overdue!</SubHeading>
-        <View style={styles.results}>
+    <Screen style={styles.background}>
+      <Heading>Care Schedule</Heading>
+
+      <SectionList
+        contentContainerStyle={styles.container}
+        sections={DATA}
+        keyExtractor={(item, index) => item + index}
+        renderItem={({ item }) => (
           <ListItem
-            image={require("../assets/fiddle-leaf-fig-plant.jpg")}
-            title="Fiddler"
-            subTitle="Water"
+            title={item.title}
+            subTitle={item.subTitle}
+            image={item.image}
+            onPress={() => navigation.navigate("ViewPlant")}
           />
-        </View>
-      </View>
-      <View style={styles.section}>
-        <SubHeading>Due Today</SubHeading>
-        <View style={styles.results}>
-          <View style={styles.plantResult}>
-            <Image
-              style={styles.plantImg}
-              source={require("../assets/jade-plant.jpg")}
-            />
-            <View style={styles.content}>
-              <AppText>Jady </AppText>
-              <Text style={styles.text}>Water</Text>
-            </View>
-          </View>
-        </View>
-      </View>
-      <View style={styles.section}>
-        <SubHeading>Due Tomorrow</SubHeading>
-        <View style={styles.results}>
-          <View style={styles.plantResult}>
-            <Image
-              style={styles.plantImg}
-              source={require("../assets/philodendron-plant.jpg")}
-            />
-            <View style={styles.content}>
-              <AppText>Dendron </AppText>
-              <Text style={styles.text}>Rotate</Text>
-            </View>
-          </View>
-        </View>
-      </View>
-    </SafeAreaView>
+        )}
+        renderSectionHeader={({ section: { title } }) => (
+          <SubHeading>{title}</SubHeading>
+        )}
+      />
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.white,
   },
   content: {
     flexDirection: "column",
   },
-  section: {
-    flex: 2,
-    justifyContent: "center",
+  container: {
     alignItems: "center",
-  },
-  plantImg: {
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-    margin: 10,
-    marginHorizontal: 20,
-  },
-  plantResult: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
-  },
-  results: {
-    //flex: 3,
-    marginLeft: -150,
-    paddingBottom: -20,
-  },
-  text: {
-    fontSize: 18,
-    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-    color: colors.primary,
-  },
-  title: {
-    flex: 1,
+    marginTop: 50,
   },
 });
 
