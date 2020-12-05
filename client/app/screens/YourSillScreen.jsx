@@ -12,6 +12,7 @@ import colors from "../theme/colors";
 import Heading from "../theme/Heading";
 import AppText from "../theme/AppText";
 import AppButton from "../components/AppButton";
+import SillItem from "../components/SillItem";
 
 function YourSillScreen({ navigation }) {
   return (
@@ -56,16 +57,14 @@ function YourSillScreen({ navigation }) {
           />
           <AppText>Dendron</AppText>
         </View>
-        <TouchableOpacity
-          style={styles.sillPlant}
-          onPress={() => navigation.navigate("ViewPlant")}
-        >
-          <Image
-            style={styles.plantImg}
-            source={require("../assets/fiddle-leaf-fig-plant.jpg")}
+
+        <TouchableOpacity onPress={() => navigation.navigate("ViewPlant")}>
+          <SillItem
+            image={require("../assets/fiddle-leaf-fig-plant.jpg")}
+            title="Fiddler"
           />
-          <AppText>Fiddler</AppText>
         </TouchableOpacity>
+
         <View style={styles.sillPlant}>
           <Image
             style={styles.plantImg}
