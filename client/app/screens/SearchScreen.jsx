@@ -13,6 +13,7 @@ import colors from "../theme/colors";
 import Heading from "../theme/Heading";
 import AppText from "../theme/AppText";
 import AddToSillScreen from "../screens/AddToSillScreen";
+import ListItem from "../components/ListItem";
 
 function SearchScreen({ navigation }) {
   return (
@@ -29,14 +30,13 @@ function SearchScreen({ navigation }) {
           <TouchableWithoutFeedback
             onPress={() => navigation.navigate("AddToSill")}
           >
-            <View style={styles.plantResult}>
-              <Image
-                style={styles.plantImg}
-                source={require("../assets/fiddle-leaf-fig-plant.jpg")}
-              />
-              <AppText>Fiddle Leaf Fig</AppText>
-            </View>
+            <ListItem
+              image={require("../assets/fiddle-leaf-fig-plant.jpg")}
+              title="Fiddle Leaf Fig"
+              subTitle="Ficus lyrata"
+            />
           </TouchableWithoutFeedback>
+
           <View style={styles.plantResult}>
             <Image
               style={styles.plantImg}
@@ -85,20 +85,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
-  plantImg: {
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-    margin: 10,
-    marginHorizontal: 20,
-  },
   results: {
     flex: 3,
-  },
-  plantResult: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
+    paddingLeft: 20,
   },
   searchBar: {
     width: "100%",
@@ -112,7 +101,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    //top: 50,
+  },
+
+  plantImg: {
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+    margin: 10,
+    marginHorizontal: 20,
+  },
+  plantResult: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
 

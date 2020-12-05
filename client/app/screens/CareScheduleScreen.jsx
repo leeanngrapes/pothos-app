@@ -5,6 +5,7 @@ import colors from "../theme/colors";
 import Heading from "../theme/Heading";
 import SubHeading from "../theme/SubHeading";
 import AppText from "../theme/AppText";
+import ListItem from "../components/ListItem";
 
 function CareScheduleScreen() {
   return (
@@ -15,16 +16,11 @@ function CareScheduleScreen() {
       <View style={styles.section}>
         <SubHeading>Overdue!</SubHeading>
         <View style={styles.results}>
-          <View style={styles.plantResult}>
-            <Image
-              style={styles.plantImg}
-              source={require("../assets/fiddle-leaf-fig-plant.jpg")}
-            />
-            <View style={styles.content}>
-              <AppText>Fiddler </AppText>
-              <Text style={styles.text}>Fertilize</Text>
-            </View>
-          </View>
+          <ListItem
+            image={require("../assets/fiddle-leaf-fig-plant.jpg")}
+            title="Fiddler"
+            subTitle="Water"
+          />
         </View>
       </View>
       <View style={styles.section}>
