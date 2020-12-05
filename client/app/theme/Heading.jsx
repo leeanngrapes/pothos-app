@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
     fontWeight: "600",
     color: colors.primary,
-    top: 100,
+    top: 50,
+    alignSelf: "center",
   },
 });
 

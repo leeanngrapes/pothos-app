@@ -7,8 +7,9 @@ import Heading from "../theme/Heading";
 import SubHeading from "../theme/SubHeading";
 import AppText from "../theme/AppText";
 import AppButton from "../components/AppButton";
+import WelcomeScreen from "./WelcomeScreen";
 
-function AccountScreen() {
+function AccountScreen({ navigation }) {
   return (
     <ImageBackground
       style={styles.image}
@@ -30,10 +31,11 @@ function AccountScreen() {
           title="Edit"
           onPress={() => Alert.alert("Edit button pressed")}
         />
+
         <AppButton
           title="Sign Out"
           color="accent"
-          onPress={() => Alert.alert("Sign out button pressed")}
+          onPress={() => navigation.navigate("Welcome")}
         />
       </View>
     </ImageBackground>

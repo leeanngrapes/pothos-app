@@ -8,26 +8,33 @@ import {
   SafeAreaView,
   Platform,
 } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../theme/colors";
 import SubHeading from "../theme/SubHeading";
 import AppText from "../theme/AppText";
 import AppButton from "../components/AppButton";
+import PlantCard from "../components/PlantCard";
 
 function PlantInfoScreen() {
   return (
     <SafeAreaView style={styles.background}>
-      <View style={styles.title}>
-        <Image
-          style={styles.plantImg}
-          source={require("../assets/fiddle-leaf-fig-plant.jpg")}
+      <View style={styles.cardContainer}>
+        <PlantCard
+          title="Fiddle Leaf Fig"
+          subTitle="Ficus lyrata"
+          image={require("../assets/fiddle-leaf-fig-plant.jpg")}
         />
-        <SubHeading>Fiddle Leaf Fig</SubHeading>
-        <AppText>Ficus lyrata</AppText>
       </View>
       <View style={styles.container}>
         <View style={styles.section}>
-          <View style={styles.icon} />
+          <View style={styles.icon}>
+            <MaterialCommunityIcons
+              name="water-outline"
+              size={30}
+              color={colors.white}
+            />
+          </View>
           <Text style={styles.sectionHeader}>Watering needs</Text>
           <AppText>
             This is care information about watering needs. Your fiddle leaf fig
@@ -35,7 +42,13 @@ function PlantInfoScreen() {
           </AppText>
         </View>
         <View style={styles.section}>
-          <View style={styles.icon} />
+          <View style={styles.icon}>
+            <MaterialCommunityIcons
+              name="weather-sunny"
+              size={30}
+              color={colors.white}
+            />
+          </View>
           <Text style={styles.sectionHeader}>Light needs</Text>
           <AppText>
             This is care information about light needs. It likes very nice shade
@@ -43,7 +56,13 @@ function PlantInfoScreen() {
           </AppText>
         </View>
         <View style={styles.section}>
-          <View style={styles.icon} />
+          <View style={styles.icon}>
+            <MaterialCommunityIcons
+              name="leaf"
+              size={25}
+              color={colors.white}
+            />
+          </View>
           <Text style={styles.sectionHeader}>Fertilizer needs</Text>
           <AppText>
             This is care information about fertilizing needs. Give it a boost
@@ -51,19 +70,19 @@ function PlantInfoScreen() {
           </AppText>
         </View>
         <View style={styles.section}>
-          <View style={styles.icon} />
+          <View style={styles.icon}>
+            <MaterialCommunityIcons
+              name="content-cut"
+              size={25}
+              color={colors.white}
+            />
+          </View>
           <Text style={styles.sectionHeader}>Pruning needs</Text>
           <AppText>
             This is care information about pruning needs. Does not require
             regular pruning.{" "}
           </AppText>
         </View>
-      </View>
-      <View style={styles.buttonContainer}>
-        <AppButton
-          title="back"
-          onPress={() => Alert.alert("Back button pressed")}
-        />
       </View>
     </SafeAreaView>
   );
@@ -74,9 +93,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
-  buttonContainer: {
-    padding: 20,
-    width: "100%",
+  cardContainer: {
+    alignItems: "center",
+    justifyContent: "center",
   },
   container: {
     flex: 1.5,
@@ -90,12 +109,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.secondary,
     marginRight: 10,
     marginVertical: 10,
-  },
-  plantImg: {
-    height: 150,
-    width: 150,
-    borderRadius: 75,
-    margin: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   section: {
     flexDirection: "row",
@@ -107,12 +122,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignSelf: "center",
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-  },
-  title: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    top: 50,
   },
 });
 

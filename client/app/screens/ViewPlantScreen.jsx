@@ -1,28 +1,37 @@
 import React from "react";
-import { StyleSheet, View, Alert, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Alert,
+  Image,
+  TouchableWithoutFeedback,
+} from "react-native";
 
 import colors from "../theme/colors";
 import SubHeading from "../theme/SubHeading";
 import AppText from "../theme/AppText";
 import AppButton from "../components/AppButton";
+import CareIcons from "../components/CareIcons";
+import PlantCard from "../components/PlantCard";
 
-function ViewPlantScreen() {
+function ViewPlantScreen({ navigation }) {
   return (
     <View style={styles.background}>
-      <View style={styles.title}>
-        <Image
-          style={styles.plantImg}
-          source={require("../assets/fiddle-leaf-fig-plant.jpg")}
+      <View style={styles.cardContainer}>
+        <PlantCard
+          title="Fiddle Leaf Fig"
+          subTitle="Ficus lyrata"
+          image={require("../assets/fiddle-leaf-fig-plant.jpg")}
         />
-        <SubHeading>Fiddle Leaf Fig</SubHeading>
-        <AppText>Ficus lyrata</AppText>
       </View>
-      <View style={styles.iconBar}>
-        <View style={styles.icon} />
-        <View style={styles.icon} />
-        <View style={styles.icon} />
-        <View style={styles.icon} />
-      </View>
+
+      <TouchableWithoutFeedback
+        onPress={() => navigation.navigate("PlantInfo")}
+      >
+        <View>
+          <CareIcons />
+        </View>
+      </TouchableWithoutFeedback>
       <View style={styles.form}>
         <View style={styles.formField}>
           <AppText>Fiddler</AppText>
@@ -34,7 +43,7 @@ function ViewPlantScreen() {
           <AppText>11/11/2020</AppText>
         </View>
         <View style={styles.formField}>
-          <AppText>Loving life!</AppText>
+          <AppText>She is simply loving life!</AppText>
         </View>
       </View>
       <View style={styles.container}>
@@ -66,6 +75,10 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 20,
   },
+  cardContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     flexDirection: "row",
@@ -86,31 +99,18 @@ const styles = StyleSheet.create({
     backgroundColor: colors.warmWhite,
     marginBottom: 10,
   },
-  iconBar: {
-    //flex: 1,
-    paddingHorizontal: 40,
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    //marginBottom: -100,
-    marginTop: 80,
-  },
-  icon: {
-    height: 50,
-    width: 50,
-    borderRadius: 25,
-    backgroundColor: colors.secondary,
-  },
+
   plantImg: {
     height: 150,
     width: 150,
     borderRadius: 75,
-    margin: 10,
+    //margin: 10,
   },
   title: {
     //flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    top: 50,
+    top: 30,
   },
 });
 
