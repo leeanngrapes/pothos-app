@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, TextInput, FlatList } from "react-native";
 
 import colors from "../theme/colors";
-import Heading from "../theme/Heading";
+import Heading from "../components/Heading";
 import ListItem from "../components/ListItem";
 import Screen from "../components/Screen";
 

@@ -10,8 +10,8 @@ import {
 } from "react-native";
 
 import colors from "../theme/colors";
-import Heading from "../theme/Heading";
-import AppText from "../theme/AppText";
+import Heading from "../components/Heading";
+import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 
 function LoginScreen() {

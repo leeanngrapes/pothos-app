@@ -3,7 +3,7 @@ import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
 import colors from "../theme/colors";
-import AppText from "../theme/AppText";
+import AppText from "./AppText";
 
 function ListItem({ title, subTitle, image, onPress, renderRightActions }) {
   return (

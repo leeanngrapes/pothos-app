@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet, View, ImageBackground, Alert } from "react-native";
 
 import colors from "../theme/colors";
-import Heading from "../theme/Heading";
-import SubHeading from "../theme/SubHeading";
-import AppText from "../theme/AppText";
+import Heading from "../components/Heading";
+import SubHeading from "../components/SubHeading";
+import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 import Screen from "../components/Screen";
 

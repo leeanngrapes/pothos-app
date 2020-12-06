@@ -1,18 +1,19 @@
 import React from "react";
 import { Text, StyleSheet, Platform } from "react-native";
 
-import colors from "./colors";
+import colors from "../theme/colors";
 
-function AppText({ children, style }) {
+function SubHeading({ children, style }) {
   return <Text style={[styles.text, style]}>{children}</Text>;
 }
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 18,
+    fontSize: 28,
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-    color: colors.black,
+    color: colors.accent,
+    //marginVertical: 10,
   },
 });
 
-export default AppText;
+export default SubHeading;

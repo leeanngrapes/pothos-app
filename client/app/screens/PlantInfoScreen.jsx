@@ -11,8 +11,8 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../theme/colors";
-import SubHeading from "../theme/SubHeading";
-import AppText from "../theme/AppText";
+import SubHeading from "../components/SubHeading";
+import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 import PlantCard from "../components/PlantCard";
 
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     flex: 1.5,
     justifyContent: "space-evenly",
     alignItems: "flex-start",
+    marginTop: 40,
   },
   icon: {
     height: 50,

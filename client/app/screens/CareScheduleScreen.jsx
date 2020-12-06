@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { StyleSheet, SectionList } from "react-native";
 
-import Heading from "../theme/Heading";
-import SubHeading from "../theme/SubHeading";
+import Heading from "../components/Heading";
+import SubHeading from "../components/SubHeading";
 import ListItem from "../components/ListItem";
 import Screen from "../components/Screen";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";

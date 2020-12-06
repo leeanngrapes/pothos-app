@@ -1,22 +1,45 @@
-import React from "react";
-import {
-  StyleSheet,
-  View,
-  Image,
-  Alert,
-  TouchableWithoutFeedback,
-  TextInput,
-} from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
+//import DateTimePicker from "@react-native-community/datetimepicker";
 
 import colors from "../theme/colors";
-import SubHeading from "../theme/SubHeading";
-import AppText from "../theme/AppText";
 import AppButton from "../components/AppButton";
 import CareIcons from "../components/CareIcons";
-import PlantInfoScreen from "../screens/PlantInfoScreen";
 import PlantCard from "../components/PlantCard";
+import AppTextInput from "../components/AppTextInput";
+import AppPicker from "../components/AppPicker";
+
+const locations = [
+  { label: "Living room", value: 1 },
+  { label: "Kitchen", value: 2 },
+  { label: "Bedroom", value: 3 },
+];
 
 function AddToSillScreen({ navigation }) {
+  const [plantName, setPlantName] = useState("");
+  const [location, setLocation] = useState("");
+  const [notes, setNotes] = useState("");
+
+  // const [dateAdded, setDateAdded] = useState(new Date(1598051730000));
+
+  // const [mode, setMode] = useState("date");
+  // const [show, setShow] = useState(false);
+
+  // const onChange = (event, selectedDate) => {
+  //   const currentDate = selectedDate || date;
+  //   setShow(Platform.OS === "ios");
+  //   setDate(currentDate);
+  // };
+
+  // const showMode = (currentMode) => {
+  //   setShow(true);
+  //   setMode(currentMode);
+  // };
+
+  // const showDatepicker = () => {
+  //   showMode("date");
+  // };
+
   return (
     <View style={styles.background}>
       <View style={styles.cardContainer}>
@@ -35,21 +58,46 @@ function AddToSillScreen({ navigation }) {
       </TouchableWithoutFeedback>
 
       <View style={styles.form}>
-        <View style={styles.formField}>
-          <TextInput
-            style={styles.text}
-            placeholder="Give your plant a name..."
+        {/* <Text>{plantName}</Text> */}
+        <AppTextInput
+          placeholder="Give your plant a name"
+          onChangeText={(text) => setPlantName(text)}
+          icon="leaf"
+        />
+        {/* <Text>{location}</Text> */}
+        <AppPicker
+          selectedItem={location}
+          onSelectItem={(item) => setLocation(item)}
+          items={locations}
+          placeholder="Set location"
+          icon="home"
+        />
+
+        {/* <Text>{dateAdded}</Text> */}
+        <AppTextInput
+          placeholder="Set date added"
+          onChangeText={(text) => setDateAdded(text)}
+          icon="calendar"
+        />
+        {/* <Text>{notes}</Text> */}
+        {/* <AppButton onPress={showDatepicker} title="Select date added" />
+
+        {show && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={dateAdded}
+            mode={mode}
+            display="compact"
+            onChange={onChange}
           />
-        </View>
-        <View style={styles.formField}>
-          <TextInput style={styles.text} placeholder="Select room..." />
-        </View>
-        <View style={styles.formField}>
-          <TextInput style={styles.text} placeholder="Date added..." />
-        </View>
-        <View style={styles.formField}>
-          <TextInput style={styles.text} placeholder="Add a note..." />
-        </View>
+        )} */}
+
+        <AppTextInput
+          placeholder="Notes"
+          onChangeText={(text) => setNotes(text)}
+          icon="note"
+          multiline={true}
+        />
       </View>
       <View style={styles.container}>
         <View style={styles.buttonContainer}>
@@ -76,8 +124,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   buttonContainer: {
-    //width: "100%",
-    flex: 1,
     marginHorizontal: 20,
   },
   cardContainer: {
@@ -85,36 +131,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   container: {
-    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
   form: {
-    flex: 2,
     justifyContent: "center",
     alignItems: "center",
-    //marginTop: -300,
-  },
-  formField: {
     width: "80%",
-    height: 50,
-    padding: 10,
-    justifyContent: "center",
-    backgroundColor: colors.warmWhite,
-    marginBottom: 10,
-  },
-  plantImg: {
-    height: 150,
-    width: 150,
-    borderRadius: 75,
-    //margin: 10,
-  },
-
-  text: {
-    fontSize: 18,
-    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-    color: colors.black,
+    alignSelf: "center",
+    paddingTop: 10,
   },
 });
 

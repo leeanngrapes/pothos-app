@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-import AppText from "../theme/AppText";
+import AppText from "./AppText";
 
 function SillItem({ title, image, onPress }) {
   return (
@@ -22,8 +22,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   sillItem: {
-    margin: 10,
+    margin: 12,
     alignItems: "center",
+    width: 100,
   },
   title: {
     padding: 10,

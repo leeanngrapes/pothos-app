@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Alert, FlatList } from "react-native";
 
 import colors from "../theme/colors";
-import Heading from "../theme/Heading";
+import Heading from "../components/Heading";
 import AppButton from "../components/AppButton";
 import SillItem from "../components/SillItem";
 import Screen from "../components/Screen";
@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
     // flexDirection: "row",
     // flexWrap: "wrap",
     //alignContent: "center",
+    paddingHorizontal: 20,
   },
 });
 

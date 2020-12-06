@@ -8,8 +8,8 @@ import {
 } from "react-native";
 
 import colors from "../theme/colors";
-import SubHeading from "../theme/SubHeading";
-import AppText from "../theme/AppText";
+import SubHeading from "../components/SubHeading";
+import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 import CareIcons from "../components/CareIcons";
 import PlantCard from "../components/PlantCard";
