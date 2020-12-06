@@ -1,12 +1,13 @@
-import React from "react";
-import { StyleSheet, SafeAreaView, SectionList } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, SectionList } from "react-native";
 
 import Heading from "../theme/Heading";
 import SubHeading from "../theme/SubHeading";
 import ListItem from "../components/ListItem";
 import Screen from "../components/Screen";
+import ListItemDeleteAction from "../components/ListItemDeleteAction";
 
-const DATA = [
+const initialTasks = [
   {
     title: "Overdue!",
     data: [
@@ -55,24 +56,36 @@ const DATA = [
 ];
 
 function CareScheduleScreen({ navigation }) {
+  const [tasks, setTasks] = useState(initialTasks);
+
+  const handleDelete = (task) => {
+    //delete the item from careschedulescreen, need state using a hook
+    //call the server
+    setTasks(tasks.filter((t) => t.id !== task.id));
+  };
+
   return (
     <Screen style={styles.background}>
       <Heading>Care Schedule</Heading>
 
       <SectionList
         contentContainerStyle={styles.container}
-        sections={DATA}
-        keyExtractor={(item, index) => item + index}
+        sections={tasks}
+        keyExtractor={(task) => task.id.toString()}
         renderItem={({ item }) => (
           <ListItem
             title={item.title}
             subTitle={item.subTitle}
             image={item.image}
+            //not sure WHY this handleDelete is not working below :(
+            renderRightActions={() => (
+              <ListItemDeleteAction onPress={() => handleDelete(item)} />
+            )}
             onPress={() => navigation.navigate("ViewPlant")}
           />
         )}
         renderSectionHeader={({ section: { title } }) => (
-          <SubHeading>{title}</SubHeading>
+          <SubHeading style={styles.sectionHeader}>{title}</SubHeading>
         )}
       />
     </Screen>
@@ -88,8 +101,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   container: {
-    alignItems: "center",
     marginTop: 50,
+    marginHorizontal: 20,
+  },
+  sectionHeader: {
+    alignSelf: "center",
   },
 });
 
