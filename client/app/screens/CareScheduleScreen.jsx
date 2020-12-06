@@ -58,10 +58,10 @@ const initialTasks = [
 function CareScheduleScreen({ navigation }) {
   const [tasks, setTasks] = useState(initialTasks);
 
-  const handleDelete = (task) => {
+  const handleDelete = (item) => {
     //delete the item from careschedulescreen, need state using a hook
     //call the server
-    setTasks(tasks.filter((t) => t.id !== task.id));
+    setTasks(tasks.filter((t) => t.id !== item.id));
   };
 
   return (
@@ -70,14 +70,14 @@ function CareScheduleScreen({ navigation }) {
 
       <SectionList
         contentContainerStyle={styles.container}
-        sections={tasks}
-        keyExtractor={(task) => task.id.toString()}
+        sections={initialTasks} //differs from flatlist
+        keyExtractor={(item, index) => item + index}
         renderItem={({ item }) => (
           <ListItem
             title={item.title}
             subTitle={item.subTitle}
             image={item.image}
-            //not sure WHY this handleDelete is not working below :(
+            //not sure WHY this handleDelete is not working below, works on FlatList, maybe could change later
             renderRightActions={() => (
               <ListItemDeleteAction onPress={() => handleDelete(item)} />
             )}

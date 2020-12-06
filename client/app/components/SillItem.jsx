@@ -1,14 +1,17 @@
 import React from "react";
 import { StyleSheet, View, Image } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 import AppText from "../theme/AppText";
 
-function SillItem({ title, image }) {
+function SillItem({ title, image, onPress }) {
   return (
-    <View style={styles.sillItem}>
-      <Image style={styles.image} source={image} />
-      <AppText style={styles.title}>{title}</AppText>
-    </View>
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.sillItem}>
+        <Image style={styles.image} source={image} />
+        <AppText style={styles.title}>{title}</AppText>
+      </View>
+    </TouchableOpacity>
   );
 }
 
