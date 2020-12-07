@@ -1,19 +1,9 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Alert,
-  Image,
-  SafeAreaView,
-  Platform,
-} from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, Platform } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../theme/colors";
-import SubHeading from "../components/SubHeading";
 import AppText from "../components/AppText";
-import AppButton from "../components/AppButton";
 import PlantCard from "../components/PlantCard";
 
 function PlantInfoScreen() {

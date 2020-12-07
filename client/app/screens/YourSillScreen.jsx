@@ -119,11 +119,6 @@ const styles = StyleSheet.create({
   },
 
   sill: {
-    //flex: 2,
-    //justifyContent: "center",
-    // flexDirection: "row",
-    // flexWrap: "wrap",
-    //alignContent: "center",
     paddingHorizontal: 20,
   },
 });

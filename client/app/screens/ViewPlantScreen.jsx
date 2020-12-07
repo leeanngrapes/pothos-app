@@ -3,12 +3,10 @@ import {
   StyleSheet,
   View,
   Alert,
-  Image,
   TouchableWithoutFeedback,
 } from "react-native";
 
 import colors from "../theme/colors";
-import SubHeading from "../components/SubHeading";
 import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 import CareIcons from "../components/CareIcons";

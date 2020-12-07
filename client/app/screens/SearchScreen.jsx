@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, FlatList } from "react-native";
 
 import colors from "../theme/colors";
 import Heading from "../components/Heading";
-import ListItem from "../components/ListItem";
+import ListItem from "../components/lists/ListItem";
 import Screen from "../components/Screen";
 
 const searchItems = [
