@@ -9,10 +9,10 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import defaultStyles from "../../theme/styles";
-import AppText from "../AppText";
-import Screen from "../Screen";
-import PickerItem from "../PickerItem";
+import defaultStyles from "../theme/styles";
+import AppText from "./AppText";
+import Screen from "./Screen";
+import PickerItem from "./PickerItem";
 
 function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -46,10 +46,16 @@ function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
       </TouchableWithoutFeedback>
       <Modal visible={modalVisible} animationType="slide">
         <Screen>
-          <Button title="close" onPress={() => setModalVisible(false)} />
+          <MaterialCommunityIcons
+            name="close"
+            size={30}
+            onPress={() => setModalVisible(false)}
+            style={styles.modalIcon}
+          />
           <FlatList
             data={items}
             keyExtractor={(item) => item.value.toString()}
+            style={styles.list}
             renderItem={({ item }) => (
               <PickerItem
                 label={item.label}
@@ -78,8 +84,16 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
   },
+  list: {
+    marginLeft: 20,
+  },
   icon: {
     marginRight: 10,
+  },
+  modalIcon: {
+    alignSelf: "flex-end",
+    marginRight: 30,
+    marginTop: 30,
   },
   placeholder: {
     color: defaultStyles.colors.medium,

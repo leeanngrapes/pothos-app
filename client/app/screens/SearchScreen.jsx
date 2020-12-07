@@ -63,7 +63,13 @@ function SearchScreen({ navigation }) {
               title={item.title}
               subTitle={item.subTitle}
               image={item.image}
-              onPress={() => navigation.navigate("AddToSill")}
+              onPress={() =>
+                navigation.navigate("AddToSill", {
+                  title: item.title,
+                  subTitle: item.subTitle,
+                  image: item.image,
+                })
+              }
             />
           )}
         />
