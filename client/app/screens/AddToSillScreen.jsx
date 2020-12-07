@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
 import * as Yup from "yup";
 //import DateTimePicker from "@react-native-community/datetimepicker";
 
-import AppButton from "../components/AppButton";
 import AppForm from "../components/forms/AppForm";
-import AppPicker from "../components/forms/AppPicker";
-import AppTextInput from "../components/AppTextInput";
 import CareIcons from "../components/CareIcons";
 import colors from "../theme/colors";
 import PlantCard from "../components/PlantCard";
 import Screen from "../components/Screen";
-import { AppFormField, SubmitButton } from "../components/forms";
-import AppFormPicker from "../components/forms/AppFormPicker";
+import { AppFormField, AppFormPicker, SubmitButton } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(1).label("Name"),
@@ -22,45 +18,24 @@ const validationSchema = Yup.object().shape({
 });
 
 const locations = [
-  { label: "Living room", value: 1 },
-  { label: "Kitchen", value: 2 },
-  { label: "Bedroom", value: 3 },
+  { label: "Bedroom", value: 1 },
+  { label: "Dining room", value: 2 },
+  { label: "Entryway", value: 3 },
+  { label: "Kitchen", value: 4 },
+  { label: "Living room", value: 5 },
+  { label: "Office", value: 6 },
 ];
 
-function AddToSillScreen({ navigation }) {
-  //const [plantName, setPlantName] = useState("");
-  //const [location, setLocation] = useState("");
-  //const [notes, setNotes] = useState("");
-
-  // const [dateAdded, setDateAdded] = useState(new Date(1598051730000));
-
-  // const [mode, setMode] = useState("date");
-  // const [show, setShow] = useState(false);
-
-  // const onChange = (event, selectedDate) => {
-  //   const currentDate = selectedDate || date;
-  //   setShow(Platform.OS === "ios");
-  //   setDate(currentDate);
-  // };
-
-  // const showMode = (currentMode) => {
-  //   setShow(true);
-  //   setMode(currentMode);
-  // };
-
-  // const showDatepicker = () => {
-  //   showMode("date");
-  // };
+function AddToSillScreen({ route, navigation }) {
+  const { title } = route.params;
+  const { subTitle } = route.params;
+  const { image } = route.params;
 
   return (
     <Screen>
       <View style={styles.background}>
         <View style={styles.cardContainer}>
-          <PlantCard
-            title="Fiddle Leaf Fig"
-            subTitle="Ficus lyrata"
-            image={require("../assets/fiddle-leaf-fig-plant.jpg")}
-          />
+          <PlantCard title={title} subTitle={subTitle} image={image} />
         </View>
         <TouchableWithoutFeedback
           onPress={() => navigation.navigate("PlantInfo")}

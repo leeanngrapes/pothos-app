@@ -17,11 +17,11 @@ const AppNavigator = () => (
   <Tab.Navigator
     tabBarOptions={{
       activeBackgroundColor: colors.primary,
-      activeTintColor: colors.accent,
+      activeTintColor: colors.white,
       inactiveBackgroundColor: colors.primary,
-      inactiveTintColor: colors.white,
+      inactiveTintColor: colors.light,
       style: { height: 90, alignContent: "center" },
-      labelStyle: { fontSize: 14, marginBottom: 10 },
+      labelStyle: { fontSize: 12, marginBottom: 5 },
     }}
   >
     <Tab.Screen
