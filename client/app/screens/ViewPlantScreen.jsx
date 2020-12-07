@@ -12,15 +12,19 @@ import AppButton from "../components/AppButton";
 import CareIcons from "../components/CareIcons";
 import PlantCard from "../components/PlantCard";
 
-function ViewPlantScreen({ navigation }) {
+function ViewPlantScreen({ route, navigation }) {
+  const { name } = route.params;
+  const { title } = route.params;
+  const { subTitle } = route.params;
+  const { location } = route.params;
+  const { dateAdded } = route.params;
+  const { note } = route.params;
+  const { image } = route.params;
+
   return (
     <View style={styles.background}>
       <View style={styles.cardContainer}>
-        <PlantCard
-          title="Fiddle Leaf Fig"
-          subTitle="Ficus lyrata"
-          image={require("../assets/fiddle-leaf-fig-plant.jpg")}
-        />
+        <PlantCard title={name} subTitle={title} image={image} />
       </View>
 
       <TouchableWithoutFeedback
@@ -32,16 +36,16 @@ function ViewPlantScreen({ navigation }) {
       </TouchableWithoutFeedback>
       <View style={styles.form}>
         <View style={styles.formField}>
-          <AppText>Fiddler</AppText>
+          <AppText>{name}</AppText>
         </View>
         <View style={styles.formField}>
-          <AppText>Living Room</AppText>
+          <AppText>{location}</AppText>
         </View>
         <View style={styles.formField}>
-          <AppText>11/11/2020</AppText>
+          <AppText>{dateAdded}</AppText>
         </View>
         <View style={styles.formField}>
-          <AppText>She is simply loving life!</AppText>
+          <AppText>{note}</AppText>
         </View>
       </View>
       <View style={styles.container}>

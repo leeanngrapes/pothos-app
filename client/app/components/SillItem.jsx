@@ -4,12 +4,12 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 import AppText from "./AppText";
 
-function SillItem({ title, image, onPress }) {
+function SillItem({ name, image, onPress }) {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.sillItem}>
         <Image style={styles.image} source={image} />
-        <AppText style={styles.title}>{title}</AppText>
+        <AppText style={styles.name}>{name}</AppText>
       </View>
     </TouchableOpacity>
   );
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: 100,
   },
-  title: {
+  name: {
     padding: 10,
   },
 });

@@ -10,53 +10,73 @@ import Screen from "../components/Screen";
 const sillItems = [
   {
     id: 1,
-    title: "Fiddler",
+    name: "Fiddler",
+    title: "Fiddle Leaf Fig",
+    subTitle: "Ficus lyrata",
+    location: "Living room",
+    dateAdded: "1/2/2020",
+    note: "Loves to party",
     image: require("../assets/fiddle-leaf-fig-plant.jpg"),
   },
   {
     id: 2,
-    title: "Jadeyyyy",
+    name: "Mrs. Jade",
+    title: "Jade",
+    subTitle: "Crassula ovata",
+    location: "Bedroom",
+    dateAdded: "2/2/2020",
+    note: "Very needy",
     image: require("../assets/jade-plant.jpg"),
   },
   {
     id: 3,
-    title: "Dendron",
+    name: "Dendron",
+    title: "Philodendron, Brazilian",
+    subTitle: "Philodendron hederaceum",
+    location: "Dining room",
+    dateAdded: "3/2/2020",
+    note: "Thirsty always",
     image: require("../assets/philodendron-plant.jpg"),
   },
   {
     id: 4,
-    title: "Pothy",
+    name: "Pothy",
+    title: "Pothos, Golden",
+    subTitle: "Epipremnum aureum",
+    location: "Office",
+    dateAdded: "4/2/2020",
+    note: "Inspires me to be better",
     image: require("../assets/pothos-plant.jpg"),
   },
   {
     id: 5,
-    title: "Snakey Plant",
+    name: "Sssnakey",
+    title: "Snake Plant",
+    subTitle: "Dracaena trifasciata",
+    location: "Kitchen",
+    dateAdded: "5/2/2020",
+    note: "Keeps me awake all night",
     image: require("../assets/snake-plant.jpg"),
   },
   {
     id: 6,
-    title: "Spidey Plant",
+    name: "Spidey",
+    title: "Spider Plant",
+    subTitle: "Chlorophytum comosum",
+    location: "Entryway",
+    dateAdded: "6/2/2020",
+    note: "Wants to die",
     image: require("../assets/spider-plant.jpg"),
   },
   {
     id: 7,
-    title: "Spidey Plant",
-    image: require("../assets/spider-plant.jpg"),
-  },
-  {
-    id: 8,
-    title: "Spidey Plant",
-    image: require("../assets/spider-plant.jpg"),
-  },
-  {
-    id: 9,
-    title: "Spidey Plant",
-    image: require("../assets/spider-plant.jpg"),
-  },
-  {
-    id: 10,
-    title: "Spidey Plant",
-    image: require("../assets/spider-plant.jpg"),
+    name: "Pearly",
+    title: "String of Pearls Plant",
+    subTitle: "Senecio rowleyanus",
+    location: "Kitchen",
+    dateAdded: "7/2/2020",
+    note: "The most beautiful plant ever",
+    image: require("../assets/string-of-pearls-plant.jpg"),
   },
 ];
 
@@ -87,9 +107,19 @@ function YourSillScreen({ navigation }) {
           keyExtractor={(sillItem) => sillItem.id.toString()}
           renderItem={({ item }) => (
             <SillItem
-              title={item.title}
+              name={item.name}
               image={item.image}
-              onPress={() => navigation.navigate("ViewPlant")}
+              onPress={() =>
+                navigation.navigate("ViewPlant", {
+                  name: item.name,
+                  title: item.title,
+                  subTitle: item.subTitle,
+                  location: item.location,
+                  dateAdded: item.dateAdded,
+                  note: item.note,
+                  image: item.image,
+                })
+              }
             />
           )}
           numColumns={numColumns}
