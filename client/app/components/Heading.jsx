@@ -3,8 +3,8 @@ import { Text, StyleSheet, Platform } from "react-native";
 
 import colors from "../theme/colors";
 
-function Heading({ children }) {
-  return <Text style={styles.text}>{children}</Text>;
+function Heading({ children, style }) {
+  return <Text style={[styles.text, style]}>{children}</Text>;
 }
 
 const styles = StyleSheet.create({

@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   StyleSheet,
@@ -25,14 +24,7 @@ function RegisterScreen() {
         <Text style={styles.title}>POTHOS</Text>
         <Text style={styles.tagline}>Take good care.</Text>
       </View>
-
-      <View style={styles.container}>
-        <Heading>Register</Heading>
-        <AppText>
-          A register form will go here with fields for email, username and
-          password.
-        </AppText>
-      </View>
+      <View></View>
       <View style={styles.buttonContainer}>
         <AppButton
           title="Register"
@@ -47,25 +39,23 @@ function RegisterScreen() {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   buttonContainer: {
     padding: 20,
     width: "100%",
   },
   container: {
-    flex: 1,
-    justifyContent: "flex-start",
+    //flex: 1,
+    //justifyContent: "flex-start",
     alignItems: "center",
-    top: 120,
+    marginTop: 100,
   },
   tagline: {
     fontSize: 25,
     fontWeight: "600",
     color: colors.accent,
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-    paddingVertical: 20,
+    //paddingVertical: 20,
   },
   title: {
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
