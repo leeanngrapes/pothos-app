@@ -18,7 +18,6 @@ import YourSillScreen from "./app/screens/YourSillScreen";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import AppNavigator from "./app/navigation/AppNavigator";
 import AccountNavigator from "./app/navigation/AccountNavigator";
-import colors from "./app/theme/colors";
 import navigationTheme from "./app/navigation/navigationTheme";
 
 const Stack = createStackNavigator();
@@ -32,7 +31,11 @@ const StackNavigator = () => (
     <Stack.Screen name="Register" component={RegisterScreen} />
     <Stack.Screen name="Search" component={SearchScreen} />
     <Stack.Screen name="ViewPlant" component={ViewPlantScreen} />
-    <Stack.Screen name="Welcome" component={WelcomeScreen} />
+    <Stack.Screen
+      name="Welcome"
+      component={WelcomeScreen}
+      screenOptions={{ headerShown: false }} //not working
+    />
     <Stack.Screen name="YourSill" component={YourSillScreen} />
   </Stack.Navigator>
 );

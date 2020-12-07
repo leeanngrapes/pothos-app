@@ -2,8 +2,8 @@ import React from "react";
 import { StyleSheet, View, Image } from "react-native";
 
 import colors from "../theme/colors";
-import SubHeading from "../theme/SubHeading";
-import AppText from "../theme/AppText";
+import SubHeading from "./SubHeading";
+import AppText from "./AppText";
 
 function PlantCard({ title, subTitle, image }) {
   return (
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    paddingBottom: 8,
+    paddingBottom: 5,
   },
 });
 

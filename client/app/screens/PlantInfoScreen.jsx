@@ -1,19 +1,9 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Alert,
-  Image,
-  SafeAreaView,
-  Platform,
-} from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, Platform } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../theme/colors";
-import SubHeading from "../theme/SubHeading";
-import AppText from "../theme/AppText";
-import AppButton from "../components/AppButton";
+import AppText from "../components/AppText";
 import PlantCard from "../components/PlantCard";
 
 function PlantInfoScreen() {
@@ -101,6 +91,7 @@ const styles = StyleSheet.create({
     flex: 1.5,
     justifyContent: "space-evenly",
     alignItems: "flex-start",
+    marginTop: 40,
   },
   icon: {
     height: 50,

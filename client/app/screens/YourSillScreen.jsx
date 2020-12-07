@@ -1,25 +1,71 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Alert,
-  Image,
-  SafeAreaView,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, Alert, FlatList } from "react-native";
 
 import colors from "../theme/colors";
-import Heading from "../theme/Heading";
-import AppText from "../theme/AppText";
+import Heading from "../components/Heading";
 import AppButton from "../components/AppButton";
 import SillItem from "../components/SillItem";
+import Screen from "../components/Screen";
+
+const sillItems = [
+  {
+    id: 1,
+    title: "Fiddler",
+    image: require("../assets/fiddle-leaf-fig-plant.jpg"),
+  },
+  {
+    id: 2,
+    title: "Jadeyyyy",
+    image: require("../assets/jade-plant.jpg"),
+  },
+  {
+    id: 3,
+    title: "Dendron",
+    image: require("../assets/philodendron-plant.jpg"),
+  },
+  {
+    id: 4,
+    title: "Pothy",
+    image: require("../assets/pothos-plant.jpg"),
+  },
+  {
+    id: 5,
+    title: "Snakey Plant",
+    image: require("../assets/snake-plant.jpg"),
+  },
+  {
+    id: 6,
+    title: "Spidey Plant",
+    image: require("../assets/spider-plant.jpg"),
+  },
+  {
+    id: 7,
+    title: "Spidey Plant",
+    image: require("../assets/spider-plant.jpg"),
+  },
+  {
+    id: 8,
+    title: "Spidey Plant",
+    image: require("../assets/spider-plant.jpg"),
+  },
+  {
+    id: 9,
+    title: "Spidey Plant",
+    image: require("../assets/spider-plant.jpg"),
+  },
+  {
+    id: 10,
+    title: "Spidey Plant",
+    image: require("../assets/spider-plant.jpg"),
+  },
+];
+
+const numColumns = 3;
 
 function YourSillScreen({ navigation }) {
   return (
-    <SafeAreaView style={styles.background}>
-      <View style={styles.title}>
-        <Heading>Your Sill</Heading>
-      </View>
+    <Screen style={styles.background}>
+      <Heading>Your Sill</Heading>
       <View style={styles.container}>
         <View style={styles.buttonContainer}>
           <AppButton
@@ -36,51 +82,20 @@ function YourSillScreen({ navigation }) {
         </View>
       </View>
       <View style={styles.sill}>
-        <View style={styles.sillPlant}>
-          <Image
-            style={styles.plantImg}
-            source={require("../assets/pothos-plant.jpg")}
-          />
-          <AppText>Pothy</AppText>
-        </View>
-        <View style={styles.sillPlant}>
-          <Image
-            style={styles.plantImg}
-            source={require("../assets/jade-plant.jpg")}
-          />
-          <AppText>Jadey</AppText>
-        </View>
-        <View style={styles.sillPlant}>
-          <Image
-            style={styles.plantImg}
-            source={require("../assets/philodendron-plant.jpg")}
-          />
-          <AppText>Dendron</AppText>
-        </View>
-
-        <TouchableOpacity onPress={() => navigation.navigate("ViewPlant")}>
-          <SillItem
-            image={require("../assets/fiddle-leaf-fig-plant.jpg")}
-            title="Fiddler"
-          />
-        </TouchableOpacity>
-
-        <View style={styles.sillPlant}>
-          <Image
-            style={styles.plantImg}
-            source={require("../assets/snake-plant.jpg")}
-          />
-          <AppText>Snakey</AppText>
-        </View>
-        <View style={styles.sillPlant}>
-          <Image
-            style={styles.plantImg}
-            source={require("../assets/spider-plant.jpg")}
-          />
-          <AppText>Spidey</AppText>
-        </View>
+        <FlatList
+          data={sillItems}
+          keyExtractor={(sillItem) => sillItem.id.toString()}
+          renderItem={({ item }) => (
+            <SillItem
+              title={item.title}
+              image={item.image}
+              onPress={() => navigation.navigate("ViewPlant")}
+            />
+          )}
+          numColumns={numColumns}
+        />
       </View>
-    </SafeAreaView>
+    </Screen>
   );
 }
 
@@ -92,37 +107,19 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   buttonContainer: {
-    //width: "100%",
     flex: 1,
     marginHorizontal: 20,
+    marginTop: 60,
+    marginBottom: 20,
   },
   container: {
-    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
-  plantImg: {
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-    margin: 10,
-  },
+
   sill: {
-    flex: 2,
-    justifyContent: "space-around",
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  sillPlant: {
-    alignItems: "center",
-    marginBottom: 10,
-  },
-  title: {
-    //flex: 1,
-    //justifyContent: "flex-start",
-    //alignItems: "center",
-    marginBottom: 10,
+    paddingHorizontal: 20,
   },
 });
 
