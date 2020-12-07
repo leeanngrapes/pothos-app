@@ -2,7 +2,13 @@ const router = require("express").Router();
 const { query } = require("express");
 let UserModel = require("../models/user.model");
 
-router.get("/", (req, res) => { //this get request is returning back all users, need to fix.
+//add this once set up:
+//const usersStore = require("../store/users");
+//const stillStore = require("../store/sill"); or plantStore?
+//const auth = require("../middleware/auth");
+
+router.get("/", (req, res) => {
+  //this get request is returning back all users, need to fix.
   const { email } = req.body;
 
   if (email) {
@@ -23,6 +29,26 @@ router.get("/", (req, res) => { //this get request is returning back all users, 
       });
   }
 });
+
+// this is from Backend folder:
+// router.get("/:id", auth, (req, res) => {
+//   const userId = parseInt(req.params.id);
+//   const user = usersStore.getUserById(userId);
+//   if (!user) return res.status(404).send();
+
+//   const listings = listingsStore.filterListings(
+//     listing => listing.userId === userId
+//   );
+
+//   res.send({
+//     id: user.id,
+//     name: user.name,
+//     email: user.email,
+//     listings: listings.length
+//   });
+// });
+
+// module.exports = router;
 
 router.post("/createNewUser", (req, res) => {
   const { username, email, password } = req.body;
