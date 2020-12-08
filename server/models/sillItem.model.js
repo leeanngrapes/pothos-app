@@ -22,7 +22,7 @@ const sillItemSchema = new Schema({
     lowercase: true,
   },
   location: {
-    type: String,
+    type: String, //type object? selected from dropdown
     required: true,
     unique: false,
     lowercase: true,

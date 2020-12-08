@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, ImageBackground, Alert } from "react-native";
 import * as Yup from "yup";
+import axios from "axios";
 
 import colors from "../theme/colors";
 import Heading from "../components/Heading";
@@ -13,6 +14,22 @@ const registerSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
 });
+
+const onSubmit = () => {
+  let username = document.querySelector("name").value;
+  let email = document.querySelector("email").value;
+  let password = document.querySelector("password").value;
+
+  const user = {
+    username,
+    email,
+    password,
+  };
+
+  axios.post("", user).then((res) => {
+    console.log(res.data);
+  });
+};
 
 function RegisterScreen() {
   return (
