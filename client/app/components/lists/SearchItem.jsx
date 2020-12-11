@@ -12,12 +12,15 @@ import {
 import colors from "../../theme/colors";
 import AppText from "../AppText";
 
-function SearchItem({ commonName, scientificName, imageUrl, navigation }) {
+function SearchItem({
+  commonName,
+  scientificName,
+  imageUrl,
+  navigation,
+  onPress,
+}) {
   return (
-    <TouchableHighlight
-      underlayColor={colors.warmWhite}
-      onPress={() => Alert.alert(`Add ${commonName} to sill`)}
-    >
+    <TouchableHighlight underlayColor={colors.warmWhite} onPress={onPress}>
       <View style={styles.container}>
         <Image style={styles.image} source={{ uri: imageUrl }} />
         <View style={styles.detailsContainer}>

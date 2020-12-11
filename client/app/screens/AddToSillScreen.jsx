@@ -31,13 +31,17 @@ const locations = [
 function AddToSillScreen({ route, navigation }) {
   const { title } = route.params;
   const { subTitle } = route.params;
-  const { image } = route.params;
+  const { imageUrl } = route.params;
 
   return (
     <Screen>
       <View style={styles.background}>
         <View style={styles.cardContainer}>
-          <PlantCard title={title} subTitle={subTitle} image={image} />
+          <PlantCard
+            title={title}
+            subTitle={subTitle}
+            image={{ uri: imageUrl }}
+          />
         </View>
         <TouchableWithoutFeedback
           onPress={() => navigation.navigate("PlantInfo")}

@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, TextInput, FlatList, Alert } from "react-native";
-//import axios from "axios";
+import { StyleSheet, View, TextInput, FlatList } from "react-native";
 
 import colors from "../theme/colors";
 import Heading from "../components/Heading";
-import ListItem from "../components/lists/ListItem";
 import Screen from "../components/Screen";
 import SearchItem from "../components/lists/SearchItem";
 
-function SearchScreen() {
+function SearchScreen({ navigation }) {
   const [list, setList] = useState([]);
 
   useEffect(() => {
@@ -18,7 +16,7 @@ function SearchScreen() {
         console.log(jsonRes);
         setList(jsonRes);
       });
-    console.log("Made it through");
+    console.log("Made it through fetch");
   }, []);
 
   return (
@@ -30,20 +28,26 @@ function SearchScreen() {
         <TextInput placeholder="Find a plant..." />
       </View>
       <View>
-        {list.map((p, id) => (
-          <SearchItem
-            key={id}
-            commonName={p.commonName}
-            scientificName={p.scientificName}
-            imageUrl={p.imageUrl}
-          />
-        ))}
+        <FlatList
+          data={list}
+          keyExtractor={(p, id) => id}
+          renderItem={({ item }) => (
+            <SearchItem
+              key={id}
+              commonName={item.commonName}
+              scientificName={item.scientificName}
+              imageUrl={item.imageUrl}
+              onPress={() =>
+                navigation.navigate("AddToSill", {
+                  title: item.commonName,
+                  subTitle: item.scientificName,
+                  imageUrl: item.imageUrl,
+                })
+              }
+            />
+          )}
+        />
       </View>
-      {/* <FlatList
-        data={list}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={() => <SearchItem />}
-      /> */}
     </Screen>
   );
 }
