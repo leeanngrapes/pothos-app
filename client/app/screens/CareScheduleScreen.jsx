@@ -12,13 +12,13 @@ const initialTasks = [
     data: [
       {
         id: 1,
-        title: "T1 Pothos",
+        title: "Pothy",
         subTitle: "Water",
         image: require("../assets/pothos-plant.jpg"),
       },
       {
         id: 2,
-        title: "T2 Jade",
+        title: "Mrs. Jade",
         subTitle: "Fertilize",
         image: require("../assets/jade-plant.jpg"),
       },
@@ -29,9 +29,9 @@ const initialTasks = [
     data: [
       {
         id: 3,
-        title: "T3 Pothos",
+        title: "Fiddler",
         subTitle: "Rotate",
-        image: require("../assets/pothos-plant.jpg"),
+        image: require("../assets/fiddle-leaf-fig-plant.jpg"),
       },
     ],
   },
@@ -40,9 +40,9 @@ const initialTasks = [
     data: [
       {
         id: 4,
-        title: "T4 Jade",
+        title: "Pearly",
         subTitle: "Prune",
-        image: require("../assets/jade-plant.jpg"),
+        image: require("../assets/string-of-pearls-plant.jpg"),
       },
       {
         id: 5,

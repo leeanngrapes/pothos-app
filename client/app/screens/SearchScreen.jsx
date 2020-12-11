@@ -30,10 +30,12 @@ function SearchScreen({ navigation }) {
       <View>
         <FlatList
           data={list}
-          keyExtractor={(p, id) => id}
+          keyExtractor={(item, index) => {
+            return index.toString();
+          }}
           renderItem={({ item }) => (
             <SearchItem
-              key={id}
+              key={item.id}
               commonName={item.commonName}
               scientificName={item.scientificName}
               imageUrl={item.imageUrl}
