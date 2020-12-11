@@ -1,51 +1,26 @@
-import React from "react";
-import { StyleSheet, View, TextInput, FlatList } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, TextInput, FlatList, Alert } from "react-native";
+//import axios from "axios";
 
 import colors from "../theme/colors";
 import Heading from "../components/Heading";
 import ListItem from "../components/lists/ListItem";
 import Screen from "../components/Screen";
+import SearchItem from "../components/lists/SearchItem";
 
-const searchItems = [
-  {
-    id: 1,
-    title: "Fiddle Leaf Fig",
-    subTitle: "Ficus lyrata",
-    image: require("../assets/fiddle-leaf-fig-plant.jpg"),
-  },
-  {
-    id: 2,
-    title: "Jade",
-    subTitle: "Crassula ovata",
-    image: require("../assets/jade-plant.jpg"),
-  },
-  {
-    id: 3,
-    title: "Philodendron, Brazilian",
-    subTitle: "Philodendron hederaceum",
-    image: require("../assets/philodendron-plant.jpg"),
-  },
-  {
-    id: 4,
-    title: "Pothos, Golden",
-    subTitle: "Epipremnum aureum",
-    image: require("../assets/pothos-plant.jpg"),
-  },
-  {
-    id: 5,
-    title: "Snake Plant",
-    subTitle: "Dracaena trifasciata",
-    image: require("../assets/snake-plant.jpg"),
-  },
-  {
-    id: 6,
-    title: "Spider Plant",
-    subTitle: "Chlorophytum comosum",
-    image: require("../assets/spider-plant.jpg"),
-  },
-];
+function SearchScreen() {
+  const [list, setList] = useState([]);
 
-function SearchScreen({ navigation }) {
+  useEffect(() => {
+    fetch("http://localhost:5000/plants")
+      .then((res) => res.json())
+      .then((jsonRes) => {
+        console.log(jsonRes);
+        setList(jsonRes);
+      });
+    console.log("Made it through");
+  }, []);
+
   return (
     <Screen>
       <View style={styles.title}>
@@ -54,26 +29,21 @@ function SearchScreen({ navigation }) {
       <View style={styles.searchBar}>
         <TextInput placeholder="Find a plant..." />
       </View>
-      <View style={styles.results}>
-        <FlatList
-          data={searchItems}
-          keyExtractor={(searchItem) => searchItem.id.toString()}
-          renderItem={({ item }) => (
-            <ListItem
-              title={item.title}
-              subTitle={item.subTitle}
-              image={item.image}
-              onPress={() =>
-                navigation.navigate("AddToSill", {
-                  title: item.title,
-                  subTitle: item.subTitle,
-                  image: item.image,
-                })
-              }
-            />
-          )}
-        />
+      <View>
+        {list.map((p, id) => (
+          <SearchItem
+            key={id}
+            commonName={p.commonName}
+            scientificName={p.scientificName}
+            imageUrl={p.imageUrl}
+          />
+        ))}
       </View>
+      {/* <FlatList
+        data={list}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={() => <SearchItem />}
+      /> */}
     </Screen>
   );
 }

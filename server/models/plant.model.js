@@ -2,49 +2,49 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const plantInfoSchema = new Schema({
+const plantSchema = new Schema({
   commonName: {
     type: String,
     required: true,
     unique: true,
-    lowercase: true,
+    lowercase: false,
   },
   scientificName: {
     type: String,
     required: true,
     unique: true,
-    lowercase: true,
+    lowercase: false,
   },
-  image: {
+  imageUrl: {
     type: String,
-    required: true,
-    unique: true,
+    required: false,
+    unique: false,
     lowercase: true,
   },
   waterInfo: {
     type: String,
-    required: true,
+    required: false,
     unique: false,
-    lowercase: true,
+    lowercase: false,
   },
   lightInfo: {
     type: String,
-    required: true,
+    required: false,
     unique: false,
-    lowercase: true,
+    lowercase: false,
   },
   fertilizerInfo: {
     type: String,
-    required: true,
+    required: false,
     unique: false,
-    lowercase: true,
+    lowercase: false,
   },
   pruningInfo: {
     type: String,
-    required: true,
+    required: false,
     unique: false,
-    lowercase: true,
+    lowercase: false,
   },
 });
 
-module.exports = mongoose.model("PlantInfo", plantInfoSchema);
+module.exports = mongoose.model("Plant", plantSchema);

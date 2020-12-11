@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arrayinc/capstone-project-leeanngrapes.git"
@@ -26,5 +26,8 @@
     "express": "^4.17.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.10.15"
+  },
+  "devDependencies": {
+    
   }
 }
