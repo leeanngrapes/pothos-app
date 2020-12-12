@@ -4,7 +4,7 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
 
-//not loading input validation, should be in Yup form
+//not loading input validation, should be in Yup form and not needed
 
 //load user model
 let User = require("../models/user.model");
@@ -14,7 +14,7 @@ let User = require("../models/user.model");
 //const stillStore = require("../store/sill"); or plantStore?
 //const auth = require("../middleware/auth");
 
-//@route POST users/register //user or users?
+//@route POST users/register
 //@desc Register user
 //@access Public
 router.post("/register", (req, res) => {
@@ -43,7 +43,80 @@ router.post("/register", (req, res) => {
     }
   });
 });
-//end POST route
+//end POST route for register
+
+//@route POSt /users/login
+//@desc Login user and return JWT token
+//@access Public
+router.post("/login", (req, res) => {
+  //where form validation would go
+  //is this needed since I'm not doing the validation import?
+  //const { name, email, password } = req.body;
+
+  const email = req.body.email;
+  const password = req.body.password;
+
+  // Find user by email
+  User.findOne({ email }).then((user) => {
+    // Check if user exists
+    if (!user) {
+      return res.status(404).json({ emailnotfound: "Email not found" });
+    }
+
+    // Check password
+    bcryptjs.compare(password, user.password).then((isMatch) => {
+      if (isMatch) {
+        // User matched
+        // Create JWT payload
+        const payload = {
+          id: user.id,
+          name: user.name,
+        };
+
+        // Sign token
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          {
+            expiresIn: 31556926, // 1 year in seconds
+          },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: "Bearer " + token,
+            });
+          }
+        );
+      } else {
+        return res
+          .status(400)
+          .json({ passwordincorrect: "Password incorrect" });
+      }
+    });
+  });
+});
+
+// this is from Backend folder:
+// router.get("/:id", auth, (req, res) => {
+//   const userId = parseInt(req.params.id);
+//   const user = usersStore.getUserById(userId);
+//   if (!user) return res.status(404).send();
+
+//   const listings = listingsStore.filterListings(
+//     listing => listing.userId === userId
+//   );
+
+//   res.send({
+//     id: user.id,
+//     name: user.name,
+//     email: user.email,
+//     listings: listings.length
+//   });
+// });
+
+// module.exports = router;
+
+//below code is old, first draft version:
 
 router.get("/", (req, res) => {
   //this get request is returning back all users, need to fix.
@@ -67,26 +140,6 @@ router.get("/", (req, res) => {
       });
   }
 });
-
-// this is from Backend folder:
-// router.get("/:id", auth, (req, res) => {
-//   const userId = parseInt(req.params.id);
-//   const user = usersStore.getUserById(userId);
-//   if (!user) return res.status(404).send();
-
-//   const listings = listingsStore.filterListings(
-//     listing => listing.userId === userId
-//   );
-
-//   res.send({
-//     id: user.id,
-//     name: user.name,
-//     email: user.email,
-//     listings: listings.length
-//   });
-// });
-
-// module.exports = router;
 
 router.post("/register", (req, res) => {
   const { name, email, password } = req.body;
