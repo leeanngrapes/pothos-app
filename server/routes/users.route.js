@@ -1,11 +1,49 @@
 const router = require("express").Router();
 const { query } = require("express");
-let UserModel = require("../models/user.model");
+const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const keys = require("../config/keys");
 
-//add this once set up:
+//not loading input validation, should be in Yup form
+
+//load user model
+let User = require("../models/user.model");
+
+//add this once set up?:
 //const usersStore = require("../store/users");
 //const stillStore = require("../store/sill"); or plantStore?
 //const auth = require("../middleware/auth");
+
+//@route POST users/register //user or users?
+//@desc Register user
+//@access Public
+router.post("/register", (req, res) => {
+  //form validation would go here
+  User.findOne({ email: req.body.email }).then((user) => {
+    if (user) {
+      return res.status(400).json({ email: "Email already exists" });
+    } else {
+      const newUser = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+      });
+
+      //Hash password before saving in database
+      bcryptjs.genSalt(10, (err, salt) => {
+        bcryptjs.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then((user) => res.json(user)) //could return document instead of user ?
+            .catch((err) => console.log(err));
+        });
+      });
+    }
+  });
+});
+//end POST route
 
 router.get("/", (req, res) => {
   //this get request is returning back all users, need to fix.
@@ -50,11 +88,11 @@ router.get("/", (req, res) => {
 
 // module.exports = router;
 
-router.post("/createNewUser", (req, res) => {
-  const { username, email, password } = req.body;
+router.post("/register", (req, res) => {
+  const { name, email, password } = req.body;
 
   let newUserDocument = new UserModel({
-    username,
+    name,
     email,
     password,
   });

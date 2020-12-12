@@ -39,6 +39,9 @@ const StackNavigator = () => (
     <Stack.Screen name="YourSill" component={YourSillScreen} />
   </Stack.Navigator>
 );
+//TODO: below,
+//display <AuthNavigator> if not logged in
+//display <AppNavigator> if logged in
 
 export default function App() {
   return (

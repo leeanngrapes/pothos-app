@@ -8,7 +8,11 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
+//Database config
+const db = require("./config/keys").mongoURI;
+
 //adding consts for routes:
+const userRouter = require("./routes/users.route");
 const plantsRouter = require("./routes/plants.route");
 
 //Use the middleware
@@ -18,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 //Set up the routes
-app.use("/users", require("./routes/users"));
+app.use("/user", userRouter); //user or users?
 app.use("/plants", plantsRouter);
 
 //default route
@@ -27,12 +31,10 @@ app.get("/", (req, res) => {
 });
 
 //set up mongodb atlas connection
-const uri =
-  "mongodb+srv://lgrapes:adminPothos20@pothoscluster.j50ac.mongodb.net/Pothos?retryWrites=true&w=majority";
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true });
 const connection = mongoose.connection;
 connection.once("open", () => {
-  console.log("MongoDB database connection established! You go girl!");
+  console.log("MongoDB database connection established! You go girl!!!");
 });
 
 //Set up server
