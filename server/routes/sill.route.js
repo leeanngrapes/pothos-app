@@ -28,18 +28,18 @@ router.route("/add").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/").delete((req, res) => {
-  const { _id } = req.body;
+// router.route("/").delete((req, res) => {
+//   const { _id } = req.body;
 
-  PlantModel.findOneAndDelete({
-    _id,
-  })
-    .then((document) => {
-      res.status(200).json(document);
-    })
-    .catch((err) => {
-      res.status(400).send("Could not find Sill plant to delete.");
-    });
-});
+//   PlantModel.findOneAndDelete({
+//     _id,
+//   })
+//     .then((document) => {
+//       res.status(200).json(document);
+//     })
+//     .catch((err) => {
+//       res.status(400).send("Could not find Sill plant to delete.");
+//     });
+// });
 
 module.exports = router;

@@ -2,7 +2,6 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AccountScreen from "./app/screens/AccountScreen";
 import PlantEditScreen from "./app/screens/PlantEditScreen";
@@ -34,7 +33,7 @@ const StackNavigator = () => (
     <Stack.Screen
       name="Welcome"
       component={WelcomeScreen}
-      screenOptions={{ headerShown: false }} //not working
+      screenOptions={{ headerShown: false }}
     />
     <Stack.Screen name="MySill" component={YourSillScreen} />
   </Stack.Navigator>
