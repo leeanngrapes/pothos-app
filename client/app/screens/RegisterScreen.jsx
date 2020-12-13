@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, ImageBackground, Alert } from "react-native";
 import * as Yup from "yup";
-//import axios from "axios";
+import axios from "axios";
 
 import colors from "../theme/colors";
 import Heading from "../components/Heading";

@@ -28,20 +28,16 @@ const locations = [
 
 //add
 
-function AddToSillScreen({ route, navigation }) {
+function PlantEditScreen({ route, navigation }) {
   const { title } = route.params;
   const { subTitle } = route.params;
-  const { imageUrl } = route.params;
+  const { imageUri } = route.params;
 
   return (
     <Screen>
       <View style={styles.background}>
         <View style={styles.cardContainer}>
-          <PlantCard
-            title={title}
-            subTitle={subTitle}
-            image={{ uri: imageUrl }}
-          />
+          <PlantCard title={title} subTitle={subTitle} image={imageUri} />
         </View>
         <TouchableWithoutFeedback
           onPress={() => navigation.navigate("PlantInfo")}
@@ -121,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddToSillScreen;
+export default PlantEditScreen;

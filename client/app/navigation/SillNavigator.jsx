@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import SearchScreen from "../screens/SearchScreen";
 import ViewPlantScreen from "../screens/ViewPlantScreen";
 import YourSillScreen from "../screens/YourSillScreen";
-import AddToSillScreen from "../screens/AddToSillScreen";
+import PlantEditScreen from "../screens/PlantEditScreen";
 import PlantInfoScreen from "../screens/PlantInfoScreen";
 import colors from "../theme/colors";
 
@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 const SillNavigator = () => (
   <Stack.Navigator mode={"modal"}>
     <Stack.Screen
-      name="YourSill"
+      name="MySill"
       component={YourSillScreen}
       options={{
         headerShown: false,
@@ -42,8 +42,8 @@ const SillNavigator = () => (
       }}
     />
     <Stack.Screen
-      name="AddToSill"
-      component={AddToSillScreen}
+      name="PlantEdit"
+      component={PlantEditScreen}
       options={{
         headerShown: true,
         headerStyle: {

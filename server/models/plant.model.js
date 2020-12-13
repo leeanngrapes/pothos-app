@@ -5,17 +5,17 @@ const Schema = mongoose.Schema;
 const plantSchema = new Schema({
   commonName: {
     type: String,
-    required: true,
-    unique: true,
+    required: false,
+    unique: false,
     lowercase: false,
   },
   scientificName: {
     type: String,
-    required: true,
-    unique: true,
+    required: false,
+    unique: false,
     lowercase: false,
   },
-  imageUrl: {
+  imageUri: {
     type: String,
     required: false,
     unique: false,
@@ -40,6 +40,24 @@ const plantSchema = new Schema({
     lowercase: false,
   },
   pruningInfo: {
+    type: String,
+    required: false,
+    unique: false,
+    lowercase: false,
+  },
+  nickname: {
+    type: String,
+    required: false,
+    unique: false,
+    lowercase: false,
+  },
+  location: {
+    type: String, //type object? selected from dropdown
+    required: false,
+    unique: false,
+    lowercase: false,
+  },
+  note: {
     type: String,
     required: false,
     unique: false,

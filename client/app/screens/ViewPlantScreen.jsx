@@ -17,14 +17,13 @@ function ViewPlantScreen({ route, navigation }) {
   const { title } = route.params;
   const { subTitle } = route.params;
   const { location } = route.params;
-  const { dateAdded } = route.params;
   const { note } = route.params;
-  const { image } = route.params;
+  const { imageUri } = route.params;
 
   return (
     <View style={styles.background}>
       <View style={styles.cardContainer}>
-        <PlantCard title={name} subTitle={title} image={image} />
+        <PlantCard title={name} subTitle={title} image={imageUri} />
       </View>
 
       <TouchableWithoutFeedback
@@ -41,9 +40,7 @@ function ViewPlantScreen({ route, navigation }) {
         <View style={styles.formField}>
           <AppText>{location}</AppText>
         </View>
-        <View style={styles.formField}>
-          <AppText>{dateAdded}</AppText>
-        </View>
+
         <View style={styles.formField}>
           <AppText>{note}</AppText>
         </View>
@@ -52,7 +49,13 @@ function ViewPlantScreen({ route, navigation }) {
         <View style={styles.buttonContainer}>
           <AppButton
             title="Edit"
-            onPress={() => Alert.alert("Edit button pressed")}
+            onPress={() =>
+              navigation.navigate("PlantEdit", {
+                title: name,
+                subTitle: title,
+                imageUri: imageUri,
+              })
+            }
           />
         </View>
         <View style={styles.buttonContainer}>
@@ -95,11 +98,12 @@ const styles = StyleSheet.create({
   },
   formField: {
     width: "80%",
-    height: 50,
-    padding: 10,
+    padding: 15,
+    paddingLeft: 25,
     justifyContent: "center",
     backgroundColor: colors.warmWhite,
     marginBottom: 10,
+    borderRadius: 30,
   },
 
   plantImg: {

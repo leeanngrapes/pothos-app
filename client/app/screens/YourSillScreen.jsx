@@ -6,6 +6,10 @@ import Heading from "../components/Heading";
 import AppButton from "../components/AppButton";
 import SillItem from "../components/SillItem";
 import Screen from "../components/Screen";
+import routes from "../navigation/routes";
+
+//For Sill, check Plants, IF has "name", add to Sill
+//Will this work?? If not, reconsider PlantModel
 
 const sillItems = [
   {
@@ -90,7 +94,7 @@ function YourSillScreen({ navigation }) {
         <View style={styles.buttonContainer}>
           <AppButton
             title="Add A Plant"
-            onPress={() => navigation.navigate("Search")}
+            onPress={() => navigation.navigate(routes.SEARCH)}
           />
         </View>
         <View style={styles.buttonContainer}>
@@ -110,12 +114,11 @@ function YourSillScreen({ navigation }) {
               name={item.name}
               image={item.image}
               onPress={() =>
-                navigation.navigate("ViewPlant", {
+                navigation.navigate(routes.VIEW_PLANT, {
                   name: item.name,
                   title: item.title,
                   subTitle: item.subTitle,
                   location: item.location,
-                  dateAdded: item.dateAdded,
                   note: item.note,
                   image: item.image,
                 })

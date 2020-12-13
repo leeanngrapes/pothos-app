@@ -13,7 +13,7 @@ function PlantInfoScreen() {
         <PlantCard
           title="Fiddle Leaf Fig"
           subTitle="Ficus lyrata"
-          image={require("../assets/fiddle-leaf-fig-plant.jpg")}
+          image={require("../assets/fiddle-leaf-fig-plant.jpg")} //pass in imageUri
         />
       </View>
       <View style={styles.container}>

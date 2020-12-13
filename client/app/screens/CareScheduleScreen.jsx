@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, SectionList } from "react-native";
+import { StyleSheet, SectionList, Alert } from "react-native";
 
 import Heading from "../components/Heading";
 import SubHeading from "../components/SubHeading";
@@ -80,7 +80,7 @@ function CareScheduleScreen({ navigation }) {
             renderRightActions={() => (
               <ListItemDeleteAction onPress={() => handleDelete(item)} />
             )}
-            onPress={() => navigation.navigate("ViewPlant")}
+            onPress={() => Alert.alert(`Go to see this plant on sill?`)}
           />
         )}
         renderSectionHeader={({ section: { title } }) => (

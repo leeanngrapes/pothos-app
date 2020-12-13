@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AccountScreen from "./app/screens/AccountScreen";
-import AddToSillScreen from "./app/screens/AddToSillScreen";
+import PlantEditScreen from "./app/screens/PlantEditScreen";
 import CareScheduleScreen from "./app/screens/CareScheduleScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 import PlantInfoScreen from "./app/screens/PlantInfoScreen";
@@ -24,7 +24,7 @@ const Stack = createStackNavigator();
 const StackNavigator = () => (
   <Stack.Navigator initialRouteName="Welcome">
     <Stack.Screen name="Account" component={AccountScreen} />
-    <Stack.Screen name="AddToSill" component={AddToSillScreen} />
+    <Stack.Screen name="PlantEdit" component={PlantEditScreen} />
     <Stack.Screen name="CareSchedule" component={CareScheduleScreen} />
     <Stack.Screen name="Login" component={LoginScreen} />
     <Stack.Screen name="PlantInfo" component={PlantInfoScreen} />
@@ -36,7 +36,7 @@ const StackNavigator = () => (
       component={WelcomeScreen}
       screenOptions={{ headerShown: false }} //not working
     />
-    <Stack.Screen name="YourSill" component={YourSillScreen} />
+    <Stack.Screen name="MySill" component={YourSillScreen} />
   </Stack.Navigator>
 );
 //TODO: below,

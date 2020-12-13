@@ -10,11 +10,12 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 
 // Database config
-const db = require("./config/keys").mongoURI;
+const db = require("./server/config/keys").mongoURI;
 
 //adding consts for routes: //this threw error when placed below middleware section
-const userRouter = require("./routes/users.route");
-const plantsRouter = require("./routes/plants.route");
+const userRouter = require("./server/routes/users.route");
+const plantsRouter = require("./server/routes/plants.route");
+const sillRouter = require("./server/routes/sill.route");
 
 // Set up mongodb atlas connection
 mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true });
@@ -30,11 +31,12 @@ app.use(bodyParser.urlencoded({ extended: true })); //false?
 app.use(cors());
 app.use(passport.initialize());
 
-require("./config/passport")(passport);
+require("./server/config/passport")(passport);
 
 //Set up the routes
 app.use("/users", userRouter);
 app.use("/plants", plantsRouter);
+app.use("/sill", sillRouter);
 
 //default route
 app.get("/", (req, res) => {
