@@ -5,93 +5,84 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../theme/colors";
 import AppText from "../components/AppText";
 import PlantCard from "../components/PlantCard";
+import Screen from "../components/Screen";
+import { ScrollView } from "react-native-gesture-handler";
 
-function PlantInfoScreen() {
+function PlantInfoScreen({ route, navigation }) {
+  const { title } = route.params;
+  const { subTitle } = route.params;
+  const { imageUri } = route.params;
+  const { lightInfo } = route.params;
+  const { waterInfo } = route.params;
+  const { fertilizerInfo } = route.params;
+  const { pruningInfo } = route.params;
+
   return (
-    <SafeAreaView style={styles.background}>
-      <View style={styles.cardContainer}>
-        <PlantCard
-          title="Fiddle Leaf Fig"
-          subTitle="Ficus lyrata"
-          image={require("../assets/fiddle-leaf-fig-plant.jpg")} //pass in imageUri
-        />
-      </View>
-      <View style={styles.container}>
-        <View style={styles.section}>
-          <View style={styles.icon}>
-            <MaterialCommunityIcons
-              name="water-outline"
-              size={30}
-              color={colors.white}
-            />
-          </View>
-          <Text style={styles.sectionHeader}>Watering needs</Text>
-          <AppText>
-            This is care information about watering needs. Your fiddle leaf fig
-            will enjoy getting water regularly but be sure to not drown it.{" "}
-          </AppText>
+    <ScrollView>
+      <Screen>
+        <View style={styles.cardContainer}>
+          <PlantCard title={title} subTitle={subTitle} imageUri={imageUri} />
         </View>
-        <View style={styles.section}>
-          <View style={styles.icon}>
-            <MaterialCommunityIcons
-              name="weather-sunny"
-              size={30}
-              color={colors.white}
-            />
+        <View style={styles.container}>
+          <View style={styles.section}>
+            <View style={styles.icon}>
+              <MaterialCommunityIcons
+                name="water-outline"
+                size={30}
+                color={colors.white}
+              />
+            </View>
+            <Text style={styles.sectionHeader}>Watering needs</Text>
+            <AppText style={styles.info}>{waterInfo} </AppText>
           </View>
-          <Text style={styles.sectionHeader}>Light needs</Text>
-          <AppText>
-            This is care information about light needs. It likes very nice shade
-            but not too far away from a window.{" "}
-          </AppText>
-        </View>
-        <View style={styles.section}>
-          <View style={styles.icon}>
-            <MaterialCommunityIcons
-              name="leaf"
-              size={25}
-              color={colors.white}
-            />
+          <View style={styles.section}>
+            <View style={styles.icon}>
+              <MaterialCommunityIcons
+                name="weather-sunny"
+                size={30}
+                color={colors.white}
+              />
+            </View>
+
+            <Text style={styles.sectionHeader}>Light needs</Text>
+            <AppText style={styles.info}>{lightInfo} </AppText>
           </View>
-          <Text style={styles.sectionHeader}>Fertilizer needs</Text>
-          <AppText>
-            This is care information about fertilizing needs. Give it a boost
-            during active growing months but not during the winter.{" "}
-          </AppText>
-        </View>
-        <View style={styles.section}>
-          <View style={styles.icon}>
-            <MaterialCommunityIcons
-              name="content-cut"
-              size={25}
-              color={colors.white}
-            />
+          <View style={styles.section}>
+            <View style={styles.icon}>
+              <MaterialCommunityIcons
+                name="leaf"
+                size={25}
+                color={colors.white}
+              />
+            </View>
+            <Text style={styles.sectionHeader}>Fertilizer needs</Text>
+            <AppText style={styles.info}>{fertilizerInfo} </AppText>
           </View>
-          <Text style={styles.sectionHeader}>Pruning needs</Text>
-          <AppText>
-            This is care information about pruning needs. Does not require
-            regular pruning.{" "}
-          </AppText>
+          <View style={styles.section}>
+            <View style={styles.icon}>
+              <MaterialCommunityIcons
+                name="content-cut"
+                size={25}
+                color={colors.white}
+              />
+            </View>
+            <Text style={styles.sectionHeader}>Pruning needs</Text>
+            <AppText style={styles.info}>{pruningInfo} </AppText>
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </Screen>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    backgroundColor: colors.white,
-  },
   cardContainer: {
     alignItems: "center",
     justifyContent: "center",
   },
   container: {
-    flex: 1.5,
     justifyContent: "space-evenly",
     alignItems: "flex-start",
-    marginTop: 40,
   },
   icon: {
     height: 50,
@@ -99,15 +90,17 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     backgroundColor: colors.secondary,
     marginRight: 10,
-    marginVertical: 10,
     justifyContent: "center",
     alignItems: "center",
+  },
+  info: {
+    width: "100%",
+    paddingLeft: 60,
   },
   section: {
     flexDirection: "row",
     flexWrap: "wrap",
     margin: 20,
-    marginVertical: 50,
   },
   sectionHeader: {
     fontSize: 20,

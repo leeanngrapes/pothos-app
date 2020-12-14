@@ -12,6 +12,26 @@ import AppButton from "../components/AppButton";
 import CareIcons from "../components/CareIcons";
 import PlantCard from "../components/PlantCard";
 
+const handleDelete = (id) => {
+  //DELETE request not working yet
+  fetch("http://localhost:5000/sill/", {
+    method: "DELETE",
+    data: {
+      _id: id,
+    },
+    headers: {
+      "content-type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log("Deleting plant failed", err);
+    });
+};
+
 function ViewPlantScreen({ route, navigation }) {
   const { name } = route.params;
   const { title } = route.params;
@@ -23,7 +43,7 @@ function ViewPlantScreen({ route, navigation }) {
   return (
     <View style={styles.background}>
       <View style={styles.cardContainer}>
-        <PlantCard title={name} subTitle={title} image={imageUri} />
+        <PlantCard title={name} subTitle={title} imageUri={imageUri} />
       </View>
 
       <TouchableWithoutFeedback
@@ -63,6 +83,7 @@ function ViewPlantScreen({ route, navigation }) {
             title="Remove"
             color="accent"
             onPress={() => Alert.alert("Remove button pressed")}
+            onPress={handleDelete}
           />
         </View>
       </View>

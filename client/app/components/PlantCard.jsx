@@ -28,8 +28,6 @@ const styles = StyleSheet.create({
     height: 150,
     width: 150,
     borderRadius: 75,
-    borderWidth: 1,
-    borderColor: colors.dark,
   },
   plantCard: {
     marginTop: 40,

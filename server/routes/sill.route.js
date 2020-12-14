@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let PlantModel = require("../models/plant.model");
+let PlantModel = require("../models/sill.model");
 
 router.route("/").get((req, res) => {
   PlantModel.find()
@@ -15,31 +15,43 @@ router.route("/:id").get((req, res) => {
 
 //add to sill would actually be a patch?
 router.route("/add").post((req, res) => {
-  const { name, location, note } = req.body;
-  const newPlantDocument = new PlantModel({
-    name,
+  const {
+    nickname,
     location,
     note,
+    imageUri,
+    commonName,
+    waterInfo,
+    lightInfo,
+  } = req.body;
+  const newPlantDocument = new PlantModel({
+    nickname,
+    location,
+    note,
+    imageUri,
+    commonName,
+    waterInfo,
+    lightInfo,
   });
 
   newPlantDocument
     .save()
-    .then(() => res.json("Sill Plant added!"))
+    .then((document) => res.json("Sill Plant added: " + document))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-// router.route("/").delete((req, res) => {
-//   const { _id } = req.body;
+router.route("/").delete((req, res) => {
+  const { _id } = req.body;
 
-//   PlantModel.findOneAndDelete({
-//     _id,
-//   })
-//     .then((document) => {
-//       res.status(200).json(document);
-//     })
-//     .catch((err) => {
-//       res.status(400).send("Could not find Sill plant to delete.");
-//     });
-// });
+  PlantModel.findOneAndDelete({
+    _id,
+  })
+    .then((document) => {
+      res.status(200).json(document);
+    })
+    .catch((err) => {
+      res.status(400).send("Could not find Sill plant to delete.");
+    });
+});
 
 module.exports = router;

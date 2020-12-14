@@ -1,7 +1,11 @@
-import React from "react";
-import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
+import React, { useEffect } from "react";
+import {
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+  Alert,
+} from "react-native";
 import * as Yup from "yup";
-//import DateTimePicker from "@react-native-community/datetimepicker";
 
 import AppForm from "../components/forms/AppForm";
 import CareIcons from "../components/CareIcons";
@@ -11,9 +15,8 @@ import Screen from "../components/Screen";
 import { AppFormField, AppFormPicker, SubmitButton } from "../components/forms";
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required().min(1).label("Name"),
+  nickname: Yup.string().required().min(1).label("Nickname"),
   location: Yup.object().required().nullable().label("Location"),
-  //date: Yup.string().required().label("Date added"),
   note: Yup.string().label("Note"),
 });
 
@@ -32,15 +35,58 @@ function PlantEditScreen({ route, navigation }) {
   const { title } = route.params;
   const { subTitle } = route.params;
   const { imageUri } = route.params;
+  const { waterInfo } = route.params;
+  const { lightInfo } = route.params;
+  const { fertilizerInfo } = route.params;
+  const { pruningInfo } = route.params;
+
+  const handleSubmit = ({ nickname, location, note, waterInfo, lightInfo }) => {
+    //send POST request to Database https://localhost:5000/sill/add
+    fetch("http://localhost:5000/sill/add/", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ nickname, location, note, waterInfo, lightInfo }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log("Sending plant failed", err);
+      });
+  };
+
+  useEffect(() => {
+    fetch("http://localhost:5000/plants")
+      .then((res) => res.json())
+      .then((jsonRes) => {
+        console.log(jsonRes);
+        //setList(jsonRes);
+      });
+    console.log("Made it through fetch");
+  }, []);
 
   return (
     <Screen>
       <View style={styles.background}>
         <View style={styles.cardContainer}>
-          <PlantCard title={title} subTitle={subTitle} image={imageUri} />
+          <PlantCard title={title} subTitle={subTitle} imageUri={imageUri} />
         </View>
         <TouchableWithoutFeedback
-          onPress={() => navigation.navigate("PlantInfo")}
+          onPress={() =>
+            navigation.navigate("PlantInfo", {
+              title: title,
+              subTitle: subTitle,
+              imageUri: imageUri,
+              waterInfo: waterInfo,
+              lightInfo: lightInfo,
+              fertilizerInfo: fertilizerInfo,
+              pruningInfo: pruningInfo,
+            })
+          }
         >
           <View>
             <CareIcons />
@@ -49,21 +95,26 @@ function PlantEditScreen({ route, navigation }) {
         <View style={styles.form}>
           <AppForm
             initialValues={{
-              name: "",
+              nickname: "",
               location: null,
-              date: "",
               note: "",
             }}
-            onSubmit={(values) => console.log(values)}
+            //onSubmit={(values) => Alert.alert(values)}
+            onSubmit={handleSubmit}
             validationSchema={validationSchema}
           >
-            <AppFormField maxLength={50} name="name" placeholder="Name" />
+            {/* select an image? */}
+
+            <AppFormField
+              maxLength={50}
+              name="nickname"
+              placeholder="Nickname"
+            />
             <AppFormPicker
               items={locations}
               name="location"
               placeholder="Location"
             />
-            {/* <AppFormField maxLength={20} name="date" placeholder="Date added" /> */}
             <AppFormField
               maxLength={300}
               multiline
@@ -71,20 +122,21 @@ function PlantEditScreen({ route, navigation }) {
               numberOfLines={3}
               placeholder="Notes"
             />
-            <SubmitButton title="Add to Sill" />
+            <SubmitButton
+              title="Submit"
+              onPress={() =>
+                navigation.navigate("PlantEdit", {
+                  title: item.commonName,
+                  subTitle: item.scientificName,
+                  imageUri: item.imageUri,
+                  waterInfo: item.waterInfo,
+                  lightInfo: item.lightInfo,
+                  fertilizerInfo: item.fertilizerInfo,
+                  pruningInfo: item.pruningInfo,
+                })
+              }
+            />
           </AppForm>
-
-          {/* <AppButton onPress={showDatepicker} title="Select date added" />
-
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={dateAdded}
-            mode={mode}
-            display="compact"
-            onChange={onChange}
-          />
-        )} */}
         </View>
       </View>
     </Screen>

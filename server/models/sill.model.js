@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const plantSchema = new Schema({
+const sillSchema = new Schema({
   commonName: {
     type: String,
     required: false,
@@ -65,4 +65,4 @@ const plantSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Plant", plantSchema);
+module.exports = mongoose.model("Sill", sillSchema);

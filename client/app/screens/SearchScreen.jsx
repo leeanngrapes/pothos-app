@@ -5,25 +5,10 @@ import colors from "../theme/colors";
 import Heading from "../components/Heading";
 import Screen from "../components/Screen";
 import SearchItem from "../components/lists/SearchItem";
-import plantsApi from "../api/plants";
 import routes from "../navigation/routes";
 
 function SearchScreen({ navigation }) {
   const [list, setList] = useState([]);
-  // const [plants, setPlants] = useState([]);
-  // const [error, setError] = useState(false);
-
-  // const loadPlants = async () => {
-  //   const response = await plantsApi.getPlants();
-  //   if (!response.ok) return setError(true);
-
-  //   setError(false);
-  //   setPlants = response.data;
-  // };
-
-  // useEffect(() => {
-  //   loadPlants(); //get plants from server
-  // }, []);
 
   useEffect(() => {
     fetch("http://localhost:5000/plants")
@@ -44,31 +29,6 @@ function SearchScreen({ navigation }) {
         <TextInput placeholder="Find a plant..." />
       </View>
       <View>
-        {/* {error && (
-          <>
-            <AppText>Couldn't retrieve plants.</AppText>
-            <Button title="Retry" onPress={loadPlants}></Button>
-          </>
-        )}
-         <FlatList
-          data={plants}
-          keyExtractor={(plant) => plant.id.toString()}
-          renderItem={({ item }) => (
-            <SearchItem
-              commonName={item.commonName}
-              scientificName={item.scientificName}
-              imageUri={item.imageUri}
-              onPress={() => navigation.nativate(routes.PLANT_EDIT)}
-              // onPress={() =>
-              //   navigation.navigate("PlantEdit", {
-              //     title: item.commonName,
-              //     subTitle: item.scientificName,
-              //     imageUri: item.imageUri,
-              //   })
-              // }
-            />
-          )}
-        /> */}
         <FlatList
           data={list}
           keyExtractor={(item, index) => {
@@ -85,6 +45,10 @@ function SearchScreen({ navigation }) {
                   title: item.commonName,
                   subTitle: item.scientificName,
                   imageUri: item.imageUri,
+                  waterInfo: item.waterInfo,
+                  lightInfo: item.lightInfo,
+                  fertilizerInfo: item.fertilizerInfo,
+                  pruningInfo: item.pruningInfo,
                 })
               }
             />
