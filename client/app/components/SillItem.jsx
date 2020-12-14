@@ -10,8 +10,10 @@ function SillItem({ name, location, imageUri, onPress }) {
     <TouchableOpacity onPress={onPress}>
       <View style={styles.sillItem}>
         <Image style={styles.image} source={{ uri: imageUri }} />
-        <AppText style={styles.name}>{name}</AppText>
-        <AppText style={styles.name}>{location}</AppText>
+        <View style={styles.name}>
+          <AppText>{name}</AppText>
+          <AppText style={styles.location}>{location}</AppText>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -23,6 +25,9 @@ const styles = StyleSheet.create({
     width: 100,
     borderRadius: 50,
   },
+  location: {
+    fontSize: 14,
+  },
   sillItem: {
     margin: 12,
     alignItems: "center",
@@ -30,6 +35,7 @@ const styles = StyleSheet.create({
   },
   name: {
     padding: 10,
+    alignItems: "center",
   },
 });
 

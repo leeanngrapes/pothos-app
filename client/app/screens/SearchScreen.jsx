@@ -28,33 +28,32 @@ function SearchScreen({ navigation }) {
       <View style={styles.searchBar}>
         <TextInput placeholder="Find a plant..." />
       </View>
-      <View>
-        <FlatList
-          data={list}
-          keyExtractor={(item, index) => {
-            return index.toString();
-          }}
-          renderItem={({ item }) => (
-            <SearchItem
-              key={item.id}
-              commonName={item.commonName}
-              scientificName={item.scientificName}
-              imageUri={item.imageUri}
-              onPress={() =>
-                navigation.navigate("PlantEdit", {
-                  title: item.commonName,
-                  subTitle: item.scientificName,
-                  imageUri: item.imageUri,
-                  waterInfo: item.waterInfo,
-                  lightInfo: item.lightInfo,
-                  fertilizerInfo: item.fertilizerInfo,
-                  pruningInfo: item.pruningInfo,
-                })
-              }
-            />
-          )}
-        />
-      </View>
+
+      <FlatList
+        data={list}
+        keyExtractor={(item, index) => {
+          return index.toString();
+        }}
+        renderItem={({ item }) => (
+          <SearchItem
+            key={item.id}
+            commonName={item.commonName}
+            scientificName={item.scientificName}
+            imageUri={item.imageUri}
+            onPress={() =>
+              navigation.navigate("PlantEdit", {
+                title: item.commonName,
+                subTitle: item.scientificName,
+                imageUri: item.imageUri,
+                waterInfo: item.waterInfo,
+                lightInfo: item.lightInfo,
+                fertilizerInfo: item.fertilizerInfo,
+                pruningInfo: item.pruningInfo,
+              })
+            }
+          />
+        )}
+      />
     </Screen>
   );
 }

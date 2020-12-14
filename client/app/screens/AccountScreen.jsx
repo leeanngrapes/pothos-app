@@ -20,16 +20,16 @@ function AccountScreen({ navigation }) {
         </View>
         <View style={styles.content}>
           <View style={styles.section}>
-            <SubHeading>Username</SubHeading>
-            <AppText>username</AppText>
+            <SubHeading>Name</SubHeading>
+            <AppText>LeeAnn Grapes</AppText>
           </View>
           <View style={styles.section}>
             <SubHeading>Email</SubHeading>
-            <AppText>email@email.com</AppText>
+            <AppText>leeann@email.com</AppText>
           </View>
           <View style={styles.section}>
             <SubHeading>Password</SubHeading>
-            <AppText>**********</AppText>
+            <AppText>******</AppText>
           </View>
         </View>
         <View style={styles.buttonsContainer}>
@@ -58,14 +58,13 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     padding: 20,
     width: "100%",
-    margin: 20,
   },
   content: {
     justifyContent: "flex-start",
     alignItems: "flex-start",
     backgroundColor: colors.white,
     paddingLeft: "30%",
-    marginVertical: 100,
+    marginVertical: 130,
     padding: 10,
   },
   image: {
