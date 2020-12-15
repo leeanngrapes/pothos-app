@@ -13,6 +13,7 @@ const numColumns = 3;
 function YourSillScreen({ navigation }) {
   const [sill, setSill] = useState([]);
   //const [selectedId, setSelectedId] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:5000/sill")
@@ -42,39 +43,53 @@ function YourSillScreen({ navigation }) {
           />
         </View>
       </View>
-      {/* <View style={styles.sill}> */}
-      <FlatList
-        data={sill}
-        keyExtractor={(item, index) => {
-          return index.toString();
-        }}
-        //extraData={selectedId}
-        renderItem={({ item }) => (
-          <SillItem
-            key={item.id}
-            name={item.nickname}
-            location={item.location.label}
-            imageUri={item.imageUri}
-            commonName={item.commonName}
-            onPress={() =>
-              navigation.navigate(routes.VIEW_PLANT, {
-                nickname: item.nickname,
-                location: item.location.label,
-                note: item.note,
-                imageUri: item.imageUri,
-                commonName: item.commonName,
-                scientificName: item.scientificName,
-                waterInfo: item.waterInfo,
-                lightInfo: item.lightInfo,
-                fertilizerInfo: item.fertilizerInfo,
-                pruningInfo: item.pruningInfo,
-              })
-            }
-          />
-        )}
-        numColumns={numColumns}
-      />
-      {/* </View> */}
+      <View style={styles.sill}>
+        <FlatList
+          data={sill}
+          keyExtractor={(item, index) => {
+            return index.toString();
+          }}
+          //extraData={selectedId}
+          renderItem={({ item }) => (
+            <SillItem
+              key={item.id}
+              name={item.nickname}
+              location={item.location.label}
+              imageUri={item.imageUri}
+              commonName={item.commonName}
+              onPress={() =>
+                navigation.navigate(routes.VIEW_PLANT, {
+                  nickname: item.nickname,
+                  location: item.location.label,
+                  note: item.note,
+                  imageUri: item.imageUri,
+                  commonName: item.commonName,
+                  scientificName: item.scientificName,
+                  waterInfo: item.waterInfo,
+                  lightInfo: item.lightInfo,
+                  fertilizerInfo: item.fertilizerInfo,
+                  pruningInfo: item.pruningInfo,
+                })
+              }
+            />
+          )}
+          refreshing={refreshing}
+          onRefresh={
+            //call back end
+            //setSill with a new array
+            useEffect(() => {
+              fetch("http://localhost:5000/sill")
+                .then((res) => res.json())
+                .then((jsonRes) => {
+                  console.log(jsonRes);
+                  setSill(jsonRes);
+                });
+              console.log("Made it through fetch");
+            })
+          }
+          numColumns={numColumns}
+        />
+      </View>
     </Screen>
   );
 }
@@ -101,6 +116,7 @@ const styles = StyleSheet.create({
 
   sill: {
     paddingHorizontal: 20,
+    flex: 1,
   },
 });
 
