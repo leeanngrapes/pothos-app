@@ -4,6 +4,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
+import AppNavigator from "../navigation/AppNavigator";
+import AccountNavigator from "../navigation/AccountNavigator";
 import colors from "../theme/colors";
 
 const Stack = createStackNavigator();
@@ -30,6 +32,16 @@ const AuthNavigator = () => (
       component={RegisterScreen}
       options={{ headerShown: true }}
     />
+    <Stack.Screen
+      name="App"
+      component={AppNavigator}
+      options={{ headerShown: false }}
+    />
+    {/* <Stack.Screen
+      name="AccountNav"
+      component={AccountNavigator}
+      options={{ headerShown: false }}
+    /> */}
   </Stack.Navigator>
 );
 

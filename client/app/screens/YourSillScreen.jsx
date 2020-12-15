@@ -8,13 +8,11 @@ import SillItem from "../components/SillItem";
 import Screen from "../components/Screen";
 import routes from "../navigation/routes";
 
-//For Sill, check Plants, IF has "name", add to Sill
-//Will this work?? If not, reconsider PlantModel
-
 const numColumns = 3;
 
 function YourSillScreen({ navigation }) {
   const [sill, setSill] = useState([]);
+  //const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:5000/sill")
@@ -44,56 +42,39 @@ function YourSillScreen({ navigation }) {
           />
         </View>
       </View>
-      <View style={styles.sill}>
-        <FlatList
-          data={sill}
-          keyExtractor={(item, index) => {
-            return index.toString();
-          }}
-          renderItem={({ item }) => (
-            <SillItem
-              key={item.id}
-              name={item.nickname}
-              location={item.location.label}
-              imageUri={item.imageUri}
-              onPress={() =>
-                navigation.navigate(routes.VIEW_PLANT, {
-                  name: item.nickname,
-                  title: item.commonName,
-                  subTitle: item.scientificName,
-                  location: item.location.label,
-                  note: item.note,
-                  imageUri: item.imageUri,
-                })
-              }
-            />
-          )}
-          numColumns={numColumns}
-        />
-      </View>
-      {/* <View style={styles.sill}>
-        <FlatList
-          data={sillItems}
-          keyExtractor={(sillItem) => sillItem.id.toString()}
-          renderItem={({ item }) => (
-            <SillItem
-              name={item.name}
-              image={item.image}
-              onPress={() =>
-                navigation.navigate(routes.VIEW_PLANT, {
-                  name: item.name,
-                  title: item.title,
-                  subTitle: item.subTitle,
-                  location: item.location,
-                  note: item.note,
-                  image: item.image,
-                })
-              }
-            />
-          )}
-          numColumns={numColumns}
-        />
-      </View> */}
+      {/* <View style={styles.sill}> */}
+      <FlatList
+        data={sill}
+        keyExtractor={(item, index) => {
+          return index.toString();
+        }}
+        //extraData={selectedId}
+        renderItem={({ item }) => (
+          <SillItem
+            key={item.id}
+            name={item.nickname}
+            location={item.location.label}
+            imageUri={item.imageUri}
+            commonName={item.commonName}
+            onPress={() =>
+              navigation.navigate(routes.VIEW_PLANT, {
+                nickname: item.nickname,
+                location: item.location.label,
+                note: item.note,
+                imageUri: item.imageUri,
+                commonName: item.commonName,
+                scientificName: item.scientificName,
+                waterInfo: item.waterInfo,
+                lightInfo: item.lightInfo,
+                fertilizerInfo: item.fertilizerInfo,
+                pruningInfo: item.pruningInfo,
+              })
+            }
+          />
+        )}
+        numColumns={numColumns}
+      />
+      {/* </View> */}
     </Screen>
   );
 }
@@ -104,6 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.white,
+    //marginLeft: 20,
   },
   buttonContainer: {
     flex: 1,

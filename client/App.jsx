@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 
 import AccountScreen from "./app/screens/AccountScreen";
-import PlantEditScreen from "./app/screens/PlantEditScreen";
+import AddPlantScreen from "./app/screens/AddPlantScreen";
 import CareScheduleScreen from "./app/screens/CareScheduleScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 import PlantInfoScreen from "./app/screens/PlantInfoScreen";
@@ -23,7 +23,7 @@ const Stack = createStackNavigator();
 const StackNavigator = () => (
   <Stack.Navigator initialRouteName="Welcome">
     <Stack.Screen name="Account" component={AccountScreen} />
-    <Stack.Screen name="PlantEdit" component={PlantEditScreen} />
+    <Stack.Screen name="AddPlant" component={AddPlantScreen} />
     <Stack.Screen name="CareSchedule" component={CareScheduleScreen} />
     <Stack.Screen name="Login" component={LoginScreen} />
     <Stack.Screen name="PlantInfo" component={PlantInfoScreen} />
@@ -35,17 +35,14 @@ const StackNavigator = () => (
       component={WelcomeScreen}
       screenOptions={{ headerShown: false }}
     />
-    <Stack.Screen name="MySill" component={YourSillScreen} />
+    <Stack.Screen name="YourSill" component={YourSillScreen} />
   </Stack.Navigator>
 );
-//TODO: below,
-//display <AuthNavigator> if not logged in
-//display <AppNavigator> if logged in
 
 export default function App() {
   return (
     <NavigationContainer theme={navigationTheme}>
-      <AppNavigator />
+      <AuthNavigator />
     </NavigationContainer>
   );
 }

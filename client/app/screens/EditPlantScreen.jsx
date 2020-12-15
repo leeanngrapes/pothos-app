@@ -31,14 +31,12 @@ const locations = [
 
 //add
 
-function PlantEditScreen({ route, navigation }) {
-  const { title } = route.params;
-  const { subTitle } = route.params;
+function EditPlantScreen({ route, navigation }) {
+  const { nickname } = route.params;
+  const { location } = route.params;
+  const { note } = route.params;
   const { imageUri } = route.params;
-  const { waterInfo } = route.params;
-  const { lightInfo } = route.params;
-  const { fertilizerInfo } = route.params;
-  const { pruningInfo } = route.params;
+  const { commonName } = route.params;
 
   const handleSubmit = ({ nickname, location, note, waterInfo, lightInfo }) => {
     //send POST request to Database https://localhost:5000/sill/add
@@ -73,31 +71,18 @@ function PlantEditScreen({ route, navigation }) {
     <Screen>
       <View style={styles.background}>
         <View style={styles.cardContainer}>
-          <PlantCard title={title} subTitle={subTitle} imageUri={imageUri} />
+          <PlantCard
+            title={nickname}
+            subTitle={commonName}
+            imageUri={imageUri}
+          />
         </View>
-        <TouchableWithoutFeedback
-          onPress={() =>
-            navigation.navigate("PlantInfo", {
-              title: title,
-              subTitle: subTitle,
-              imageUri: imageUri,
-              waterInfo: waterInfo,
-              lightInfo: lightInfo,
-              fertilizerInfo: fertilizerInfo,
-              pruningInfo: pruningInfo,
-            })
-          }
-        >
-          <View>
-            <CareIcons />
-          </View>
-        </TouchableWithoutFeedback>
         <View style={styles.form}>
           <AppForm
             initialValues={{
-              nickname: "",
-              location: null,
-              note: "",
+              nickname: nickname,
+              location: location.label,
+              note: note,
             }}
             //onSubmit={(values) => Alert.alert(values)}
             onSubmit={handleSubmit}
@@ -108,31 +93,34 @@ function PlantEditScreen({ route, navigation }) {
             <AppFormField
               maxLength={50}
               name="nickname"
-              placeholder="Nickname"
+              placeholder={nickname}
             />
             <AppFormPicker
               items={locations}
               name="location"
-              placeholder="Location"
+              placeholder={location.label}
             />
             <AppFormField
               maxLength={300}
               multiline
               name="note"
               numberOfLines={3}
-              placeholder="Notes"
+              placeholder={note}
             />
             <SubmitButton
-              title="Submit"
+              title="Update"
               onPress={() =>
-                navigation.navigate("PlantEdit", {
-                  title: item.commonName,
-                  subTitle: item.scientificName,
+                navigation.navigate("AddPlant", {
+                  commonName: item.commonName,
+                  scientificName: item.scientificName,
                   imageUri: item.imageUri,
                   waterInfo: item.waterInfo,
                   lightInfo: item.lightInfo,
                   fertilizerInfo: item.fertilizerInfo,
                   pruningInfo: item.pruningInfo,
+                  nickname: nickname,
+                  location: location,
+                  note: note,
                 })
               }
             />
@@ -169,4 +157,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PlantEditScreen;
+export default EditPlantScreen;

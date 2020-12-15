@@ -33,21 +33,35 @@ const handleDelete = (id) => {
 };
 
 function ViewPlantScreen({ route, navigation }) {
-  const { name } = route.params;
-  const { title } = route.params;
-  const { subTitle } = route.params;
+  const { nickname } = route.params;
   const { location } = route.params;
   const { note } = route.params;
   const { imageUri } = route.params;
+  const { commonName } = route.params;
+  const { scientificName } = route.params;
+  const { waterInfo } = route.params;
+  const { lightInfo } = route.params;
+  const { fertilizerInfo } = route.params;
+  const { pruningInfo } = route.params;
 
   return (
     <View style={styles.background}>
       <View style={styles.cardContainer}>
-        <PlantCard title={name} subTitle={title} imageUri={imageUri} />
+        <PlantCard title={nickname} subTitle={commonName} imageUri={imageUri} />
       </View>
 
       <TouchableWithoutFeedback
-        onPress={() => navigation.navigate("PlantInfo")}
+        onPress={() =>
+          navigation.navigate("PlantInfo", {
+            imageUri: imageUri,
+            waterInfo: waterInfo,
+            lightInfo: lightInfo,
+            fertilizerInfo: fertilizerInfo,
+            pruningInfo: pruningInfo,
+            commonName: commonName,
+            scientificName: scientificName,
+          })
+        }
       >
         <View>
           <CareIcons />
@@ -55,7 +69,7 @@ function ViewPlantScreen({ route, navigation }) {
       </TouchableWithoutFeedback>
       <View style={styles.form}>
         <View style={styles.formField}>
-          <AppText>{name}</AppText>
+          <AppText>{nickname}</AppText>
         </View>
         <View style={styles.formField}>
           <AppText>{location}</AppText>
@@ -70,10 +84,12 @@ function ViewPlantScreen({ route, navigation }) {
           <AppButton
             title="Edit"
             onPress={() =>
-              navigation.navigate("PlantEdit", {
-                title: name,
-                subTitle: title,
+              navigation.navigate("EditPlant", {
+                nickname: nickname,
+                commonName: commonName,
                 imageUri: imageUri,
+                note: note,
+                location: location,
               })
             }
           />

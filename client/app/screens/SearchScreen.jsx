@@ -23,7 +23,7 @@ function SearchScreen({ navigation }) {
   return (
     <Screen>
       <View>
-        <Heading>Search</Heading>
+        <Heading>Browse</Heading>
       </View>
       <View style={styles.searchBar}>
         <TextInput placeholder="Find a plant..." />
@@ -41,9 +41,9 @@ function SearchScreen({ navigation }) {
             scientificName={item.scientificName}
             imageUri={item.imageUri}
             onPress={() =>
-              navigation.navigate("PlantEdit", {
-                title: item.commonName,
-                subTitle: item.scientificName,
+              navigation.navigate("AddPlant", {
+                commonName: item.commonName,
+                scientificName: item.scientificName,
                 imageUri: item.imageUri,
                 waterInfo: item.waterInfo,
                 lightInfo: item.lightInfo,

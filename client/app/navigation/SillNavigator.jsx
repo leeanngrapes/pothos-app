@@ -3,8 +3,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import SearchScreen from "../screens/SearchScreen";
 import ViewPlantScreen from "../screens/ViewPlantScreen";
 import YourSillScreen from "../screens/YourSillScreen";
-import PlantEditScreen from "../screens/PlantEditScreen";
+import AddPlantScreen from "../screens/AddPlantScreen";
+import EditPlantScreen from "../screens/EditPlantScreen";
 import PlantInfoScreen from "../screens/PlantInfoScreen";
+import WelcomeScreen from "../screens/WelcomeScreen";
+import LoginScreen from "../screens/LoginScreen";
+import RegisterScreen from "../screens/RegisterScreen";
 import colors from "../theme/colors";
 
 const Stack = createStackNavigator();
@@ -12,7 +16,7 @@ const Stack = createStackNavigator();
 const SillNavigator = () => (
   <Stack.Navigator mode={"modal"}>
     <Stack.Screen
-      name="MySill"
+      name="YourSill"
       component={YourSillScreen}
       options={{
         headerShown: false,
@@ -42,8 +46,18 @@ const SillNavigator = () => (
       }}
     />
     <Stack.Screen
-      name="PlantEdit"
-      component={PlantEditScreen}
+      name="AddPlant"
+      component={AddPlantScreen}
+      options={{
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: colors.white,
+        },
+      }}
+    />
+    <Stack.Screen
+      name="EditPlant"
+      component={EditPlantScreen}
       options={{
         headerShown: true,
         headerStyle: {

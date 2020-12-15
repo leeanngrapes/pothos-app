@@ -7,6 +7,7 @@ import SubHeading from "../components/SubHeading";
 import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 import Screen from "../components/Screen";
+//import AuthNavigator from "../navigation/AuthNavigator";
 
 function AccountScreen({ navigation }) {
   return (

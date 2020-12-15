@@ -9,8 +9,8 @@ import Screen from "../components/Screen";
 import { ScrollView } from "react-native-gesture-handler";
 
 function PlantInfoScreen({ route, navigation }) {
-  const { title } = route.params;
-  const { subTitle } = route.params;
+  const { commonName } = route.params;
+  const { scientificName } = route.params;
   const { imageUri } = route.params;
   const { lightInfo } = route.params;
   const { waterInfo } = route.params;
@@ -21,7 +21,11 @@ function PlantInfoScreen({ route, navigation }) {
     <ScrollView>
       <Screen>
         <View style={styles.cardContainer}>
-          <PlantCard title={title} subTitle={subTitle} imageUri={imageUri} />
+          <PlantCard
+            title={commonName}
+            subTitle={scientificName}
+            imageUri={imageUri}
+          />
         </View>
         <View style={styles.container}>
           <View style={styles.section}>

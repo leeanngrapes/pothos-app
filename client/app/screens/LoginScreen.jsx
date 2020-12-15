@@ -13,13 +13,15 @@ import {
   ErrorMessage,
   SubmitButton,
 } from "../components/forms";
+//import AppNavigator from "../navigation/AppNavigator";
+//import YourSillScreen from "../screens/YourSillScreen";
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
 });
 
-function LoginScreen() {
+function LoginScreen({ navigation }) {
   //const [loginFailed, setLoginFailed] = useState(false);
 
   // const handleSubmit = ({ email, password }) => {
@@ -65,7 +67,7 @@ function LoginScreen() {
           <AppForm
             initialValues={{ email: "", password: "" }}
             //onSubmit={(values) => Alert.alert(values)}
-            onSubmit={handleSubmit}
+            onSubmit={() => navigation.navigate("App")}
             validationSchema={loginSchema}
           >
             {/* <ErrorMessage
@@ -90,7 +92,10 @@ function LoginScreen() {
               secureTextEntry
               textContentType="password"
             />
-            <SubmitButton title="Submit" />
+            <SubmitButton
+              title="Submit"
+              onPress={() => navigation.navigate("App")}
+            />
           </AppForm>
         </View>
       </ImageBackground>

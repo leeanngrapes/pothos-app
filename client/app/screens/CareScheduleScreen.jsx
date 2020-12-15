@@ -1,110 +1,120 @@
-import React, { useState } from "react";
-import { StyleSheet, SectionList, Alert } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, FlatList, View, Alert } from "react-native";
 
 import Heading from "../components/Heading";
 import SubHeading from "../components/SubHeading";
 import Screen from "../components/Screen";
 import { ListItem, ListItemDeleteAction } from "../components/lists";
+import routes from "../navigation/routes";
+import AppText from "../components/AppText";
+
+//NOTE: as-is, must update to exactly current Sill
+//If instead want to render SillItems, can do that.
+//But the swipe to delete needs to be done.
+//Retry after doing click to delete button?
+//Could make a "tasks" Atlas collection and delete from that.
 
 const initialTasks = [
   {
-    title: "Overdue!",
-    data: [
-      {
-        id: 1,
-        title: "Pothy",
-        subTitle: "Water",
-        image: require("../assets/pothos-plant.jpg"),
-      },
-      {
-        id: 2,
-        title: "Mrs. Jade",
-        subTitle: "Fertilize",
-        image: require("../assets/jade-plant.jpg"),
-      },
-    ],
+    id: 1,
+    title: "Jadey",
+    subTitle: "Office",
+    image: require("../assets/jade-plant.jpg"),
   },
   {
-    title: "Due today",
-    data: [
-      {
-        id: 3,
-        title: "Fiddler",
-        subTitle: "Rotate",
-        image: require("../assets/fiddle-leaf-fig-plant.jpg"),
-      },
-    ],
+    id: 2,
+    title: "Pothy",
+    subTitle: "Living room",
+    image: require("../assets/pothos-plant.jpg"),
   },
   {
-    title: "Due tomorrow",
-    data: [
-      {
-        id: 4,
-        title: "Pearly",
-        subTitle: "Prune",
-        image: require("../assets/string-of-pearls-plant.jpg"),
-      },
-      {
-        id: 5,
-        title: "T5 Jade",
-        subTitle: "Prune",
-        image: require("../assets/jade-plant.jpg"),
-      },
-    ],
+    id: 3,
+    title: "Pothy",
+    subTitle: "Living room",
+    image: require("../assets/pothos-plant.jpg"),
   },
 ];
 
 function CareScheduleScreen({ navigation }) {
   const [tasks, setTasks] = useState(initialTasks);
+  //const [tasks, setTasks] = useState([]);
 
-  const handleDelete = (item) => {
-    //delete the item from careschedulescreen, need state using a hook
-    //call the server
-    setTasks(tasks.filter((t) => t.id !== item.id));
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/sill")
+  //     .then((res) => res.json())
+  //     .then((jsonRes) => {
+  //       console.log(jsonRes);
+  //       setTasks(jsonRes);
+  //     });
+  //   console.log("Made it through fetch");
+  // }, []);
+
+  const handleDelete = (task) => {
+    //delete the item from careschedulescreen
+    //use a useEffect hook here to fetch DELETE
+    setTasks(tasks.filter((t) => t.id !== task.id));
   };
 
   return (
-    <Screen style={styles.background}>
-      <Heading>Care Schedule</Heading>
+    <Screen>
+      <Heading>Care Tracker</Heading>
+      <SubHeading style={styles.subHeading}>
+        Week of December 14, 2020
+      </SubHeading>
 
-      <SectionList
-        contentContainerStyle={styles.container}
-        sections={initialTasks} //differs from flatlist
-        keyExtractor={(item, index) => item + index}
+      <FlatList
+        data={tasks}
+        // keyExtractor={(item, index) => {
+        //   return index.toString();
+        // }}
+        keyExtractor={(task) => task.id.toString()}
         renderItem={({ item }) => (
           <ListItem
+            //key={item.id}
             title={item.title}
             subTitle={item.subTitle}
             image={item.image}
-            //not sure WHY this handleDelete is not working below, works on FlatList, maybe could change later
+            // onPress={() =>
+            //   navigation.navigate(routes.VIEW_PLANT, {
+            //     nickname: item.nickname,
+            //     location: item.location.label,
+            //     note: item.note,
+            //     imageUri: item.imageUri,
+            //     commonName: item.commonName,
+            //     scientificName: item.scientificName,
+            //     waterInfo: item.waterInfo,
+            //     lightInfo: item.lightInfo,
+            //     fertilizerInfo: item.fertilizerInfo,
+            //     pruningInfo: item.pruningInfo,
+            //   })
+            // }
             renderRightActions={() => (
-              <ListItemDeleteAction onPress={() => handleDelete(item)} />
+              <ListItemDeleteAction
+                //onPress={() => Alert.alert("Checked off!")}
+                onPress={() => handleDelete(item)}
+              />
             )}
-            onPress={() => Alert.alert(`Go to see this plant on sill?`)}
           />
         )}
-        renderSectionHeader={({ section: { title } }) => (
-          <SubHeading style={styles.sectionHeader}>{title}</SubHeading>
-        )}
       />
+      <AppText style={styles.footer}>That's all for this week!</AppText>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    alignItems: "center",
-  },
-  content: {
-    flexDirection: "column",
-  },
   container: {
-    marginTop: 50,
+    marginTop: 20,
     marginHorizontal: 20,
   },
-  sectionHeader: {
+  footer: {
     alignSelf: "center",
+    marginBottom: 20,
+  },
+  subHeading: {
+    marginTop: 60,
+    alignSelf: "center",
+    marginBottom: 20,
   },
 });
 

@@ -7,7 +7,15 @@ import AppText from "./AppText";
 
 //maybe need to use state for setting the image??
 
-function PlantCard({ title, subTitle, imageUri }) {
+function PlantCard({
+  title,
+  subTitle,
+  imageUri,
+  commonName,
+  scientificName,
+  nickname,
+  location,
+}) {
   return (
     <View style={styles.plantCard}>
       <Image style={styles.image} source={{ uri: imageUri }} />
