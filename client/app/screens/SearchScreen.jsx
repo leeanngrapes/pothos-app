@@ -14,10 +14,10 @@ function SearchScreen({ navigation }) {
     fetch("http://localhost:5000/plants")
       .then((res) => res.json())
       .then((jsonRes) => {
-        console.log(jsonRes);
+        //console.log(jsonRes);
         setList(jsonRes);
       });
-    console.log("Made it through fetch");
+    console.log("Fetched the plants from database");
   }, []);
 
   return (

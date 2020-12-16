@@ -5,12 +5,17 @@ import {
   Alert,
   TouchableWithoutFeedback,
 } from "react-native";
+import * as Yup from "yup";
 
 import colors from "../theme/colors";
 import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 import CareIcons from "../components/CareIcons";
 import PlantCard from "../components/PlantCard";
+import AppTextInput from "../components/AppTextInput";
+import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import { ScrollView } from "react-native-gesture-handler";
+import SubHeading from "../components/SubHeading";
 
 const handleDelete = (id) => {
   //DELETE request not working yet
@@ -32,6 +37,26 @@ const handleDelete = (id) => {
     });
 };
 
+// Fn to handle form submit of Care Notes --> not working
+const handleSubmit = ({ nickname, location, note, imageUri }) => {
+  //send POST request to Database https://localhost:5000/sill/add
+  fetch("http://localhost:5000/sill/add/", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ nickname, location, note, imageUri }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(`Added new plant: ` + data);
+    })
+    .catch((err) => {
+      console.log("Sending plant failed", err);
+    });
+};
+
 function ViewPlantScreen({ route, navigation }) {
   const { nickname } = route.params;
   const { location } = route.params;
@@ -45,65 +70,111 @@ function ViewPlantScreen({ route, navigation }) {
   const { pruningInfo } = route.params;
 
   return (
-    <View style={styles.background}>
-      <View style={styles.cardContainer}>
-        <PlantCard title={nickname} subTitle={commonName} imageUri={imageUri} />
-      </View>
-
-      <TouchableWithoutFeedback
-        onPress={() =>
-          navigation.navigate("PlantInfo", {
-            imageUri: imageUri,
-            waterInfo: waterInfo,
-            lightInfo: lightInfo,
-            fertilizerInfo: fertilizerInfo,
-            pruningInfo: pruningInfo,
-            commonName: commonName,
-            scientificName: scientificName,
-          })
-        }
-      >
-        <View>
-          <CareIcons />
-        </View>
-      </TouchableWithoutFeedback>
-      <View style={styles.form}>
-        <View style={styles.formField}>
-          <AppText>{nickname}</AppText>
-        </View>
-        <View style={styles.formField}>
-          <AppText>{location}</AppText>
-        </View>
-
-        <View style={styles.formField}>
-          <AppText>{note}</AppText>
-        </View>
-      </View>
-      <View style={styles.container}>
-        <View style={styles.buttonContainer}>
-          <AppButton
-            title="Edit"
-            onPress={() =>
-              navigation.navigate("EditPlant", {
-                nickname: nickname,
-                commonName: commonName,
-                imageUri: imageUri,
-                note: note,
-                location: location,
-              })
-            }
+    <ScrollView>
+      <View style={styles.background}>
+        <View style={styles.cardContainer}>
+          <PlantCard
+            title={nickname}
+            subTitle={commonName}
+            imageUri={imageUri}
           />
         </View>
-        <View style={styles.buttonContainer}>
-          <AppButton
-            title="Remove"
-            color="accent"
-            onPress={() => Alert.alert("Remove button pressed")}
-            onPress={handleDelete}
-          />
+
+        <TouchableWithoutFeedback
+          onPress={() =>
+            navigation.navigate("PlantInfo", {
+              imageUri: imageUri,
+              waterInfo: waterInfo,
+              lightInfo: lightInfo,
+              fertilizerInfo: fertilizerInfo,
+              pruningInfo: pruningInfo,
+              commonName: commonName,
+              scientificName: scientificName,
+            })
+          }
+        >
+          <View>
+            <CareIcons />
+          </View>
+        </TouchableWithoutFeedback>
+        <View style={styles.form}>
+          <View style={styles.formField}>
+            <AppText>{nickname}</AppText>
+          </View>
+          <View style={styles.formField}>
+            <AppText>{location}</AppText>
+          </View>
+
+          <View style={styles.formField}>
+            <AppText>{note}</AppText>
+          </View>
+        </View>
+        <View style={styles.container}>
+          <View style={styles.buttonContainer}>
+            <AppButton
+              title="Edit"
+              onPress={() =>
+                navigation.navigate("EditPlant", {
+                  nickname: nickname,
+                  commonName: commonName,
+                  imageUri: imageUri,
+                  note: note,
+                  location: location,
+                })
+              }
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <AppButton
+              title="Remove"
+              color="accent"
+              onPress={() => Alert.alert("Remove button pressed")}
+              onPress={handleDelete}
+            />
+          </View>
+        </View>
+        <View style={styles.noteSection}>
+          <AppForm
+            initialValues={{
+              nickname: "",
+              location: null,
+              note: "",
+              imageUri: "",
+              //images: [],
+            }}
+            //onSubmit={(values) => Alert.alert(values)}
+            onSubmit={handleSubmit}
+            //validationSchema={validationSchema}
+          >
+            <SubHeading style={styles.subHeading}>Care Notes</SubHeading>
+            <AppText>Fertilization:</AppText>
+            <AppFormField
+              maxLength={300}
+              name="fertilizationNotes"
+              placeholder="Add a note..."
+              numberOfLines={3}
+            />
+            <AppText>Pruning:</AppText>
+            <AppFormField
+              maxLength={300}
+              multiline
+              name="pruningNotes"
+              numberOfLines={3}
+              placeholder="Add a note..."
+            />
+            <AppText>Propagation:</AppText>
+            <AppFormField
+              maxLength={300}
+              multiline
+              name="propagationNotes"
+              numberOfLines={3}
+              placeholder="Add a note..."
+            />
+            <SubmitButton title="Add Notes" />
+          </AppForm>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -113,7 +184,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   buttonContainer: {
-    //width: "100%",
     flex: 1,
     marginHorizontal: 20,
   },
@@ -122,16 +192,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   container: {
-    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
   form: {
-    flex: 2,
     justifyContent: "center",
     alignItems: "center",
-    //marginTop: -300,
   },
   formField: {
     width: "80%",
@@ -142,15 +209,21 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 30,
   },
-
+  noteSection: {
+    width: "100%",
+    paddingHorizontal: 40,
+    marginTop: 50,
+  },
+  subHeading: {
+    alignSelf: "center",
+    marginBottom: 10,
+  },
   plantImg: {
     height: 150,
     width: 150,
     borderRadius: 75,
-    //margin: 10,
   },
   title: {
-    //flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
     top: 30,

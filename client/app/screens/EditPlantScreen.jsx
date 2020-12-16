@@ -49,23 +49,23 @@ function EditPlantScreen({ route, navigation }) {
       body: JSON.stringify({ nickname, location, note, waterInfo, lightInfo }),
     })
       .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
+      // .then((data) => {
+      //   console.log(data);
+      // })
       .catch((err) => {
         console.log("Sending plant failed", err);
       });
   };
 
-  useEffect(() => {
-    fetch("http://localhost:5000/plants")
-      .then((res) => res.json())
-      .then((jsonRes) => {
-        console.log(jsonRes);
-        //setList(jsonRes);
-      });
-    console.log("Made it through fetch");
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/plants")
+  //     .then((res) => res.json())
+  //     .then((jsonRes) => {
+  //       console.log(jsonRes);
+  //       //setList(jsonRes);
+  //     });
+  //   console.log("Made it through fetch");
+  // }, []);
 
   return (
     <Screen>

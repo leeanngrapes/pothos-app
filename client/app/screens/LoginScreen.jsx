@@ -31,27 +31,27 @@ function LoginScreen({ navigation }) {
   //   console.log(result.data);
   // };
 
-  const handleSubmit = () => {
-    fetch("http://localhost:5000/users/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(),
-    })
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log(
-          "POST Response",
-          "Reponse body: " + JSON.stringify(responseData)
-        );
-      })
-      .catch((err) => {
-        console.log("Sending login failed", err);
-      });
-    console.log("Made it through fetch");
-  };
+  // const handleSubmit = () => {
+  //   fetch("http://localhost:5000/users/login", {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((responseData) => {
+  //       console.log(
+  //         "POST Response",
+  //         "Reponse body: " + JSON.stringify(responseData)
+  //       );
+  //     })
+  //     .catch((err) => {
+  //       console.log("Sending login failed", err);
+  //     });
+  //   console.log("Made it through fetch");
+  // };
 
   return (
     <Screen>

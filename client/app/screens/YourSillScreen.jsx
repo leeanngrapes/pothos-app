@@ -7,22 +7,22 @@ import AppButton from "../components/AppButton";
 import SillItem from "../components/SillItem";
 import Screen from "../components/Screen";
 import routes from "../navigation/routes";
+import axios from "axios";
 
 const numColumns = 3;
 
 function YourSillScreen({ navigation }) {
   const [sill, setSill] = useState([]);
-  //const [selectedId, setSelectedId] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:5000/sill")
       .then((res) => res.json())
       .then((jsonRes) => {
-        console.log(jsonRes);
+        console.log("Fetched the sill");
         setSill(jsonRes);
       });
-    console.log("Made it through fetch");
+    console.log("Made it through use effect and fetch");
   }, []);
 
   return (
@@ -49,7 +49,6 @@ function YourSillScreen({ navigation }) {
           keyExtractor={(item, index) => {
             return index.toString();
           }}
-          //extraData={selectedId}
           renderItem={({ item }) => (
             <SillItem
               key={item.id}
@@ -75,17 +74,18 @@ function YourSillScreen({ navigation }) {
           )}
           refreshing={refreshing}
           onRefresh={
-            //call back end
-            //setSill with a new array
-            useEffect(() => {
+            //setSill with new array from back end
+            //useEffect( //<--this was causing massive overload!
+            () => {
               fetch("http://localhost:5000/sill")
                 .then((res) => res.json())
                 .then((jsonRes) => {
-                  console.log(jsonRes);
+                  //console.log(jsonRes);
                   setSill(jsonRes);
                 });
-              console.log("Made it through fetch");
-            })
+              console.log("Fetched the refreshed sill");
+              //})
+            }
           }
           numColumns={numColumns}
         />
@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.white,
-    //marginLeft: 20,
   },
   buttonContainer: {
     flex: 1,
