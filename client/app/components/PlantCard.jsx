@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     borderRadius: 75,
   },
   plantCard: {
-    marginTop: 40,
+    marginTop: 20,
     alignItems: "center",
   },
   title: {

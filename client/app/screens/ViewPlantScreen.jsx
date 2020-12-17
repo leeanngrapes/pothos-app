@@ -86,6 +86,7 @@ function ViewPlantScreen({ route, navigation }) {
         </TouchableWithoutFeedback>
 
         <View style={styles.form}>
+          <SubHeading style={styles.subHeading}>Profile</SubHeading>
           <View style={styles.formField}>
             <AppText>{nickname}</AppText>
           </View>
@@ -127,18 +128,18 @@ function ViewPlantScreen({ route, navigation }) {
         </View>
 
         {/* //Form for adding care notes below */}
-        <View style={styles.noteSection}>
+        <View style={styles.form}>
           <SubHeading style={styles.subHeading}>Care Notes</SubHeading>
-          <AppText>Fertilization:</AppText>
+          <AppText style={styles.subTitle}>Fertilization:</AppText>
           <View style={styles.formField}>
             <AppText>{fertilizingNote}</AppText>
           </View>
-          <AppText>Pruning:</AppText>
+          <AppText style={styles.subTitle}>Pruning:</AppText>
           <View style={styles.formField}>
             <AppText>{pruningNote}</AppText>
           </View>
 
-          <AppText>Propagation:</AppText>
+          <AppText style={styles.subTitle}>Propagation:</AppText>
           <View style={styles.formField}>
             <AppText>{propagationNote}</AppText>
           </View>
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
   cardContainer: {
     alignItems: "center",
@@ -165,33 +166,43 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    width: "85%",
+    alignSelf: "center",
   },
   form: {
     justifyContent: "center",
     alignItems: "center",
+    paddingTop: 20,
   },
   formField: {
     width: "80%",
     padding: 15,
     paddingLeft: 25,
     justifyContent: "center",
-    backgroundColor: colors.warmWhite,
-    marginBottom: 10,
+    //backgroundColor: colors.warmWhite,
+    marginBottom: 15,
     borderRadius: 30,
-  },
-  noteSection: {
-    width: "100%",
-    paddingHorizontal: 40,
-    marginTop: 50,
+    borderColor: colors.light,
+    borderWidth: 1,
   },
   subHeading: {
-    alignSelf: "center",
+    //alignSelf: "center",
     marginBottom: 10,
+    textTransform: "uppercase",
+    color: colors.primary,
+    fontSize: 20,
+    letterSpacing: 2,
   },
   plantImg: {
     height: 150,
     width: 150,
     borderRadius: 75,
+  },
+  subTitle: {
+    alignSelf: "flex-start",
+    paddingLeft: 65,
+    paddingBottom: 5,
+    color: colors.primary,
   },
   title: {
     justifyContent: "flex-start",

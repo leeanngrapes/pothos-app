@@ -26,11 +26,11 @@ function AccountScreen({ navigation }) {
           </View>
           <View style={styles.section}>
             <SubHeading>Email</SubHeading>
-            <AppText>leeann@email.com</AppText>
+            <AppText>leeann.grapes@gmail.com</AppText>
           </View>
           <View style={styles.section}>
             <SubHeading>Password</SubHeading>
-            <AppText>******</AppText>
+            <AppText>*******</AppText>
           </View>
         </View>
         <View style={styles.buttonsContainer}>

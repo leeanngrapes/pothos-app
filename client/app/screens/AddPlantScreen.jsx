@@ -31,12 +31,14 @@ const validationSchema = Yup.object().shape({
 
 // Locations for form drop-down list
 const locations = [
-  { label: "Bedroom", value: 1 },
-  { label: "Dining room", value: 2 },
-  { label: "Entryway", value: 3 },
-  { label: "Kitchen", value: 4 },
-  { label: "Living room", value: 5 },
-  { label: "Office", value: 6 },
+  { label: "Bathroom", value: 1 },
+  { label: "Bedroom", value: 2 },
+  { label: "Dining room", value: 3 },
+  { label: "Entryway", value: 4 },
+  { label: "Hallway", value: 5 },
+  { label: "Kitchen", value: 6 },
+  { label: "Living room", value: 7 },
+  { label: "Office", value: 8 },
 ];
 
 function AddPlantScreen({ route, navigation }) {
@@ -163,7 +165,7 @@ function AddPlantScreen({ route, navigation }) {
                 userImageUri={userImageUri}
                 onChangeImage={(uri) => setUserImageUri(uri)}
               /> */}
-              <AppFormField name="imageUri" placeholder={imageUri} />
+              <AppFormField name="imageUri" placeholder="Custom Image" />
               <SubmitButton
                 title="Add to Sill"
                 onPress={() =>

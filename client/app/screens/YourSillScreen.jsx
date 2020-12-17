@@ -38,7 +38,7 @@ function YourSillScreen({ navigation }) {
           <AppButton
             title="Filter"
             color="accent"
-            onPress={() => Alert.alert("Filter button pressed")}
+            onPress={() => Alert.alert("Filter functionality coming soon!")}
           />
         </View>
       </View>

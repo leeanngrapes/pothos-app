@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  StyleSheet,
-  View,
-  TouchableWithoutFeedback,
-  Alert,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import * as Yup from "yup";
 
 import AppForm from "../components/forms/AppForm";
@@ -14,6 +8,7 @@ import colors from "../theme/colors";
 import PlantCard from "../components/PlantCard";
 import Screen from "../components/Screen";
 import { AppFormField, AppFormPicker, SubmitButton } from "../components/forms";
+import SubHeading from "../components/SubHeading";
 
 const validationSchema = Yup.object().shape({
   nickname: Yup.string().min(1).label("Nickname"),
@@ -26,12 +21,14 @@ const validationSchema = Yup.object().shape({
 });
 
 const locations = [
-  { label: "Bedroom", value: 1 },
-  { label: "Dining room", value: 2 },
-  { label: "Entryway", value: 3 },
-  { label: "Kitchen", value: 4 },
-  { label: "Living room", value: 5 },
-  { label: "Office", value: 6 },
+  { label: "Bathroom", value: 1 },
+  { label: "Bedroom", value: 2 },
+  { label: "Dining room", value: 3 },
+  { label: "Entryway", value: 4 },
+  { label: "Hallway", value: 5 },
+  { label: "Kitchen", value: 6 },
+  { label: "Living room", value: 7 },
+  { label: "Office", value: 8 },
 ];
 
 function EditPlantScreen({ route, navigation, values }) {
@@ -102,6 +99,7 @@ function EditPlantScreen({ route, navigation, values }) {
 
           {/* Formik form  */}
           <View style={styles.form}>
+            <SubHeading style={styles.subHeading}>Profile</SubHeading>
             <AppForm
               initialValues={{
                 // nickname: nickname,
@@ -145,25 +143,27 @@ function EditPlantScreen({ route, navigation, values }) {
               validationSchema={validationSchema}
             >
               {/* select an image? */}
-
+              <AppText style={styles.subTitle}>Nickname</AppText>
               <AppFormField
                 maxLength={50}
                 name="nickname"
                 placeholder={nickname}
                 //value={values.nickname}
               />
+              <AppText style={styles.subTitle}>Location</AppText>
               <AppFormPicker
                 items={locations}
                 name="location"
                 placeholder={location}
                 //value={values.location.label}
               />
-
+              <AppText style={styles.subTitle}>Image</AppText>
               <AppFormField
                 name="imageUri"
                 placeholder={imageUri}
                 //value={values.imageUri}
               />
+              <AppText style={styles.subTitle}>Note</AppText>
               <AppFormField
                 maxLength={300}
                 multiline
@@ -172,13 +172,15 @@ function EditPlantScreen({ route, navigation, values }) {
                 placeholder={note}
                 //value={values.note}
               />
-              <AppText>Care Notes</AppText>
+              <SubHeading style={styles.subHeading}>Care Notes</SubHeading>
+              <AppText style={styles.subTitle}>Fertilization</AppText>
               <AppFormField
                 maxLength={300}
                 name="fertilizingNote"
                 placeholder={fertilizingNote}
                 numberOfLines={3}
               />
+              <AppText style={styles.subTitle}>Pruning</AppText>
               <AppFormField
                 maxLength={300}
                 multiline
@@ -186,6 +188,7 @@ function EditPlantScreen({ route, navigation, values }) {
                 numberOfLines={3}
                 placeholder={pruningNote}
               />
+              <AppText style={styles.subTitle}>Propagation</AppText>
               <AppFormField
                 maxLength={300}
                 multiline
@@ -225,6 +228,20 @@ const styles = StyleSheet.create({
     width: "80%",
     alignSelf: "center",
     paddingTop: 10,
+  },
+  subHeading: {
+    //alignSelf: "center",
+    marginVertical: 10,
+    textTransform: "uppercase",
+    color: colors.primary,
+    fontSize: 20,
+    letterSpacing: 2,
+  },
+  subTitle: {
+    alignSelf: "flex-start",
+    paddingLeft: 20,
+    //paddingBottom: 5,
+    color: colors.primary,
   },
 });
 
