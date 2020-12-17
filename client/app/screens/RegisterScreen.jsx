@@ -37,7 +37,7 @@ const registerSchema = Yup.object().shape({
 //   console.log("Made it through fetch");
 // };
 
-function RegisterScreen() {
+function RegisterScreen({ navigation }) {
   return (
     <Screen>
       <ImageBackground
@@ -51,7 +51,7 @@ function RegisterScreen() {
           <AppForm
             initialValues={{ name: "", email: "", password: "" }}
             //onSubmit={(values) => Alert.alert(values)}
-            onSubmit={() => Alert.alert("Register button clicked")}
+            onSubmit={() => navigation.navigate("App")}
             validationSchema={registerSchema}
           >
             <AppFormField

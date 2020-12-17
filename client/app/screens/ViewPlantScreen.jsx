@@ -17,26 +17,6 @@ import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import { ScrollView } from "react-native-gesture-handler";
 import SubHeading from "../components/SubHeading";
 
-const handleDelete = (id) => {
-  //DELETE request not working yet
-  fetch("http://localhost:5000/sill/", {
-    method: "DELETE",
-    data: {
-      _id: id,
-    },
-    headers: {
-      "content-type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log("Deleting plant failed", err);
-    });
-};
-
 // Fn to handle form submit of Care Notes --> not working
 const handleSubmit = ({ nickname, location, note, imageUri }) => {
   //send POST request to Database https://localhost:5000/sill/add
@@ -68,6 +48,38 @@ function ViewPlantScreen({ route, navigation }) {
   const { lightInfo } = route.params;
   const { fertilizerInfo } = route.params;
   const { pruningInfo } = route.params;
+  const { id } = route.params;
+
+  // DELETE request to Sill
+  const handleDelete = (_id) => {
+    console.log(
+      JSON.stringify({
+        _id: _id,
+      })
+    );
+    fetch("http://localhost:5000/sill/", {
+      method: "DELETE",
+      body: JSON.stringify({
+        _id: _id,
+        //nickname: nickname,
+      }),
+      //body: _id,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      //.then((response) => console.log(response.json()))
+      .then((response) => response.json())
+
+      .then((data) => {
+        console.log(`Deleted plant: ` + data);
+        console.log(data);
+      })
+      //getting: Deleted plant: null
+      .catch((err) => {
+        console.log("Deleting plant failed", err);
+      });
+  };
 
   return (
     <ScrollView>
@@ -120,6 +132,7 @@ function ViewPlantScreen({ route, navigation }) {
                   imageUri: imageUri,
                   note: note,
                   location: location,
+                  id: id,
                 })
               }
             />
@@ -128,11 +141,13 @@ function ViewPlantScreen({ route, navigation }) {
             <AppButton
               title="Remove"
               color="accent"
-              onPress={() => Alert.alert("Remove button pressed")}
-              onPress={handleDelete}
+              //onPress={() => Alert.alert("Remove button pressed")}
+              onPress={() => handleDelete(id)}
             />
           </View>
         </View>
+
+        {/* //Form for adding care notes below */}
         <View style={styles.noteSection}>
           <AppForm
             initialValues={{
@@ -140,7 +155,6 @@ function ViewPlantScreen({ route, navigation }) {
               location: null,
               note: "",
               imageUri: "",
-              //images: [],
             }}
             //onSubmit={(values) => Alert.alert(values)}
             onSubmit={handleSubmit}

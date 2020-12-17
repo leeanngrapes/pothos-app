@@ -17,21 +17,15 @@ import AppText from "../components/AppText";
 const initialTasks = [
   {
     id: 1,
-    title: "Jadey",
-    subTitle: "Office",
+    title: "Lippy",
+    subTitle: "Living Room",
     image: require("../assets/jade-plant.jpg"),
   },
   {
     id: 2,
-    title: "Pothy",
-    subTitle: "Living room",
-    image: require("../assets/pothos-plant.jpg"),
-  },
-  {
-    id: 3,
-    title: "Pothy",
-    subTitle: "Living room",
-    image: require("../assets/pothos-plant.jpg"),
+    title: "Floof",
+    subTitle: "Office",
+    image: require("../assets/fiddle-leaf-fig-plant.jpg"),
   },
 ];
 

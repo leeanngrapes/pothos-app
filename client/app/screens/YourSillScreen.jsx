@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Alert, FlatList } from "react-native";
 
+import AppButton from "../components/AppButton";
 import colors from "../theme/colors";
 import Heading from "../components/Heading";
-import AppButton from "../components/AppButton";
+import routes from "../navigation/routes";
 import SillItem from "../components/SillItem";
 import Screen from "../components/Screen";
-import routes from "../navigation/routes";
-import axios from "axios";
 
 const numColumns = 3;
 
@@ -58,6 +57,7 @@ function YourSillScreen({ navigation }) {
               commonName={item.commonName}
               onPress={() =>
                 navigation.navigate(routes.VIEW_PLANT, {
+                  id: item._id,
                   nickname: item.nickname,
                   location: item.location.label,
                   note: item.note,

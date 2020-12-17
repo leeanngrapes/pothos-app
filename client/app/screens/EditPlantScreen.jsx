@@ -8,7 +8,6 @@ import {
 import * as Yup from "yup";
 
 import AppForm from "../components/forms/AppForm";
-import CareIcons from "../components/CareIcons";
 import colors from "../theme/colors";
 import PlantCard from "../components/PlantCard";
 import Screen from "../components/Screen";
@@ -18,6 +17,7 @@ const validationSchema = Yup.object().shape({
   nickname: Yup.string().required().min(1).label("Nickname"),
   location: Yup.object().required().nullable().label("Location"),
   note: Yup.string().label("Note"),
+  imageUri: Yup.string().label("Image"),
 });
 
 const locations = [
@@ -29,43 +29,44 @@ const locations = [
   { label: "Office", value: 6 },
 ];
 
-//add
-
-function EditPlantScreen({ route, navigation }) {
+function EditPlantScreen({ route, navigation, values }) {
   const { nickname } = route.params;
   const { location } = route.params;
   const { note } = route.params;
   const { imageUri } = route.params;
   const { commonName } = route.params;
+  const { id } = route.params;
 
-  const handleSubmit = ({ nickname, location, note, waterInfo, lightInfo }) => {
-    //send POST request to Database https://localhost:5000/sill/add
-    fetch("http://localhost:5000/sill/add/", {
-      method: "POST",
+  //PATCH request to Sill Item
+  const handleUpdate = ({ _id, nickname, location, note, imageUri }) => {
+    //send PATCH request to Database https://localhost:5000/sill/add
+    // console.log(
+    //   JSON.stringify({
+    //     _id: _id,
+    //   })
+    // );
+    fetch("http://localhost:5000/sill/", {
+      method: "PATCH",
       headers: {
-        Accept: "application/json",
+        //Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ nickname, location, note, waterInfo, lightInfo }),
+      body: JSON.stringify({
+        _id: _id,
+        newNickname: nickname,
+        newLocation: location,
+        newNote: note,
+        newImageUri: imageUri,
+      }),
     })
       .then((response) => response.json())
-      // .then((data) => {
-      //   console.log(data);
-      // })
+      .then((data) => {
+        console.log(data);
+      })
       .catch((err) => {
-        console.log("Sending plant failed", err);
+        console.log("Sending plant update failed", err);
       });
   };
-
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/plants")
-  //     .then((res) => res.json())
-  //     .then((jsonRes) => {
-  //       console.log(jsonRes);
-  //       //setList(jsonRes);
-  //     });
-  //   console.log("Made it through fetch");
-  // }, []);
 
   return (
     <Screen>
@@ -77,15 +78,43 @@ function EditPlantScreen({ route, navigation }) {
             imageUri={imageUri}
           />
         </View>
+
+        {/* Formik form  */}
         <View style={styles.form}>
           <AppForm
             initialValues={{
-              nickname: nickname,
-              location: location.label,
-              note: note,
+              // nickname: nickname,
+              // location: location,
+              // note: note,
+              // imageUri: imageUri,
+              nickname: "",
+              location: "",
+              note: "",
+              imageUri: "",
             }}
             //onSubmit={(values) => Alert.alert(values)}
-            onSubmit={handleSubmit}
+
+            // onSubmit={(values) => {
+            //   console.log(values);
+            //   handleUpdate({
+            //     nickname: values.nickname,
+            //     imageUri: values.imageUri,
+            //     note: values.note,
+            //     location: values.location,
+            //     _id: id,
+            //   });
+            // }}
+            onSubmit={(values) => {
+              console.log(values);
+              handleUpdate({
+                nickname: values.nickname,
+                imageUri: values.imageUri,
+                note: values.note,
+                location: values.location,
+                _id: id,
+              });
+            }}
+            //onSubmit={handleUpdate}
             validationSchema={validationSchema}
           >
             {/* select an image? */}
@@ -94,11 +123,13 @@ function EditPlantScreen({ route, navigation }) {
               maxLength={50}
               name="nickname"
               placeholder={nickname}
+              //value={values.nickname}
             />
             <AppFormPicker
               items={locations}
               name="location"
-              placeholder={location.label}
+              placeholder={location}
+              //value={values.location.label}
             />
             <AppFormField
               maxLength={300}
@@ -106,24 +137,14 @@ function EditPlantScreen({ route, navigation }) {
               name="note"
               numberOfLines={3}
               placeholder={note}
+              //value={values.note}
             />
-            <SubmitButton
-              title="Update"
-              onPress={() =>
-                navigation.navigate("AddPlant", {
-                  commonName: item.commonName,
-                  scientificName: item.scientificName,
-                  imageUri: item.imageUri,
-                  waterInfo: item.waterInfo,
-                  lightInfo: item.lightInfo,
-                  fertilizerInfo: item.fertilizerInfo,
-                  pruningInfo: item.pruningInfo,
-                  nickname: nickname,
-                  location: location,
-                  note: note,
-                })
-              }
+            <AppFormField
+              name="imageUri"
+              placeholder={imageUri}
+              //value={values.imageUri}
             />
+            <SubmitButton title="Update" />
           </AppForm>
         </View>
       </View>
