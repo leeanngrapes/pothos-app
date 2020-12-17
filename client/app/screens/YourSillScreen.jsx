@@ -53,6 +53,7 @@ function YourSillScreen({ navigation }) {
               key={item.id}
               name={item.nickname}
               location={item.location.label}
+              //location={item.location}
               imageUri={item.imageUri}
               commonName={item.commonName}
               onPress={() =>
@@ -60,6 +61,7 @@ function YourSillScreen({ navigation }) {
                   id: item._id,
                   nickname: item.nickname,
                   location: item.location.label,
+                  //location: item.location,
                   note: item.note,
                   imageUri: item.imageUri,
                   commonName: item.commonName,
@@ -68,6 +70,9 @@ function YourSillScreen({ navigation }) {
                   lightInfo: item.lightInfo,
                   fertilizerInfo: item.fertilizerInfo,
                   pruningInfo: item.pruningInfo,
+                  fertilizingNote: item.fertilizingNote,
+                  pruningNote: item.pruningNote,
+                  propagationNote: item.propagationNote,
                 })
               }
             />

@@ -1,41 +1,13 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Alert,
-  TouchableWithoutFeedback,
-} from "react-native";
-import * as Yup from "yup";
+import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
 
 import colors from "../theme/colors";
 import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 import CareIcons from "../components/CareIcons";
 import PlantCard from "../components/PlantCard";
-import AppTextInput from "../components/AppTextInput";
-import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import { ScrollView } from "react-native-gesture-handler";
 import SubHeading from "../components/SubHeading";
-
-// Fn to handle form submit of Care Notes --> not working
-const handleSubmit = ({ nickname, location, note, imageUri }) => {
-  //send POST request to Database https://localhost:5000/sill/add
-  fetch("http://localhost:5000/sill/add/", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ nickname, location, note, imageUri }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(`Added new plant: ` + data);
-    })
-    .catch((err) => {
-      console.log("Sending plant failed", err);
-    });
-};
 
 function ViewPlantScreen({ route, navigation }) {
   const { nickname } = route.params;
@@ -48,6 +20,9 @@ function ViewPlantScreen({ route, navigation }) {
   const { lightInfo } = route.params;
   const { fertilizerInfo } = route.params;
   const { pruningInfo } = route.params;
+  const { fertilizingNote } = route.params;
+  const { pruningNote } = route.params;
+  const { propagationNote } = route.params;
   const { id } = route.params;
 
   // DELETE request to Sill
@@ -109,6 +84,7 @@ function ViewPlantScreen({ route, navigation }) {
             <CareIcons />
           </View>
         </TouchableWithoutFeedback>
+
         <View style={styles.form}>
           <View style={styles.formField}>
             <AppText>{nickname}</AppText>
@@ -132,6 +108,9 @@ function ViewPlantScreen({ route, navigation }) {
                   imageUri: imageUri,
                   note: note,
                   location: location,
+                  fertilizingNote: fertilizingNote,
+                  pruningNote: pruningNote,
+                  propagationNote: propagationNote,
                   id: id,
                 })
               }
@@ -149,43 +128,20 @@ function ViewPlantScreen({ route, navigation }) {
 
         {/* //Form for adding care notes below */}
         <View style={styles.noteSection}>
-          <AppForm
-            initialValues={{
-              nickname: "",
-              location: null,
-              note: "",
-              imageUri: "",
-            }}
-            //onSubmit={(values) => Alert.alert(values)}
-            onSubmit={handleSubmit}
-            //validationSchema={validationSchema}
-          >
-            <SubHeading style={styles.subHeading}>Care Notes</SubHeading>
-            <AppText>Fertilization:</AppText>
-            <AppFormField
-              maxLength={300}
-              name="fertilizationNotes"
-              placeholder="Add a note..."
-              numberOfLines={3}
-            />
-            <AppText>Pruning:</AppText>
-            <AppFormField
-              maxLength={300}
-              multiline
-              name="pruningNotes"
-              numberOfLines={3}
-              placeholder="Add a note..."
-            />
-            <AppText>Propagation:</AppText>
-            <AppFormField
-              maxLength={300}
-              multiline
-              name="propagationNotes"
-              numberOfLines={3}
-              placeholder="Add a note..."
-            />
-            <SubmitButton title="Add Notes" />
-          </AppForm>
+          <SubHeading style={styles.subHeading}>Care Notes</SubHeading>
+          <AppText>Fertilization:</AppText>
+          <View style={styles.formField}>
+            <AppText>{fertilizingNote}</AppText>
+          </View>
+          <AppText>Pruning:</AppText>
+          <View style={styles.formField}>
+            <AppText>{pruningNote}</AppText>
+          </View>
+
+          <AppText>Propagation:</AppText>
+          <View style={styles.formField}>
+            <AppText>{propagationNote}</AppText>
+          </View>
         </View>
       </View>
     </ScrollView>

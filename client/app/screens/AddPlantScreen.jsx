@@ -179,6 +179,9 @@ function AddPlantScreen({ route, navigation }) {
                     location: location,
                     note: note,
                     imageUri: imageUri,
+                    fertilizingNote: item.fertilizingNote,
+                    pruningNote: item.pruningNote,
+                    propagationNote: item.propagationNote,
                   })
                 }
               />

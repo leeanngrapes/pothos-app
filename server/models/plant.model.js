@@ -63,6 +63,24 @@ const plantSchema = new Schema({
     unique: false,
     lowercase: false,
   },
+  fertilizingNote: {
+    type: String,
+    required: false,
+    unique: false,
+    lowercase: false,
+  },
+  pruningNote: {
+    type: String,
+    required: false,
+    unique: false,
+    lowercase: false,
+  },
+  propagationNote: {
+    type: String,
+    required: false,
+    unique: false,
+    lowercase: false,
+  },
 });
 
 module.exports = mongoose.model("Plant", plantSchema);
