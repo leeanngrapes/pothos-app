@@ -1,13 +1,13 @@
 import React from "react";
 import { StyleSheet, View, ImageBackground, Alert } from "react-native";
 
+import AppButton from "../components/AppButton";
+import AppText from "../components/AppText";
 import colors from "../theme/colors";
 import Heading from "../components/Heading";
-import SubHeading from "../components/SubHeading";
-import AppText from "../components/AppText";
-import AppButton from "../components/AppButton";
+import routes from "../navigation/routes";
 import Screen from "../components/Screen";
-//import AuthNavigator from "../navigation/AuthNavigator";
+import SubHeading from "../components/SubHeading";
 
 function AccountScreen({ navigation }) {
   return (
@@ -37,13 +37,15 @@ function AccountScreen({ navigation }) {
           <AppButton
             title="Edit"
             color="secondary"
-            onPress={() => Alert.alert("Edit button pressed")}
+            onPress={() =>
+              Alert.alert("Edit account functionality coming soon!")
+            }
           />
 
           <AppButton
             title="Sign Out"
             color="accent"
-            onPress={() => navigation.navigate("Welcome")}
+            onPress={() => navigation.navigate(routes.WELCOME)}
           />
         </View>
       </ImageBackground>

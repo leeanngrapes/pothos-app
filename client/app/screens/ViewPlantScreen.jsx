@@ -1,11 +1,12 @@
 import React from "react";
 import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
 
-import colors from "../theme/colors";
-import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
+import AppText from "../components/AppText";
 import CareIcons from "../components/CareIcons";
+import colors from "../theme/colors";
 import PlantCard from "../components/PlantCard";
+import routes from "../navigation/routes";
 import { ScrollView } from "react-native-gesture-handler";
 import SubHeading from "../components/SubHeading";
 
@@ -36,21 +37,17 @@ function ViewPlantScreen({ route, navigation }) {
       method: "DELETE",
       body: JSON.stringify({
         _id: _id,
-        //nickname: nickname,
       }),
-      //body: _id,
       headers: {
         "Content-Type": "application/json",
       },
     })
-      //.then((response) => console.log(response.json()))
       .then((response) => response.json())
 
       .then((data) => {
         console.log(`Deleted plant: ` + data);
         console.log(data);
       })
-      //getting: Deleted plant: null
       .catch((err) => {
         console.log("Deleting plant failed", err);
       });
@@ -69,7 +66,7 @@ function ViewPlantScreen({ route, navigation }) {
 
         <TouchableWithoutFeedback
           onPress={() =>
-            navigation.navigate("PlantInfo", {
+            navigation.navigate(routes.INFORMATION, {
               imageUri: imageUri,
               waterInfo: waterInfo,
               lightInfo: lightInfo,
@@ -103,7 +100,7 @@ function ViewPlantScreen({ route, navigation }) {
             <AppButton
               title="Edit"
               onPress={() =>
-                navigation.navigate("EditPlant", {
+                navigation.navigate(routes.PLANT_EDIT, {
                   nickname: nickname,
                   commonName: commonName,
                   imageUri: imageUri,
@@ -121,7 +118,6 @@ function ViewPlantScreen({ route, navigation }) {
             <AppButton
               title="Remove"
               color="accent"
-              //onPress={() => Alert.alert("Remove button pressed")}
               onPress={() => handleDelete(id)}
             />
           </View>
@@ -179,14 +175,12 @@ const styles = StyleSheet.create({
     padding: 15,
     paddingLeft: 25,
     justifyContent: "center",
-    //backgroundColor: colors.warmWhite,
     marginBottom: 15,
     borderRadius: 30,
     borderColor: colors.light,
     borderWidth: 1,
   },
   subHeading: {
-    //alignSelf: "center",
     marginBottom: 10,
     textTransform: "uppercase",
     color: colors.primary,

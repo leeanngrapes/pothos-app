@@ -1,11 +1,12 @@
 import React from "react";
 import { StyleSheet, View, ImageBackground } from "react-native";
 
-import colors from "../theme/colors";
 import AppButton from "../components/AppButton";
+import colors from "../theme/colors";
 import Heading from "../components/Heading";
-import SubHeading from "../components/SubHeading";
+import routes from "../navigation/routes";
 import Screen from "../components/Screen";
+import SubHeading from "../components/SubHeading";
 
 function WelcomeScreen({ navigation }) {
   return (
@@ -22,12 +23,12 @@ function WelcomeScreen({ navigation }) {
           <AppButton
             title="log in"
             color="secondary"
-            onPress={() => navigation.navigate("Login")}
+            onPress={() => navigation.navigate(routes.LOGIN)}
           />
           <AppButton
             title="Register"
             color="accent"
-            onPress={() => navigation.navigate("Register")}
+            onPress={() => navigation.navigate(routes.REGISTER)}
           />
         </View>
       </ImageBackground>

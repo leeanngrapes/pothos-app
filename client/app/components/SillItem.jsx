@@ -5,7 +5,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import AppText from "./AppText";
 
 function SillItem({ name, location, imageUri, onPress }) {
-  //change to imageUri
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.sillItem}>

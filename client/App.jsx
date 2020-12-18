@@ -23,19 +23,19 @@ const Stack = createStackNavigator();
 const StackNavigator = () => (
   <Stack.Navigator initialRouteName="Welcome">
     <Stack.Screen name="Account" component={AccountScreen} />
-    <Stack.Screen name="AddPlant" component={AddPlantScreen} />
+    <Stack.Screen name="Add" component={AddPlantScreen} />
     <Stack.Screen name="CareSchedule" component={CareScheduleScreen} />
     <Stack.Screen name="Login" component={LoginScreen} />
-    <Stack.Screen name="PlantInfo" component={PlantInfoScreen} />
+    <Stack.Screen name="Information" component={PlantInfoScreen} />
     <Stack.Screen name="Register" component={RegisterScreen} />
     <Stack.Screen name="Search" component={SearchScreen} />
-    <Stack.Screen name="ViewPlant" component={ViewPlantScreen} />
+    <Stack.Screen name="View" component={ViewPlantScreen} />
     <Stack.Screen
       name="Welcome"
       component={WelcomeScreen}
       screenOptions={{ headerShown: false }}
     />
-    <Stack.Screen name="YourSill" component={YourSillScreen} />
+    <Stack.Screen name="Sill" component={YourSillScreen} />
   </Stack.Navigator>
 );
 

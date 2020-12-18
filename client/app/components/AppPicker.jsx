@@ -4,15 +4,14 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Modal,
-  Button,
   FlatList,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import defaultStyles from "../theme/styles";
 import AppText from "./AppText";
-import Screen from "./Screen";
+import defaultStyles from "../theme/styles";
 import PickerItem from "./PickerItem";
+import Screen from "./Screen";
 
 function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -84,11 +83,11 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
   },
-  list: {
-    marginLeft: 20,
-  },
   icon: {
     marginRight: 10,
+  },
+  list: {
+    marginLeft: 20,
   },
   modalIcon: {
     alignSelf: "flex-end",

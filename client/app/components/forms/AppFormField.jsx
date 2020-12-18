@@ -12,7 +12,6 @@ function AppFormField({ name, ...otherProps }) {
       <AppTextInput
         onBlur={() => setFieldTouched(name)}
         onChangeText={handleChange(name)}
-        //value={values}
         {...otherProps}
       />
       <ErrorMessage error={errors[name]} visible={touched[name]} />

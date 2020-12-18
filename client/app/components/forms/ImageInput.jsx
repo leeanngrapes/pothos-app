@@ -7,14 +7,11 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import colors from "../../theme/colors";
 import * as ImagePicker from "expo-image-picker";
-//import { useFormikContext } from "formik";
+
+import colors from "../../theme/colors";
 
 function ImageInput({ userImageUri, onChangeImage }) {
-  //const { errors, setFieldValue, touched, values } = useFormikContext();
-  //const imageUri = values[name]
-
   useEffect(() => {
     requestPermission();
   }, []);
