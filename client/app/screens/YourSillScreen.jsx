@@ -5,7 +5,7 @@ import AppButton from "../components/AppButton";
 import colors from "../theme/colors";
 import Heading from "../components/Heading";
 import routes from "../navigation/routes";
-import SillItem from "../components/SillItem";
+import SillItem from "../components/lists/SillItem";
 import Screen from "../components/Screen";
 
 const numColumns = 3;
