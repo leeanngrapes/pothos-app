@@ -21,7 +21,7 @@ const sillRouter = require("./server/routes/sill.route");
 mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true });
 const connection = mongoose.connection;
 connection.once("open", () => {
-  console.log("MongoDB database connection established! You go girl!!!");
+  console.log("MongoDB database connection established!");
 });
 
 // Use the middleware

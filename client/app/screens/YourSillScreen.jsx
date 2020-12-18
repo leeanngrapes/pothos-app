@@ -18,10 +18,8 @@ function YourSillScreen({ navigation }) {
     fetch("http://localhost:5000/sill")
       .then((res) => res.json())
       .then((jsonRes) => {
-        console.log("Fetched the sill");
         setSill(jsonRes);
       });
-    console.log("Made it through use effect and fetch");
   }, []);
 
   return (
@@ -82,7 +80,6 @@ function YourSillScreen({ navigation }) {
               .then((jsonRes) => {
                 setSill(jsonRes);
               });
-            console.log("Fetched the refreshed sill");
           }}
           numColumns={numColumns}
         />

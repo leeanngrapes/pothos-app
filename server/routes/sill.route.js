@@ -52,7 +52,6 @@ router.route("/").patch((req, res) => {
     newPruningNote,
     newPropagationNote,
   } = req.body;
-  console.log(req.body);
 
   let updatedSillPlantDocument = {};
 
@@ -73,7 +72,6 @@ router.route("/").patch((req, res) => {
   })
     .then((document) => {
       res.status(200).json(document);
-      console.log("Made it through patch request route.");
     })
     .catch((err) => {
       res.status(404).send(`Did not find plant to update. Error: ${err}`);
@@ -82,13 +80,11 @@ router.route("/").patch((req, res) => {
 
 router.route("/").delete((req, res) => {
   const { _id } = req.body;
-  console.log(_id);
 
   SillPlantModel.findByIdAndDelete(_id)
 
     .then((document) => {
       res.status(200).json(document);
-      console.log("Made it through delete request route.");
     })
     .catch((err) => {
       res

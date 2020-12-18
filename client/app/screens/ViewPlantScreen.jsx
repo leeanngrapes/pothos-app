@@ -28,11 +28,6 @@ function ViewPlantScreen({ route, navigation }) {
 
   // DELETE request to Sill
   const handleDelete = (_id) => {
-    console.log(
-      JSON.stringify({
-        _id: _id,
-      })
-    );
     fetch("http://localhost:5000/sill/", {
       method: "DELETE",
       body: JSON.stringify({
@@ -46,7 +41,6 @@ function ViewPlantScreen({ route, navigation }) {
 
       .then((data) => {
         console.log(`Deleted plant: ` + data);
-        console.log(data);
       })
       .catch((err) => {
         console.log("Deleting plant failed", err);
@@ -147,8 +141,8 @@ function ViewPlantScreen({ route, navigation }) {
 
 const styles = StyleSheet.create({
   background: {
-    flex: 1,
     backgroundColor: colors.white,
+    flex: 1,
   },
   buttonContainer: {
     flex: 1,
@@ -159,32 +153,32 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   container: {
-    flexDirection: "row",
     alignItems: "center",
+    alignSelf: "center",
+    flexDirection: "row",
     justifyContent: "center",
     width: "85%",
-    alignSelf: "center",
   },
   form: {
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
     paddingTop: 20,
   },
   formField: {
-    width: "80%",
-    padding: 15,
-    paddingLeft: 25,
+    borderColor: colors.light,
+    borderRadius: 30,
+    borderWidth: 1,
     justifyContent: "center",
     marginBottom: 15,
-    borderRadius: 30,
-    borderColor: colors.light,
-    borderWidth: 1,
+    padding: 15,
+    paddingLeft: 25,
+    width: "80%",
   },
   subHeading: {
-    marginBottom: 10,
-    textTransform: "uppercase",
     color: colors.primary,
     fontSize: 20,
+    marginBottom: 10,
+    textTransform: "uppercase",
     letterSpacing: 2,
   },
   plantImg: {

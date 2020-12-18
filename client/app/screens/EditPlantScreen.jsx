@@ -109,7 +109,6 @@ function EditPlantScreen({ route }) {
                 propagationNote: "",
               }}
               onSubmit={(values) => {
-                console.log(values);
                 handleUpdate({
                   nickname: values.nickname,
                   imageUri: values.imageUri,
