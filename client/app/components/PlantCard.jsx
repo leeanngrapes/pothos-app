@@ -5,10 +5,20 @@ import colors from "../theme/colors";
 import SubHeading from "./SubHeading";
 import AppText from "./AppText";
 
-function PlantCard({ title, subTitle, image }) {
+//maybe need to use state for setting the image??
+
+function PlantCard({
+  title,
+  subTitle,
+  imageUri,
+  commonName,
+  scientificName,
+  nickname,
+  location,
+}) {
   return (
     <View style={styles.plantCard}>
-      <Image style={styles.image} source={image} />
+      <Image style={styles.image} source={{ uri: imageUri }} />
       <View style={styles.detailsContainer}>
         <SubHeading style={styles.title}>{title}</SubHeading>
         <AppText>{subTitle}</AppText>
@@ -28,7 +38,7 @@ const styles = StyleSheet.create({
     borderRadius: 75,
   },
   plantCard: {
-    marginTop: 40,
+    marginTop: 20,
     alignItems: "center",
   },
   title: {

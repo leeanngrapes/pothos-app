@@ -9,7 +9,7 @@ function SubHeading({ children, style }) {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 28,
+    fontSize: 30,
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
     color: colors.accent,
     //marginVertical: 10,

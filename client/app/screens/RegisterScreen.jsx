@@ -15,23 +15,29 @@ const registerSchema = Yup.object().shape({
   password: Yup.string().required().min(4).label("Password"),
 });
 
-const onSubmit = () => {
-  let username = document.querySelector("name").value;
-  let email = document.querySelector("email").value;
-  let password = document.querySelector("password").value;
+// const handleSubmit = () => {
+//   fetch("http://192.168.86.79:5000/users/register", {
+//     method: "POST",
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(),
+//   })
+//     .then((response) => response.json())
+//     .then((responseData) => {
+//       console.log(
+//         "POST Response",
+//         "Reponse body: " + JSON.stringify(responseData)
+//       );
+//     })
+//     .catch((err) => {
+//       console.log("Sending registration failed", err);
+//     });
+//   console.log("Made it through fetch");
+// };
 
-  const user = {
-    username,
-    email,
-    password,
-  };
-
-  axios.post("", user).then((res) => {
-    console.log(res.data);
-  });
-};
-
-function RegisterScreen() {
+function RegisterScreen({ navigation }) {
   return (
     <Screen>
       <ImageBackground
@@ -44,7 +50,8 @@ function RegisterScreen() {
         <View style={styles.form}>
           <AppForm
             initialValues={{ name: "", email: "", password: "" }}
-            onSubmit={(values) => Alert.alert(values)}
+            //onSubmit={(values) => Alert.alert(values)}
+            onSubmit={() => navigation.navigate("App")}
             validationSchema={registerSchema}
           >
             <AppFormField
