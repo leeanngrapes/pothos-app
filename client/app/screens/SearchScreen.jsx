@@ -7,6 +7,8 @@ import Screen from "../components/Screen";
 import SearchItem from "../components/lists/SearchItem";
 import routes from "../navigation/routes";
 
+//TODO in V2: Add search functionality
+
 function SearchScreen({ navigation }) {
   const [list, setList] = useState([]);
 
@@ -14,7 +16,6 @@ function SearchScreen({ navigation }) {
     fetch("http://localhost:5000/plants")
       .then((res) => res.json())
       .then((jsonRes) => {
-        //console.log(jsonRes);
         setList(jsonRes);
       });
     console.log("Fetched the plants from database");
@@ -41,7 +42,7 @@ function SearchScreen({ navigation }) {
             scientificName={item.scientificName}
             imageUri={item.imageUri}
             onPress={() =>
-              navigation.navigate("AddPlant", {
+              navigation.navigate(routes.PLANT_ADD, {
                 commonName: item.commonName,
                 scientificName: item.scientificName,
                 imageUri: item.imageUri,

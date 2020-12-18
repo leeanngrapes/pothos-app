@@ -1,21 +1,10 @@
 import React from "react";
 import { StyleSheet, View, Image } from "react-native";
 
-import colors from "../theme/colors";
-import SubHeading from "./SubHeading";
 import AppText from "./AppText";
+import SubHeading from "./SubHeading";
 
-//maybe need to use state for setting the image??
-
-function PlantCard({
-  title,
-  subTitle,
-  imageUri,
-  commonName,
-  scientificName,
-  nickname,
-  location,
-}) {
+function PlantCard({ title, subTitle, imageUri }) {
   return (
     <View style={styles.plantCard}>
       <Image style={styles.image} source={{ uri: imageUri }} />

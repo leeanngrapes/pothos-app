@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 const SillNavigator = () => (
   <Stack.Navigator mode={"modal"}>
     <Stack.Screen
-      name="YourSill"
+      name="Sill"
       component={YourSillScreen}
       options={{
         headerShown: false,
@@ -36,7 +36,7 @@ const SillNavigator = () => (
       }}
     />
     <Stack.Screen
-      name="ViewPlant"
+      name="View"
       component={ViewPlantScreen}
       options={{
         headerShown: true,
@@ -46,7 +46,7 @@ const SillNavigator = () => (
       }}
     />
     <Stack.Screen
-      name="AddPlant"
+      name="Add"
       component={AddPlantScreen}
       options={{
         headerShown: true,
@@ -56,7 +56,7 @@ const SillNavigator = () => (
       }}
     />
     <Stack.Screen
-      name="EditPlant"
+      name="Edit"
       component={EditPlantScreen}
       options={{
         headerShown: true,
@@ -66,7 +66,7 @@ const SillNavigator = () => (
       }}
     />
     <Stack.Screen
-      name="PlantInfo"
+      name="Information"
       component={PlantInfoScreen}
       options={{
         headerShown: true,

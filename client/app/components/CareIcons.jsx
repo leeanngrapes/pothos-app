@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../theme/colors";
 
-function CareIcons(props) {
+function CareIcons() {
   return (
     <View style={styles.iconBar}>
       <View style={styles.icon}>

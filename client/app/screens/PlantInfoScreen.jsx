@@ -1,14 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, Platform } from "react-native";
+import { StyleSheet, Text, View, Platform } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import colors from "../theme/colors";
 import AppText from "../components/AppText";
+import colors from "../theme/colors";
 import PlantCard from "../components/PlantCard";
 import Screen from "../components/Screen";
 import { ScrollView } from "react-native-gesture-handler";
 
-function PlantInfoScreen({ route, navigation }) {
+function PlantInfoScreen({ route }) {
   const { commonName } = route.params;
   const { scientificName } = route.params;
   const { imageUri } = route.params;

@@ -1,24 +1,10 @@
-//import { response } from "express";
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Image,
-  TouchableHighlight,
-  Alert,
-} from "react-native";
-//import Swipeable from "react-native-gesture-handler/Swipeable";
+import { StyleSheet, View, Image, TouchableHighlight } from "react-native";
 
-import colors from "../../theme/colors";
 import AppText from "../AppText";
+import colors from "../../theme/colors";
 
-function SearchItem({
-  commonName,
-  scientificName,
-  imageUri,
-  navigation,
-  onPress,
-}) {
+function SearchItem({ commonName, scientificName, imageUri, onPress }) {
   return (
     <TouchableHighlight underlayColor={colors.warmWhite} onPress={onPress}>
       <View style={styles.container}>

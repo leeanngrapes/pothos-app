@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 import * as Yup from "yup";
 
-import AppForm from "../components/forms/AppForm";
+import {
+  AppForm,
+  AppFormField,
+  AppFormPicker,
+  SubmitButton,
+} from "../components/forms";
 import AppText from "../components/AppText";
 import colors from "../theme/colors";
 import PlantCard from "../components/PlantCard";
 import Screen from "../components/Screen";
-import { AppFormField, AppFormPicker, SubmitButton } from "../components/forms";
 import SubHeading from "../components/SubHeading";
 
 const validationSchema = Yup.object().shape({
@@ -20,6 +24,7 @@ const validationSchema = Yup.object().shape({
   propagationNote: Yup.string().label("Note"),
 });
 
+//Locations for dropdown; matched to AddPlantScreen
 const locations = [
   { label: "Bathroom", value: 1 },
   { label: "Bedroom", value: 2 },
@@ -31,7 +36,7 @@ const locations = [
   { label: "Office", value: 8 },
 ];
 
-function EditPlantScreen({ route, navigation, values }) {
+function EditPlantScreen({ route }) {
   const { nickname } = route.params;
   const { location } = route.params;
   const { note } = route.params;
@@ -53,16 +58,9 @@ function EditPlantScreen({ route, navigation, values }) {
     pruningNote,
     propagationNote,
   }) => {
-    //send PATCH request to Database https://localhost:5000/sill/add
-    // console.log(
-    //   JSON.stringify({
-    //     _id: _id,
-    //   })
-    // );
     fetch("http://localhost:5000/sill/", {
       method: "PATCH",
       headers: {
-        //Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -102,10 +100,6 @@ function EditPlantScreen({ route, navigation, values }) {
             <SubHeading style={styles.subHeading}>Profile</SubHeading>
             <AppForm
               initialValues={{
-                // nickname: nickname,
-                // location: location,
-                // note: note,
-                // imageUri: imageUri,
                 nickname: "",
                 location: "",
                 imageUri: "",
@@ -114,20 +108,7 @@ function EditPlantScreen({ route, navigation, values }) {
                 pruningNote: "",
                 propagationNote: "",
               }}
-              //onSubmit={(values) => Alert.alert(values)}
-
-              // onSubmit={(values) => {
-              //   console.log(values);
-              //   handleUpdate({
-              //     nickname: values.nickname,
-              //     imageUri: values.imageUri,
-              //     note: values.note,
-              //     location: values.location,
-              //     _id: id,
-              //   });
-              // }}
               onSubmit={(values) => {
-                console.log(values);
                 handleUpdate({
                   nickname: values.nickname,
                   imageUri: values.imageUri,
@@ -139,30 +120,22 @@ function EditPlantScreen({ route, navigation, values }) {
                   _id: id,
                 });
               }}
-              //onSubmit={handleUpdate}
               validationSchema={validationSchema}
             >
-              {/* select an image? */}
               <AppText style={styles.subTitle}>Nickname</AppText>
               <AppFormField
                 maxLength={50}
                 name="nickname"
                 placeholder={nickname}
-                //value={values.nickname}
               />
               <AppText style={styles.subTitle}>Location</AppText>
               <AppFormPicker
                 items={locations}
                 name="location"
                 placeholder={location}
-                //value={values.location.label}
               />
               <AppText style={styles.subTitle}>Image</AppText>
-              <AppFormField
-                name="imageUri"
-                placeholder={imageUri}
-                //value={values.imageUri}
-              />
+              <AppFormField name="imageUri" placeholder={imageUri} />
               <AppText style={styles.subTitle}>Note</AppText>
               <AppFormField
                 maxLength={300}
@@ -170,7 +143,6 @@ function EditPlantScreen({ route, navigation, values }) {
                 name="note"
                 numberOfLines={3}
                 placeholder={note}
-                //value={values.note}
               />
               <SubHeading style={styles.subHeading}>Care Notes</SubHeading>
               <AppText style={styles.subTitle}>Fertilization</AppText>
@@ -230,7 +202,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   subHeading: {
-    //alignSelf: "center",
     marginVertical: 10,
     textTransform: "uppercase",
     color: colors.primary,
@@ -240,7 +211,6 @@ const styles = StyleSheet.create({
   subTitle: {
     alignSelf: "flex-start",
     paddingLeft: 20,
-    //paddingBottom: 5,
     color: colors.primary,
   },
 });

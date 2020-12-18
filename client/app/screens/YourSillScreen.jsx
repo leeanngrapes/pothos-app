@@ -5,7 +5,7 @@ import AppButton from "../components/AppButton";
 import colors from "../theme/colors";
 import Heading from "../components/Heading";
 import routes from "../navigation/routes";
-import SillItem from "../components/SillItem";
+import SillItem from "../components/lists/SillItem";
 import Screen from "../components/Screen";
 
 const numColumns = 3;
@@ -18,10 +18,8 @@ function YourSillScreen({ navigation }) {
     fetch("http://localhost:5000/sill")
       .then((res) => res.json())
       .then((jsonRes) => {
-        console.log("Fetched the sill");
         setSill(jsonRes);
       });
-    console.log("Made it through use effect and fetch");
   }, []);
 
   return (
@@ -53,7 +51,6 @@ function YourSillScreen({ navigation }) {
               key={item.id}
               name={item.nickname}
               location={item.location.label}
-              //location={item.location}
               imageUri={item.imageUri}
               commonName={item.commonName}
               onPress={() =>
@@ -61,7 +58,6 @@ function YourSillScreen({ navigation }) {
                   id: item._id,
                   nickname: item.nickname,
                   location: item.location.label,
-                  //location: item.location,
                   note: item.note,
                   imageUri: item.imageUri,
                   commonName: item.commonName,
@@ -78,20 +74,13 @@ function YourSillScreen({ navigation }) {
             />
           )}
           refreshing={refreshing}
-          onRefresh={
-            //setSill with new array from back end
-            //useEffect( //<--this was causing massive overload!
-            () => {
-              fetch("http://localhost:5000/sill")
-                .then((res) => res.json())
-                .then((jsonRes) => {
-                  //console.log(jsonRes);
-                  setSill(jsonRes);
-                });
-              console.log("Fetched the refreshed sill");
-              //})
-            }
-          }
+          onRefresh={() => {
+            fetch("http://localhost:5000/sill")
+              .then((res) => res.json())
+              .then((jsonRes) => {
+                setSill(jsonRes);
+              });
+          }}
           numColumns={numColumns}
         />
       </View>
